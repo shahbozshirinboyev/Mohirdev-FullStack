@@ -1,0 +1,155 @@
+@media only screen and (max-width: 991px) {
+  .container {
+    width: 90%;
+  }
+
+  /* Navbar */
+  .navbar ul {
+    display: none;
+  }
+  /* /Navbar */
+
+  /* Home */
+  .home {
+    height: auto;
+  }
+  .home__content {
+    flex-direction: column;
+    padding-top: 20%;
+  }
+  .home__content-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home__content-img img {
+    display: inline-block;
+    width: 100%;
+  }
+  /* /Home */
+
+  /* Statistics */
+  .statistics__items{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 54px auto;
+  }
+  .statistics__item{
+    width: 40%;
+    justify-content: center;
+  }
+  /* /Statistics */
+
+  /* Services */
+  .services__grid{
+    display: flex;
+    flex-direction: column;
+  }
+  /* .box_1{
+    border: 1px solid red;
+  }
+  .box_2 {
+    border: 1px solid green;
+  } */
+  .box_3 {
+    /* border: 1px solid blue; */
+    flex-direction: column;
+  }
+  .services__grid > div {
+    padding: 35px 0;
+  }
+  .margin-top{
+    margin-top: 0px;
+  }
+  /* /Services */
+
+  /* Features */
+  .features__content{
+    flex-direction: column;
+  }
+  .features__content img{
+    width: 100%;
+  }
+  .features__cards{
+    flex-direction: column;
+  }
+  .features__card{
+    width: 100%;
+    justify-content: flex-start;
+  }
+  /* /Features */
+
+  /* Pricing */
+  .pricing__cards{
+    flex-direction: column;
+    gap: 30px;
+  }
+  .pricing__card{
+    width: 100%;
+  }
+  /* Pricing */
+
+  /* Managment */
+  .managment{
+    flex-direction: column;
+  }
+  .managment__action img{
+    width: 100%;
+  }
+  /* /Managment */
+
+  /* Chat */
+  .chat{
+    width: 100%;
+  }
+  /* /Chat */
+
+  /* Setup */
+  .setup{
+    flex-direction: column;
+  }
+  .setup img{
+    width: 100%;
+  }
+  /* /Setup */
+
+  /* Testimonials */
+  .testimonials__cards{
+    flex-direction: column;
+    gap: 30px;
+  }
+  .testimonials__card{
+    width: 100%;
+  }
+  /* /Testimonials */
+
+  /* Guaranteed */
+  .guaranteed__cards{
+    flex-direction: column;
+  }
+  .guaranteed__card{
+    width: 100%;
+  }
+  /* /Guaranteed */
+
+  /* Discount */
+  .discount__bg{
+    padding-top: 20vw;
+    padding-bottom: 3vw;
+  }
+  /* /Discount */
+
+  /* Footer */
+  .footer{
+    flex-direction: column;
+  }
+  .footer p{
+    text-align: center;
+  }
+  /* /Footer */
+}
+
+@media only screen and (max-width: 767px) {
+
+}

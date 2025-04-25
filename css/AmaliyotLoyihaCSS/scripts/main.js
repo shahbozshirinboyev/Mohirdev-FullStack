@@ -1,0 +1,1 @@
+// alert("Qani ketdik Shahboz olg'a yur!!!")

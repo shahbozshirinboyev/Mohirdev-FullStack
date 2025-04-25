@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+body {
+  background-color: #e0f0fd;
+}
+
+form {
+  width: 752px;
+  background-color: #ffffff;
+  margin: 80px auto;
+  color: #2c3345;
+  font-family: "Inter", serif;
+  font-style: normal;
+}
+
+header {
+  padding: 38px;
+}
+
+header h1 {
+  line-height: 0.6;
+}
+
+header p {
+  font-family: "Inter", serif;
+  font-weight: 500;
+  line-height: 0;
+}
+
+.form__group {
+  font-weight: 500;
+  padding: 38px;
+  padding-bottom: 0px;
+}
+
+.form__group label span {
+  color: #dc2626;
+}
+
+.form__group__section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.form__group__section span {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form__group__section span label {
+  color: #464d5f;
+  font-size: 12px;
+  line-height: 0.6;
+  padding-top: 10px;
+}
+
+.form__group__section input,
+.form__group__section select,
+.form__group__section textarea {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #2c33455e;
+  border-radius: 5px;
+}
+
+.form__group__section input::placeholder {
+  font-size: 16px;
+  color: #2c334569;
+  font-weight: 400;
+}
+
+.form__group__radio {
+  padding: 10px;
+}
+
+.form__group__radio div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 5px;
+  font-weight: normal;
+}
+
+.form__group__radio div label {
+  height: 100%;
+}
+
+.form__group__radio input {
+  width: 18px;
+  height: 18px;
+}
+
+.padding__form {
+  font-weight: 500;
+  padding: 38px;
+  padding-bottom: 0px;
+  padding-top: 19px;
+}
+
+.form__flex {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.add__style {
+  width: 100%;
+  padding: 0px;
+  padding-top: 38px;
+}
+
+.add__style__left {
+  padding-left: 38px;
+}
+
+.add__style__right {
+  padding-right: 38px;
+}
+
+.area__code {
+  width: 100px;
+}
+
+.hr {
+  margin: 40px;
+  margin-bottom: 0px;
+}
+
+.form__table {
+  padding-top: 10px;
+}
+
+.form__table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.form__table table th,
+.form__table table td {
+  padding: 10px;
+  border: 1px solid #2c33455e;
+}
+
+.form__table table input {
+  width: 20px;
+  height: 20px;
+}
+
+.ignore__border {
+  border: 0px solid #c3cad8 !important;
+  background-color: transparent !important;
+}
+
+.form__table table tbody tr td:first-child {
+  text-align: start !important;
+  background-color: #e5eaf4;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form__table table tbody tr td {
+  text-align: center;
+}
+
+.form__table table thead tr th {
+  background-color: #e5eaf4;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.upload_label {
+  border: 1px dashed #2c3345;
+  border-radius: 5px;
+  padding: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #98b5ff09;
+}
+
+.upload_label img {
+  width: 40px;
+  opacity: 40%;
+}
+
+.upload_label b {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.upload_label i {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.hidden__input {
+  display: none;
+}
+
+textarea {
+  margin-bottom: 20px;
+}
+
+.button__div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.apply__button {
+  background-color: #13151b;
+  color: #ffffffe3;
+  border: none;
+  padding: 15px 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 40px auto;
+}
+
+.apply__button:hover {
+  background-color: #13151bea;
+}
+
+.input__radio__design input {
+  width: 40px;
+  height: 40px;
+}
+
+.input__radio__design table {
+  margin-top: 10px;
+  width: 65%;
+  border-collapse: collapse;
+}
+
+.input__radio__design table th,
+.input__radio__design table td {
+  text-align: center;
+}

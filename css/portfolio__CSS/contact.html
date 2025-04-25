@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Portfolio - Bog'lanish</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
+    <!-- Font Awesome CDN Links -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/shared.css" />
+    <link rel="stylesheet" href="./css/contact.css" />
+  </head>
+
+  <body>
+    <!-- Header section -->
+    <header class="main-header">
+      <div class="container">
+        <div class="main-header__brand">
+          <a href="index.html">
+            <img src="./images/logo.png" alt="Brand" />
+          </a>
+        </div>
+        <nav class="main-navigation">
+          <ul class="main-navigation__items">
+            <li class="main-navigation__item">
+              <a href="index.html">Asosiy</a>
+            </li>
+            <li class="main-navigation__item"><a href="index.html#main-section">Men haqimda</a></li>
+            <li class="main-navigation__item"><a href="index.html#services">Xizmatlar</a></li>
+            <li class="main-navigation__item"><a href="index.html#clients">Mijozlar</a></li>
+            <li class="main-navigation__item"><a href="index.html#portfolio">Portfolio</a></li>
+            <li class="main-navigation__item"><a href="index.html#blog">Blog</a></li>
+            <li class="main-navigation__item"><a href="index.html#partners">Sheriklar</a></li>
+            <li class="main-navigation__item active">
+              <a href="contact.html">Bog'lanish</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- /Header section -->
+
+    <!-- Contact section -->
+    <div class="container">
+      <section class="contact">
+        <h2 class="section-title">Men bilan bog'laning</h2>
+        <form action="">
+          <textarea
+            name=""
+            id=""
+            rows="8"
+            placeholder="Xabaringizni kiriting"
+          ></textarea>
+          <div class="half-flex">
+            <div class="contact__firstname">
+              <input type="text" placeholder="Ismingizni kiriting" />
+            </div>
+            <div class="contact__email">
+              <input
+                type="email"
+                name=""
+                id=""
+                placeholder="Emailingini kiriting"
+              />
+            </div>
+          </div>
+          <input type="text" placeholder="Xabar mazmuni" />
+          <button class="button contact__send" type="submit">
+            Xabarni yuborish
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Footer section -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__brand">
+          <img src="./images/logo.png" alt="Logo" />
+          <span>Logo.</span>
+        </div>
+        <nav class="footer__navigation">
+          <ul class="foother__navigation-items">
+            <li class="footer__navigation-item"><a href="index.html#">Asosiy</a></li>
+            <li class="footer__navigation-item"><a href="index.html#main-section">Men haqimda</a></li>
+            <li class="footer__navigation-item"><a href="index.html#services">Xizmatlar</a></li>
+            <li class="footer__navigation-item"><a href="index.html#clients">Mijozlar</a></li>
+            <li class="footer__navigation-item"><a href="index.html#portfolio">Portfolio</a></li>
+            <li class="footer__navigation-item"><a href="index.html#blog">Blog</a></li>
+            <li class="footer__navigation-item"><a href="index.html#partners">Sheriklar</a></li>
+          </ul>
+        </nav>
+        <ul class="footer__socials">
+          <li class="footer__social">
+            <a href="#">
+              <i class="fab fa-telegram"></i>
+            </a>
+          </li>
+          <li class="footer__social">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+          <li class="footer__social">
+            <a href="#">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </li>
+        </ul>
+        <p class="footer__text">
+          Copyright ©2025 All rights reserved | This template is made with
+          <i class="fa-solid fa-heart"></i> by Colorlib
+        </p>
+      </div>
+    </footer>
+    <!-- /Footer section -->
+  </body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <form action="job_application.php">
+      <header>
+        <h1>Job Application</h1>
+        <p>Please complete the form below to apply for a position with us.</p>
+      </header>
+      <hr>
+      <div class="form__group">
+        <label for="firstName">Full Name <span>*</span></label>
+        <div class="form__group__section">
+          <span>
+            <input type="text" id="firstName" name="fullName" required >
+            <label for="firstName">First Name</label>
+          </span>
+          <span>
+            <input type="text" id="middleName" name="fullName" required >
+            <label for="middleName">Middle Name</label>
+          </span>
+          <span>
+            <input type="text" id="lastName" name="fullName" required >
+            <label for="lastName">Last Name</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="height">Body Size <span>*</span></label>
+        <div class="form__group__section">
+          <span>
+            <input
+              type="text"
+              id="height"
+              name="height"
+              required
+              placeholder="sm"
+            >
+            <label for="height">Height</label>
+          </span>
+          <span>
+            <input
+              type="text"
+              id="weight"
+              name="weight"
+              required
+              placeholder="kg"
+            >
+            <label for="weight">Weight</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="month">Birth Date</label>
+        <div class="form__group__section">
+          <span>
+            <select name="month" id="month">
+              <option value="0">Please select a month</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <label for="month">Month</label>
+          </span>
+          <span>
+            <select name="day" id="day">
+              <option value="0">Please select a day</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+            </select>
+            <label for="day">Day</label>
+          </span>
+          <span>
+            <select name="year" id="year">
+              <option value="0">Please select a year</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+            </select>
+            <label for="year">Year</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label>Family Status</label>
+        <div class="form__group__radio">
+          <div>
+            <input
+              type="radio"
+              name="familyStatus"
+              id="divorced"
+              value="divorced"
+            >
+            <label for="divorced">Divorced</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="familyStatus"
+              id="married"
+              value="married"
+            >
+            <label for="married">Married</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="familyStatus"
+              id="single"
+              value="single"
+            >
+            <label for="single">Single</label>
+          </div>
+          <div>
+            <input type="radio" name="familyStatus" id="other" value="other" >
+            <label for="other">Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="currentAddress">Current Address</label>
+        <div class="form__group__section">
+          <span>
+            <input
+              type="text"
+              name="currentAddress"
+              required
+              id="currentAddress"
+            >
+            <label for="currentAddress">Street Address</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group__section padding__form">
+        <span>
+          <input
+            type="text"
+            name="currentAddress2"
+            id="currentAddress2"
+            required
+          >
+          <label for="currentAddress2">Street Address Line 2</label>
+        </span>
+      </div>
+      <div class="form__group__section padding__form">
+        <span>
+          <input type="text" id="city" name="city" required >
+          <label for="city">City</label>
+        </span>
+        <span>
+          <input type="text" id="state" name="state" required >
+          <label for="state">State / Province</label>
+        </span>
+      </div>
+      <div class="form__group__section padding__form">
+        <span>
+          <input type="text" id="zipCode" name="zipCode" required >
+          <label for="zipCode">Postal / Zip Code</label>
+        </span>
+      </div>
+
+      <div class="form__flex">
+        <div class="form__group add__style add__style__left">
+          <label for="mail">Email Address</label>
+          <div class="form__group__section">
+            <span>
+              <input
+                type="text"
+                id="mail"
+                name="mail"
+                required
+                placeholder="ex: myname@example.com"
+              >
+              <label for="mail">example@example.com</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="form__group add__style add__style__right">
+          <label for="phoneNumber">Phone Number</label>
+          <div class="form__group__section">
+            <span>
+              <input
+                class="area__code"
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                required
+                placeholder="90"
+              >
+              <label for="phoneNumber">Area Code</label>
+            </span>
+            <span>
+              <input
+                type="text"
+                id="areaCode"
+                name="areaCode"
+                required
+                placeholder="9000909"
+              >
+              <label for="areaCode">Phone Number</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__flex">
+        <div class="form__group add__style add__style__left">
+          <label for="linkedin">LinkedIn</label>
+          <div class="form__group__section">
+            <span>
+              <input type="text" id="linkedin" name="linkedin" required >
+            </span>
+          </div>
+        </div>
+
+        <div class="form__group add__style add__style__right">
+          <label for="experience">Experience</label>
+          <div class="form__group__section">
+            <span>
+              <input
+                type="number"
+                id="experience"
+                name="experience"
+                value="0"
+                min="0"
+                required
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr class="hr">
+
+      <div class="form__flex">
+        <div class="form__group add__style add__style__left">
+          <label for="position">Position Applied</label>
+          <div class="form__group__section">
+            <span>
+              <select name="position" id="position">
+                <option value="0">Please Select</option>
+                <option value="1">Marketing Specialist</option>
+                <option value="2">Sales Manager</option>
+                <option value="3">Product Lead</option>
+                <option value="4">Developer</option>
+              </select>
+            </span>
+          </div>
+        </div>
+
+        <div class="form__group add__style add__style__right">
+          <label for="hear">How did you hear about us</label>
+          <div class="form__group__section">
+            <span>
+              <select name="hear" id="hear">
+                <option value="0">Please Select</option>
+                <option value="1">LinkedIn</option>
+                <option value="2">Event</option>
+                <option value="3">Social Media</option>
+                <option value="4">Company Website</option>
+                <option value="5">Family / Friend</option>
+                <option value="6">Other</option>
+              </select>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__flex">
+        <div class="form__group add__style add__style__left">
+          <label for="specify">Please Specify</label>
+          <div class="form__group__section">
+            <span>
+              <input type="text" id="specify" name="specify" required >
+            </span>
+          </div>
+        </div>
+
+        <div class="form__group add__style add__style__right">
+          <label for="startDate">Available Start Date</label>
+          <div class="form__group__section">
+            <span>
+              <input
+                type="date"
+                id="startDate"
+                name="startDate"
+                required
+                value="2025-02-13"
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="firstName">Computer Skills</label>
+
+        <div class="form__table">
+          <table>
+            <thead>
+              <tr>
+                <th class="ignore__border"></th>
+                <th>Beginner</th>
+                <th>Elementary</th>
+                <th>Advanced</th>
+                <th>Expert</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Excel</td>
+                <td><input type="radio" name="excel" ></td>
+                <td><input type="radio" name="excel" ></td>
+                <td><input type="radio" name="excel" ></td>
+                <td><input type="radio" name="excel" ></td>
+              </tr>
+              <tr>
+                <td>Word</td>
+                <td><input type="radio" name="word" ></td>
+                <td><input type="radio" name="word" ></td>
+                <td><input type="radio" name="word" ></td>
+                <td><input type="radio" name="word" ></td>
+              </tr>
+              <tr>
+                <td>1C</td>
+                <td><input type="radio" name="onec" ></td>
+                <td><input type="radio" name="onec" ></td>
+                <td><input type="radio" name="onec" ></td>
+                <td><input type="radio" name="onec" ></td>
+              </tr>
+              <tr>
+                <td>Programming Language</td>
+                <td><input type="radio" name="programming_language" ></td>
+                <td><input type="radio" name="programming_language" ></td>
+                <td><input type="radio" name="programming_language" ></td>
+                <td><input type="radio" name="programming_language" ></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="worst">Ability knowing English Language</label>
+        <div class="form__group__section">
+          <div class="input__radio__design">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <input type="radio" name="ability" id="worst" required >
+                  </th>
+                  <th>
+                    <input type="radio" name="ability" id="ability1" required >
+                  </th>
+                  <th>
+                    <input type="radio" name="ability" id="ability2" required >
+                  </th>
+                  <th>
+                    <input type="radio" name="ability" id="ability3" required >
+                  </th>
+                  <th>
+                    <input type="radio" name="ability" id="best" required >
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><label for="worst">Worst</label></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><label for="best">Best</label></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="fileDocument1"
+          >Applicant Document(Diploma, Certificate)</label
+        >
+        <div class="form__group__section">
+          <span>
+            <label for="fileDocument1" class="upload_label">
+              <img
+                src="./icons/cloud-arrow-up-fill.svg"
+                alt="Upload_File_Icon"
+              >
+              <b>Browse Files</b>
+              <i>Drag and drop files here</i>
+            </label>
+            <input
+              type="file"
+              id="fileDocument1"
+              class="hidden__input"
+              name="fileDocument1"
+              required
+            >
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="fileDocument2">Upload Your Resume</label>
+        <div class="form__group__section">
+          <span>
+            <label for="fileDocument2" class="upload_label">
+              <img
+                src="./icons/cloud-arrow-up-fill.svg"
+                alt="Upload_File_Icon"
+              >
+              <b>Browse Files</b>
+              <i>Drag and drop files here</i>
+            </label>
+            <input
+              type="file"
+              id="fileDocument2"
+              class="hidden__input"
+              name="fileDocument2"
+              required
+            >
+          </span>
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="comment">Cover Letter</label>
+        <div class="form__group__section">
+          <span>
+            <textarea name="comment" id="comment" rows="7"></textarea>
+          </span>
+        </div>
+      </div>
+      <hr>
+
+      <div class="button__div">
+        <button class="apply__button">Apply</button>
+      </div>
+    </form>
+  </body>
+</html>
