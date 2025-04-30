@@ -1,3 +1,3 @@
 import functions as f
 
-f.son_top_comp()
+f.son_top_pc()

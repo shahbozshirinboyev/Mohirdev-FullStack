@@ -1,10 +1,10 @@
 import random
 import keyboard
 
-def son_top_user():
-  son = random.randint(1, 10)
-  print(son)
-  print("[1, 2, ... 10] oraliqda son o'yladim: Topa olasizmi?")
+
+def son_top_user(x=10):
+  son = random.randint(1, x)
+  print(f"1 dan {x} gacha oraliqda son o'yladim: Topa olasizmi?")
   sanoq = 0
   while True:
     user_son = int(input(">> "))
@@ -19,19 +19,21 @@ def son_top_user():
       print(f"Xato, men o'ylagan son bundan kichikroq. Yana harakat qiling:")
       sanoq += 1
   print(f"Tabriklaymiz, siz {sanoq} urunishda topdingiz!")
+  return sanoq
 
-
-
-def son_top_comp():
-  print(f"1 dan 10 gacha son o'ylang. Men topishga harakat qilaman.")
-  print(f"Son o'ylagan bo'lsangiz istalgan tugmani bosing:")
+def son_top_pc(x=10):
+  print(f"1 dan {x} gacha son o'ylang. Men topishga harakat qilaman!")
+  input("Son o'ylagan bo'lsangiz istalgan tugmani bosing!")
+  print("Ajoyib, son o'yladingiz... men topishga harakat qilaman:")
+  past = 1
+  yuqori = x
+  taxminlar = 0
   while True:
-    event = keyboard.read_event()
-    if event.event_type == keyboard.KEY_DOWN:
-        print(f"Tugma bosildi: {event.name}")
-    if event.name == 'esc':
-        print("Dastur to‘xtatildi.")
-        break
-
-
-son_top_comp()
+    son = random.randint(past, yuqori)
+    print(f"Siz {son} o'yladingiz:\n(T) - to'g'ri\n(+) - o'ylagan soningiz bundan kattaroq\n(-) - o'ylagan soningiz bundan kichikroq")
+    if keyboard.read_event().name == 't':
+      print(f"To'g'ri topdingiz...")
+    elif keyboard.read_event().name == '+':
+      past = son + 1
+    elif keyboard.read_event().name == '-':
+      yuqori = son - 1
