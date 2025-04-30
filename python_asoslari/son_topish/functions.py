@@ -45,7 +45,7 @@ def son_top_pc(x=10):
         past = son + 1
     elif javob == '-':
         yuqori = son - 1
-    return urunishlar
+  return urunishlar
 
 def play(x=10):
     yana = True
