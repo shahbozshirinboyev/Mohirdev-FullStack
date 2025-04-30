@@ -1,6 +1,4 @@
 import random
-import keyboard
-
 
 def son_top_user(x=10):
   son = random.randint(1, x)
@@ -22,18 +20,37 @@ def son_top_user(x=10):
   return sanoq
 
 def son_top_pc(x=10):
-  print(f"1 dan {x} gacha son o'ylang. Men topishga harakat qilaman!")
-  input("Son o'ylagan bo'lsangiz istalgan tugmani bosing!")
-  print("Ajoyib, son o'yladingiz... men topishga harakat qilaman:")
-  past = 1
-  yuqori = x
-  taxminlar = 0
-  while True:
-    son = random.randint(past, yuqori)
-    print(f"Siz {son} o'yladingiz:\n(T) - to'g'ri\n(+) - o'ylagan soningiz bundan kattaroq\n(-) - o'ylagan soningiz bundan kichikroq")
-    if keyboard.read_event().name == 't':
-      print(f"To'g'ri topdingiz...")
-    elif keyboard.read_event().name == '+':
-      past = son + 1
-    elif keyboard.read_event().name == '-':
-      yuqori = son - 1
+    input(f"1 dan {x} gacha son o'ylang va istalgan tugmani bosing. Men topaman.")
+    quyi = 1
+    yuqori = x
+    taxminlar = 0
+    while True:
+        taxminlar += 1
+        if quyi != yuqori:
+            taxmin = random.randint(quyi,yuqori)
+        else:
+            taxmin = quyi
+        javob = input(f"Siz {taxmin} sonini o'yladingiz: to'g'ri (t),"
+                      f"men o'ylagan son bundan kattaroq (+), yoki kichikroq (-)".lower())
+        if javob == "-":
+            yuqori = taxmin - 1
+        elif javob == "+":
+            quyi = taxmin + 1
+        else:
+            break
+    print(f"Men {taxminlar} ta taxmin bilan topdim!")
+    return taxminlar
+
+def play(x=10):
+    yana = True
+    while yana:
+        taxminlar_user = son_top_user(x)
+        taxminlar_pc = son_top_pc(x)
+
+        if taxminlar_user>taxminlar_pc:
+            print(f"Men {taxminlar_pc} taxmin bilan topdim va  yutdim!")
+        elif taxminlar_user<taxminlar_pc:
+            print(f"Siz {taxminlar_user} taxmin bilan topdingiz va yutdingiz!")
+        else:
+            print("Durrang!")
+        yana = int(input("Yana o'ynaymizmi? Ha(1)/Yo'q(0):"))
