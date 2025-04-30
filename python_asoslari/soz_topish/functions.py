@@ -1,9 +1,13 @@
 import random
 from uzwords_latin import words
 
-def soz_top():
-  print("Men 5 xonali so'z o'yladim. Topishga harakat qiling:")
-  tanlov = random.choice(words)
-  print(tanlov)
+def random_soz(x=5):
+  print("Men 5 xonali so'z o'yladim. Topishga harakat qiling:\n-----")
+  while True:
+    tanlov = random.choice(words)
+    if len(tanlov) == x:
+      break
+  return tanlov
 
-soz_top()
+tanlov = random_soz()
+print(tanlov)
