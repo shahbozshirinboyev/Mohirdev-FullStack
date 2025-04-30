@@ -1,7 +1,9 @@
 import random
+import keyboard
 
 def son_top_user():
   son = random.randint(1, 10)
+  print(son)
   print("[1, 2, ... 10] oraliqda son o'yladim: Topa olasizmi?")
   sanoq = 0
   while True:
@@ -21,4 +23,15 @@ def son_top_user():
 
 
 def son_top_comp():
-  
+  print(f"1 dan 10 gacha son o'ylang. Men topishga harakat qilaman.")
+  print(f"Son o'ylagan bo'lsangiz istalgan tugmani bosing:")
+  while True:
+    event = keyboard.read_event()
+    if event.event_type == keyboard.KEY_DOWN:
+        print(f"Tugma bosildi: {event.name}")
+    if event.name == 'esc':
+        print("Dastur to‘xtatildi.")
+        break
+
+
+son_top_comp()
