@@ -1,1 +1,0 @@
-print("Shahboz Shirinboyev")

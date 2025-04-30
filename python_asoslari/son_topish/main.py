@@ -1,3 +1,3 @@
 import functions as f
 
-f.play()
+f.son_top_pc()

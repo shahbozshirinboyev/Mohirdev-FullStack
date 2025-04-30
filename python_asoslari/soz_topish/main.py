@@ -1,0 +1,1 @@
+print('Soz topish o\'yini')
