@@ -1,1 +1,3 @@
-print('Soz topish o\'yini')
+import functions as f
+
+f.play()
