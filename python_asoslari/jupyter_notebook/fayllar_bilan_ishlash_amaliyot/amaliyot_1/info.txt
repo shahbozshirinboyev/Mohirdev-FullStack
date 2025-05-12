@@ -1,0 +1,13 @@
+Python'da fayllar bilan ishlash — bu faylni o‘qish, yozish, yangilash va o‘chirish kabi operatsiyalarni
+bajarish imkonini beruvchi asosiy amaliyotlardan biridir. Quyida fayllar bilan ishlashning asosiy usullari
+keltirilgan:
+
+f = open("fayl.txt", "r")  # o'qish uchun
+f = open("fayl.txt", "w")  # yozish uchun (eski faylni o'chirib yangi yozadi)
+f = open("fayl.txt", "a")  # qo'shish uchun (oxiriga yozadi)
+f = open("fayl.txt", "r+") # o'qish va yozish uchun
+
+f = open("fayl.txt", "r")
+matn = f.read()           # butun faylni o‘qish
+print(matn)
+f.close()
