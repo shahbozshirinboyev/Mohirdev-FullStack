@@ -18,24 +18,18 @@ class Person:
     total = sum(all_digits)
     while total >= 10:
       total = sum(int(d) for d in str(total))
-    return f"{self.first_name.title()}ning life path numberi bu {total} ekan."
+    print(f"{self.first_name.title()}ning life_path_number'i bu {total} ekan.")
+    return total
 
   def get_info_by_number(self, number: int):
-    if 1 <= number <= 9:
-      filename = 'hayot_yoli.txt'
-      with open(filename) as file:
-       lines = file.readlines()
-      return lines
-    else:
-      return f"Iltimos raqam kiriting: 1, 2, 3, ... 9."
-
-
-  
-
-
-
-
-person0 = Person('umid', "mamatov", 23, 'mamatovu@gmail.com', 1, 8, 1997)
-print(person0.get_info())
-print(person0.get_life_path_number())
-print(person0.get_info_by_number(29))
+      if 1 <= number <= 9:
+          filename = 'hayot_yoli.txt'
+          with open(filename, encoding='utf-8') as file:
+              text = file.read()
+          parts = text.split('#')
+          for part in parts:
+              if part.startswith(f"{number} -"):
+                  return part[len(f"{number} -"):].strip()
+          return f"#{number} bo‘lim topilmadi."
+      else:
+          return "Iltimos 1 dan 9 gacha bo‘lgan raqam kiriting."
