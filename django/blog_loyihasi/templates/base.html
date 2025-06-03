@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,11 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>Django Blog</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
   <header>
-    <a class="link" href="{% url 'blog_list_view' %}">Django Blog</a>
+    <a class="text-blue-500" href="{% url 'blog_list_view' %}">Django Blog</a>
   </header>
 
   <div>
