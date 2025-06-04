@@ -8,8 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/news_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/news_project/news_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/news_project/news_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/news_project/news_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/news_project/news_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
