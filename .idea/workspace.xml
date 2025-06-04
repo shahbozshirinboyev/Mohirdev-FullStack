@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c0546a-47a9-496e-8211-87f3e91343e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django/news_project/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/news_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/news_project/news_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django/news_project/news_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django/news_project/news_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django/news_project/news_project/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,5 +64,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django/news_project/news_project/urls.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
