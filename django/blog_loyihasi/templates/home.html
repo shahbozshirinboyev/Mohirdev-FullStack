@@ -4,8 +4,8 @@
 
 {% for blog in blogs %}
 <div class="border m-2 p-2">
-  <h2 class="text-md font-bold">
-    <a href="">{{ blog.title }}</a>
+  <h2 class="text-md font-bold underline">
+    <a href="{% url 'blog_detail_view' blog.pk %}">{{ blog.title }}</a>
   </h2>
   <span class="border rounded px-1">{{ blog.author }}</span>
 </div>
