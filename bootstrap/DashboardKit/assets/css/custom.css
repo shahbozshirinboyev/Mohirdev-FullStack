@@ -7,3 +7,42 @@
   color: #7267ef !important;
   background: #e3e1fc;
 }
+
+.offcanvas {
+  background: #161c25;
+}
+
+.offcanvas-body {
+  background: #1C232F;
+}
+
+.custom-scroll {
+  overflow-y: auto; /* vertikal scroll bo'lishi uchun */
+  max-height: 100vh; /* maksimal balandlik */
+}
+
+/* Chrome, Edge, Safari uchun */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px; /* scrollbar eni */
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border: none;
+  margin: 0;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #888; /* scrollbar rangi */
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555; /* hover holatidagi rangi */
+}
+
+/* Firefox uchun */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
