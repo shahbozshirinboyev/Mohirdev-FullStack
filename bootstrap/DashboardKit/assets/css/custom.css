@@ -1,0 +1,9 @@
+.navbar {
+  background-color: #161c25 !important;
+  height: 56px; /* Bootstrap default */
+  min-height: 56px;
+}
+.navbar .btn:hover {
+  color: #7267ef !important;
+  background: #e3e1fc;
+}
