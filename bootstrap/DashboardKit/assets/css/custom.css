@@ -1,13 +1,21 @@
 .navbar {
   background-color: #161c25 !important;
-  height: 56px; /* Bootstrap default */
+  height: 56px;
+  /* Bootstrap default */
   min-height: 56px;
 }
+
 .navbar .btn:hover {
   color: #7267ef !important;
   background: #e3e1fc;
 }
-.dropdown-menu-btn .btn:hover{
+
+.dropdown-menu-btn .btn:hover {
+  color: #7267ef !important;
+  background: #e3e1fc;
+}
+
+.active-btn {
   color: #7267ef !important;
   background: #e3e1fc;
 }
@@ -21,13 +29,16 @@
 }
 
 .custom-scroll {
-  overflow-y: auto; /* vertikal scroll bo'lishi uchun */
-  max-height: 100vh; /* maksimal balandlik */
+  overflow-y: auto;
+  /* vertikal scroll bo'lishi uchun */
+  max-height: 100vh;
+  /* maksimal balandlik */
 }
 
 /* Chrome, Edge, Safari uchun */
 .custom-scroll::-webkit-scrollbar {
-  width: 8px; /* scrollbar eni */
+  width: 8px;
+  /* scrollbar eni */
 }
 
 .custom-scroll::-webkit-scrollbar-track {
@@ -37,12 +48,14 @@
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #888; /* scrollbar rangi */
+  background: #888;
+  /* scrollbar rangi */
   border-radius: 10px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #555; /* hover holatidagi rangi */
+  background: #555;
+  /* hover holatidagi rangi */
 }
 
 /* Firefox uchun */
@@ -52,5 +65,15 @@
 }
 
 #offcanvasTop {
-    top: 56px !important; /* navbar balandligiga qarab sozlang */
-  }
+  top: 56px !important;
+  /* navbar balandligiga qarab sozlang */
+}
+
+.badge-custom {
+  color: #7267ef;
+  background: #e3e1fc;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
