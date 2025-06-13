@@ -8,13 +8,13 @@
   background: #e3e1fc;
 }
 
-/* .offcanvas {
+.offcanvas {
   background: #161c25;
 }
 
 .offcanvas-body {
   background: #1C232F;
-} */
+}
 
 .custom-scroll {
   overflow-y: auto; /* vertikal scroll bo'lishi uchun */
@@ -46,3 +46,7 @@
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
+
+#offcanvasTop {
+    top: 56px !important; /* navbar balandligiga qarab sozlang */
+  }
