@@ -7,6 +7,10 @@
   color: #7267ef !important;
   background: #e3e1fc;
 }
+.dropdown-menu-btn .btn:hover{
+  color: #7267ef !important;
+  background: #e3e1fc;
+}
 
 .offcanvas {
   background: #161c25;
