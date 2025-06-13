@@ -8,13 +8,13 @@
   background: #e3e1fc;
 }
 
-.offcanvas {
+/* .offcanvas {
   background: #161c25;
 }
 
 .offcanvas-body {
   background: #1C232F;
-}
+} */
 
 .custom-scroll {
   overflow-y: auto; /* vertikal scroll bo'lishi uchun */
