@@ -55,13 +55,6 @@
 
   <div class="offcanvas offcanvas-top fixed-top" style="height: 56px; z-index: 1055;" data-bs-scroll="true"
     tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTop">
-
-    <!-- <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasTop">
-        Backdrop with scrolling
-      </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div> -->
     <div class="offcanvas-body bg-white d-flex justify-content-end align-items-center gap-1"
       style="overflow-y: hidden;">
       <div class="dropdown-menu-btn">
@@ -122,12 +115,6 @@
   <div class="offcanvas offcanvas-start fixed-top text-white" style="top: 56px; z-index: 1056;" data-bs-scroll="true"
     tabindex="-1" id="offcanvasWithBothOptions1" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-    <!-- <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-        mini menu
-      </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div> -->
     <div class="offcanvas-body border border-danger" style="background-color: white;">
 
       <div class="dropdown-center dropdown-menu-btn">
@@ -147,8 +134,9 @@
               <span>My Account</span>
             </button>
           </li>
-          <li>
-            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+          <li class="dropdown-center">
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2 dropdown-toggle"
+              type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -156,6 +144,12 @@
               </svg>
               <span>Level 2.1</span>
             </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action two</a></li>
+              <li><a class="dropdown-item" href="#">Action three</a></li>
+            </ul>
+
           </li>
           <li>
             <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
