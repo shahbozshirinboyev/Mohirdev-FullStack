@@ -77,3 +77,20 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+ /* Ichki submenu joylashuvi */
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    display: block !important; /* Doim ochiq bo'lishi uchun */
+    position: relative; /* Yon tomonda chiqmasligi uchun */
+    margin-left: 1rem;
+    padding-left: 0;
+    box-shadow: none;
+  }
+
+  .dropdown-submenu > .dropdown-toggle::after {
+    display: none; /* Ortiqcha toggle belgisi olib tashlandi */
+  }
