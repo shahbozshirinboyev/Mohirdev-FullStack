@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c0546a-47a9-496e-8211-87f3e91343e6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/django_arxiv/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/django_arxiv/takrorlash_07/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/django_arxiv/takrorlash_07/hello/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/django_arxiv/takrorlash_07/shahboz/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/DashboardKit/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/DashboardKit/assets/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/DashboardKit/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/DashboardKit/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +50,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\Full-Stack-Python-mohirdev\django_arxiv\takrorlash_07\hello" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -60,6 +74,7 @@
       <workItem from="1748420837265" duration="298000" />
       <workItem from="1750141960371" duration="630000" />
       <workItem from="1750151319755" duration="1223000" />
+      <workItem from="1750225955760" duration="3671000" />
     </task>
     <servers />
   </component>
