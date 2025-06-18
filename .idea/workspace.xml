@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25c0546a-47a9-496e-8211-87f3e91343e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/django_arxiv/10-dars/pagesapp/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/contact.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_arxiv/10-dars/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_arxiv/10-dars/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_arxiv/10-dars/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_arxiv/10-dars/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
       <workItem from="1750141960371" duration="630000" />
       <workItem from="1750151319755" duration="1223000" />
       <workItem from="1750225955760" duration="4629000" />
-      <workItem from="1750236433849" duration="4758000" />
+      <workItem from="1750236433849" duration="7215000" />
     </task>
     <servers />
   </component>
