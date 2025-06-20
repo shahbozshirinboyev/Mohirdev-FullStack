@@ -1,18 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News Blog</title>
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
+
 <body>
   <header>
     <h1>
       <a href="{% url 'home' %}">News Blog</a>
     </h1>
   </header>
+
+  {% if user.is_authenticated %}
+  <p>Xush kelibsiz, {{ user.username }}!</p>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+  {% else %}
+  <p>
+    <a href="{% url 'login' %}">Saytga kirish</a>
+    |
+    <a href="{% url 'signup' %}">Ro'yxatdan o'tish</a>
+  </p>
+  {% endif %}
 
   <div>
     {% block content %}
@@ -22,4 +38,5 @@
     <h2><a href="{% url 'post_new' %}">Yangi post qo'shish</a></h2>
   </footer>
 </body>
+
 </html>
