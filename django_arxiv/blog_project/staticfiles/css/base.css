@@ -1,0 +1,11 @@
+header h1 a{
+  color: green;
+  text-decoration: none;
+}
+
+.post-entry h2 a{
+  text-decoration: none;
+}
+.post-entry p{
+  font-size: 18px;
+}
