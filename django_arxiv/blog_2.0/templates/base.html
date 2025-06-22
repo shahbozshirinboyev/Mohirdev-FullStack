@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+  <title>{% block title %} ShahbozBLOG {% endblock title %}</title>
+</head>
+
+<body>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://img.icons8.com/?size=100&id=55004&format=png&color=000000" alt="Logo" width="30" height="30"
+          class="d-inline-block align-text-top" />
+        ShahbozBLOG
+      </a>
+
+      {% if user.is_authenticated %}
+
+      <div class="btn-group">
+        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ user.username | title }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="">Yangi post yaratish</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'password_change' %}">Kalit so'zni almashtirish</a>
+          </li>
+          <li>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button class="dropdown-item" type="submit">Chiqib ketish</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      {% else %}
+
+      <div>
+        <a href="{% url 'login' %}" type="button" class="btn btn-outline-primary">Kirish</a>
+        <a href="{% url 'signup' %}" type="button" class="btn btn-primary">
+          Ro'yxatdan o'tish
+        </a>
+      </div>
+
+      {% endif %}
+
+
+    </div>
+  </nav>
+
+  <main class="container">{% block content %} {% endblock content %}</main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

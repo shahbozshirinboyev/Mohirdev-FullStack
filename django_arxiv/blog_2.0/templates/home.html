@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<span>Xush kelibsiz, {{ user.username }}</span>
+<p>
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Chiqib ketish</button>
+</form>
+</p>
+{% else %}
+<p>Saytga kirmagansiz</p>
+<a href="{% url 'login' %}">Kirish</a> |
+<a href="{% url 'signup' %}">Ro'yxatdan o'tish</a>
+{% endif %}
+{% endblock content %}
