@@ -5,6 +5,7 @@
   <h1>Tahrirlash</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ form.media }}
     {{ form|crispy }}
     <button class="btn btn-info" type="submit">Saqlash</button>
   </form>
