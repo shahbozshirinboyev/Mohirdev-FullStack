@@ -2,13 +2,20 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<span>Xush kelibsiz, {{ user.username }}</span>
-<p>
-<form method="post" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">Chiqib ketish</button>
-</form>
-</p>
+<div class="d-flex">
+  <div class="w-75 border">
+    <h2>Assalomu alaykum!</h2>
+    <h3>Xush kelibsiz, {{ user.username | title }}</h3>
+    <a class="btn btn-primary btn-sm mt-2" href="{% url 'article_list' %}">Maqolalar</a>
+  </div>
+  <div class="w-25 border d-flex justify-content-end align-items-start">
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="btn btn-danger btn-sm" type="submit">Chiqib ketish</button>
+    </form>
+  </div>
+</div>
+
 {% else %}
 <p>Saytga kirmagansiz</p>
 <a href="{% url 'login' %}">Kirish</a> |
