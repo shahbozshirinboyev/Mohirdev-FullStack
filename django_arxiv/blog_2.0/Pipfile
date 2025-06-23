@@ -9,6 +9,11 @@ django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 pillow = "*"
 django-ckeditor = "*"
+environs = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 
