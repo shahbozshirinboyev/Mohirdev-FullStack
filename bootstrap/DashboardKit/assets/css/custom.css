@@ -1,8 +1,8 @@
 .navbar {
   background-color: #161c25 !important;
-  height: 56px;
+  height: 65px;
   /* Bootstrap default */
-  min-height: 56px;
+  min-height: 65px;
 }
 
 .navbar .btn:hover {
@@ -25,7 +25,7 @@
 }
 
 .offcanvas-body {
-  background: #1C232F;
+  background: #1c232f;
 }
 
 .custom-scroll {
@@ -65,7 +65,7 @@
 }
 
 #offcanvasTop {
-  top: 56px !important;
+  top: 65px !important;
   /* navbar balandligiga qarab sozlang */
 }
 
@@ -78,19 +78,43 @@
   cursor: pointer;
 }
 
- /* Ichki submenu joylashuvi */
-  .dropdown-submenu {
-    position: relative;
+/* Ichki submenu joylashuvi */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+  display: block !important;
+  /* Doim ochiq bo'lishi uchun */
+  position: relative;
+  /* Yon tomonda chiqmasligi uchun */
+  margin-left: 1rem;
+  padding-left: 0;
+  box-shadow: none;
+}
+
+.dropdown-submenu>.dropdown-toggle::after {
+  display: none;
+  /* Ortiqcha toggle belgisi olib tashlandi */
+}
+
+@media (min-width: 992px) {
+
+  #sidebarOffcanvas,
+  #offcanvasTop {
+    transform: none !important;
+    visibility: visible !important;
   }
 
-  .dropdown-submenu > .dropdown-menu {
-    display: block !important; /* Doim ochiq bo'lishi uchun */
-    position: relative; /* Yon tomonda chiqmasligi uchun */
-    margin-left: 1rem;
-    padding-left: 0;
-    box-shadow: none;
+  .main-content {
+    margin-left: 280px;
+    /* Sidebar kengligiga teng */
+    padding: 20px;
+    margin-top: 65px;
   }
 
-  .dropdown-submenu > .dropdown-toggle::after {
-    display: none; /* Ortiqcha toggle belgisi olib tashlandi */
+  #offcanvasTop {
+    top: 0px !important;
+    /* navbar balandligiga qarab sozlang */
   }
+}

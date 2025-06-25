@@ -13,12 +13,10 @@
 
 <body>
   <!-- Navbar start -->
-  <nav class="navbar bg-body-tertiary fixed-top flex justify-content-between" style="z-index: 1056;">
+  <nav class="navbar bg-body-tertiary fixed-top flex justify-content-between d-lg-none" style="z-index: 1056">
     <div class="px-2 justify-content-start gap-2">
-
-      <button class="btn text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-        aria-controls="offcanvasWithBothOptions">
-
+      <button class="btn text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas"
+        aria-controls="sidebarOffcanvas">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -27,13 +25,11 @@
       </button>
 
       <img src="./assets/images/logo.svg" alt="logo" class="p-1" />
-
     </div>
 
     <div class="px-2 justify-content-start gap-2">
       <button class="btn text-white" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions1" aria-controls="offcanvasWithBothOptions1">
-
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-right"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -49,17 +45,16 @@
             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
         </svg>
       </button>
-
     </div>
   </nav>
 
-  <div class="offcanvas offcanvas-top fixed-top" style="height: 56px; z-index: 1055;" data-bs-scroll="true"
-    tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTop">
+  <div class="offcanvas offcanvas-top fixed-top d-lg-block shadow" style="height: 65px; z-index: 1055"
+    data-bs-scroll="true" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTop">
     <div class="offcanvas-body bg-white d-flex justify-content-end align-items-center gap-1"
-      style="overflow-y: hidden;">
+      style="overflow-y: hidden; height: 65px">
       <div class="dropdown-menu-btn">
         <button type="button" class="btn text-gray d-flex justify-content-center align-items-center"
-          style="width: 45px; height: 45px;" data-bs-toggle="dropdown" aria-expanded="false">
+          style="width: 45px; height: 45px" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
             viewBox="0 0 16 16">
             <path
@@ -73,18 +68,21 @@
               <path
                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
-            <input type="text" class="form-control border-0 shadow-none" name="" id="" placeholder="Search here...">
+            <input type="text" class="form-control border-0 shadow-none" name="" id="" placeholder="Search here..." />
           </div>
         </ul>
       </div>
       <div class="dropdown-menu-btn">
         <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="./assets/images/user.png" alt="user" class="rounded-circle" style="width: 35px; height: 35px;">
+          <img src="./assets/images/avatar-2.webp" alt="user" class="rounded-circle"
+            style="width: 35px; height: 35px" />
         </button>
-        <ul class="dropdown-menu dropdown-menu-end py-2" style="width: 200px;">
-          <li class="p-2 px-4"><span class="badge-custom">Upgrade to Pro</span></li>
-          <li><button
-              class="dropdown-item btn d-flex justify-content-start align-items-center gap-2 py-2 px-4 text-gray"
+        <ul class="dropdown-menu dropdown-menu-end py-2" style="width: 200px">
+          <li class="p-2 px-4">
+            <span class="badge-custom">Upgrade to Pro</span>
+          </li>
+          <li>
+            <button class="dropdown-item btn d-flex justify-content-start align-items-center gap-2 py-2 px-4 text-gray"
               type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -94,13 +92,14 @@
                   d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
               </svg>
               <span>Logout</span>
-            </button></li>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-start" style="z-index: 1056;" data-bs-scroll="true" tabindex="-1"
+  <!-- <div class="offcanvas offcanvas-start border-danger" style="z-index: 1056;" data-bs-scroll="true" tabindex="-1"
     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
     <div class="offcanvas-header border" style="height: 56px;">
@@ -108,104 +107,326 @@
 
     </div>
     <div class="offcanvas-body text-white">
-      <p>Submenu</p>
+      <p>Submenu ochilishi kerak </p>
+    </div>
+
+  </div> -->
+
+  <!-- OFFCANVAS: mobilda yopiq, larda ochiq -->
+  <div class="offcanvas offcanvas-start text-white d-lg-block position-lg-fixed h-100" tabindex="-1"
+    id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel" style="width: 280px; z-index: 1056"
+    data-bs-scroll="true">
+    <div class="offcanvas-header" style="height: 65px">
+      <img src="./assets/images/logo.svg" alt="logo" class="p-1" />
+    </div>
+
+    <div class="offcanvas-body h-100">
+      <!-- <p>Submenu ochilishi kerak</p> -->
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-start fixed-top text-white" style="top: 56px; z-index: 1056;" data-bs-scroll="true"
+  <div class="offcanvas offcanvas-start fixed-top text-white" style="top: 65px; z-index: 1056" data-bs-scroll="true"
     tabindex="-1" id="offcanvasWithBothOptions1" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-    <div class="offcanvas-body border border-danger" style="background-color: white;">
-
+    <div class="offcanvas-body" style="background-color: white">
       <div class="dropdown-center dropdown-menu-btn">
-  <button class="btn w-100 d-flex justify-content-start active-btn" type="button" data-bs-toggle="dropdown"
-    aria-expanded="false">
-    Level
-  </button>
-  <ul class="dropdown-menu w-100 border-0">
+        <button class="btn w-100 d-flex justify-content-start active-btn" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Level
+        </button>
+        <ul class="dropdown-menu w-100 border-0">
+          <!-- My Account -->
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-person-circle"></i>
+              <span>My Account</span>
+            </button>
+          </li>
 
-    <!-- My Account -->
-    <li>
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-person-circle"></i>
-        <span>My Account</span>
-      </button>
-    </li>
+          <!-- Nested Dropdown Start -->
+          <li class="dropdown-submenu show">
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2 dropdown-toggle">
+              <i class="bi bi-list-ul"></i>
+              <span>Level 2.1</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+            </ul>
+          </li>
+          <!-- Nested Dropdown End -->
 
-    <!-- Nested Dropdown Start -->
-    <li class="dropdown-submenu show">
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2 dropdown-toggle">
-        <i class="bi bi-list-ul"></i>
-        <span>Level 2.1</span>
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-balloon-fill"></i>
-        <span>Support</span>
-      </button>
-        </li>
-        <li>
-          <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-balloon-fill"></i>
-        <span>Support</span>
-      </button>
-        </li>
-        <li>
-          <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-balloon-fill"></i>
-        <span>Support</span>
-      </button>
-        </li>
-      </ul>
-    </li>
-    <!-- Nested Dropdown End -->
+          <!-- Other Items -->
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-gear-fill"></i>
+              <span>Settings</span>
+            </button>
+          </li>
 
-    <!-- Other Items -->
-    <li>
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-gear-fill"></i>
-        <span>Settings</span>
-      </button>
-    </li>
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-balloon-fill"></i>
+              <span>Support</span>
+            </button>
+          </li>
 
-    <li>
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-balloon-fill"></i>
-        <span>Support</span>
-      </button>
-    </li>
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-lock-fill"></i>
+              <span>Lock Screen</span>
+            </button>
+          </li>
 
-    <li>
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-lock-fill"></i>
-        <span>Lock Screen</span>
-      </button>
-    </li>
-
-    <li>
-      <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
-        <i class="bi bi-box-arrow-right"></i>
-        <span>Logout</span>
-      </button>
-    </li>
-  </ul>
-</div>
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Logout</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <!-- Navbar end -->
-   <span>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi consequatur incidunt veritatis tenetur eaque provident! A nemo quibusdam, blanditiis saepe officiis libero placeat aliquid earum quam officia. Dicta quam, nulla nam expedita iste dolorem eligendi distinctio soluta quia! Ullam reprehenderit illo saepe repudiandae, vitae facilis fugiat consequatur perferendis nihil eligendi magni doloribus, pariatur quasi veritatis, asperiores odio consequuntur. Magnam optio officia sed qui quae, nihil ipsam in ea. Quaerat, nisi ab! Quod provident eaque suscipit quisquam harum beatae eum ut, culpa nemo explicabo iusto velit similique, libero cupiditate dolorem non eligendi sequi autem pariatur aspernatur. Totam nesciunt, unde qui pariatur voluptatibus provident officia magnam ab iste dolores. Expedita, nihil rerum. Nam necessitatibus ex dolor nulla laboriosam consequuntur itaque odio aliquid inventore minima. Dicta laudantium aliquam asperiores accusamus omnis, magnam enim tempore obcaecati labore, iste repellendus architecto! Sed illum earum animi inventore corrupti minus eveniet magnam iusto quas, nihil odio nostrum quo, ipsum similique. Quos exercitationem modi suscipit optio, neque eos, praesentium, magnam voluptatum quam fuga libero quibusdam excepturi maiores! Quia doloremque maxime nobis harum neque tempore dolor nesciunt perferendis, reprehenderit qui non. Ipsum optio maxime debitis provident voluptate expedita necessitatibus aspernatur dolorem odio ab itaque, impedit, blanditiis fugit aliquam! Aut voluptas, eius architecto eaque id modi velit optio? Quibusdam doloribus aspernatur aut libero cum officiis sed est asperiores. Qui aut consequatur quasi, repudiandae animi tenetur laudantium? Nam labore iusto minus enim mollitia porro provident quod fugit. Ratione voluptates fugit nihil earum doloribus totam vitae inventore exercitationem animi ipsum voluptate id assumenda, rerum quos dicta tenetur. Architecto officia, cumque itaque, ex ipsum quo sunt, possimus natus voluptatem nesciunt fugiat dolores. Incidunt quae voluptates numquam explicabo tempora, eveniet aut unde alias laudantium aspernatur, assumenda nihil tenetur exercitationem molestiae similique deleniti. Dignissimos ab aliquam atque a ipsum suscipit ratione nesciunt, quibusdam ipsa tempora repudiandae incidunt iure minus nobis praesentium doloremque quos. Error, cupiditate ut repellendus animi vitae sunt neque impedit a ipsa atque natus dolor sapiente laboriosam assumenda qui quidem obcaecati odio enim aliquam eum nostrum? Error perferendis sed exercitationem quasi? Consequuntur qui quasi possimus ducimus numquam alias explicabo. Eligendi incidunt non excepturi, dolorem itaque, quas provident exercitationem voluptas magni eos reprehenderit optio adipisci eius alias aliquam nobis. Omnis alias minus autem eius nulla perferendis consectetur accusamus possimus quam molestias beatae officia modi sunt quas rem dicta, architecto aut ex quisquam nam? Maxime, tempore at reiciendis obcaecati non dignissimos eligendi repudiandae corporis, maiores labore ipsa numquam inventore. Cum mollitia assumenda ullam voluptatum ducimus magni veritatis cumque eius corporis est debitis repudiandae possimus illum inventore libero a officiis minus earum ipsum, officia, voluptatibus magnam velit? Architecto hic, voluptate, sed adipisci cumque quibusdam magni in repudiandae aliquid eligendi eaque? Unde eligendi hic eaque voluptate vitae assumenda laboriosam, suscipit commodi odit qui ad possimus culpa, nemo maiores rerum sequi explicabo quisquam! Ipsum nisi id est accusantium laboriosam placeat nam. Soluta commodi, saepe magni at suscipit quasi laborum sapiente ducimus eligendi incidunt mollitia totam corporis laboriosam sit odio! Quod perspiciatis voluptatibus reprehenderit, earum sapiente vel et rerum!
-   </span>
+  <main class="main-content">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi consequatur
+    incidunt veritatis tenetur eaque provident! A nemo quibusdam, blanditiis
+    saepe officiis libero placeat aliquid earum quam officia. Dicta quam,
+    nulla nam expedita iste dolorem eligendi distinctio soluta quia! Ullam
+    reprehenderit illo saepe repudiandae, vitae facilis fugiat consequatur
+    perferendis nihil eligendi magni doloribus, pariatur quasi veritatis,
+    asperiores odio consequuntur. Magnam optio officia sed qui quae, nihil
+    ipsam in ea. Quaerat, nisi ab! Quod provident eaque suscipit quisquam
+    harum beatae eum ut, culpa nemo explicabo iusto velit similique, libero
+    cupiditate dolorem non eligendi sequi autem pariatur aspernatur. Totam
+    nesciunt, unde qui pariatur voluptatibus provident officia magnam ab iste
+    dolores. Expedita, nihil rerum. Nam necessitatibus ex dolor nulla
+    laboriosam consequuntur itaque odio aliquid inventore minima. Dicta
+    laudantium aliquam asperiores accusamus omnis, magnam enim tempore
+    obcaecati labore, iste repellendus architecto! Sed illum earum animi
+    inventore corrupti minus eveniet magnam iusto quas, nihil odio nostrum
+    quo, ipsum similique. Quos exercitationem modi suscipit optio, neque eos,
+    praesentium, magnam voluptatum quam fuga libero quibusdam excepturi
+    maiores! Quia doloremque maxime nobis harum neque tempore dolor nesciunt
+    perferendis, reprehenderit qui non. Ipsum optio maxime debitis provident
+    voluptate expedita necessitatibus aspernatur dolorem odio ab itaque,
+    impedit, blanditiis fugit aliquam! Aut voluptas, eius architecto eaque id
+    modi velit optio? Quibusdam doloribus aspernatur aut libero cum officiis
+    sed est asperiores. Qui aut consequatur quasi, repudiandae animi tenetur
+    laudantium? Nam labore iusto minus enim mollitia porro provident quod
+    fugit. Ratione voluptates fugit nihil earum doloribus totam vitae
+    inventore exercitationem animi ipsum voluptate id assumenda, rerum quos
+    dicta tenetur. Architecto officia, cumque itaque, ex ipsum quo sunt,
+    possimus natus voluptatem nesciunt fugiat dolores. Incidunt quae
+    voluptates numquam explicabo tempora, eveniet aut unde alias laudantium
+    aspernatur, assumenda nihil tenetur exercitationem molestiae similique
+    deleniti. Dignissimos ab aliquam atque a ipsum suscipit ratione nesciunt,
+    quibusdam ipsa tempora repudiandae incidunt iure minus nobis praesentium
+    doloremque quos. Error, cupiditate ut repellendus animi vitae sunt neque
+    impedit a ipsa atque natus dolor sapiente laboriosam assumenda qui quidem
+    obcaecati odio enim aliquam eum nostrum? Error perferendis sed
+    exercitationem quasi? Consequuntur qui quasi possimus ducimus numquam
+    alias explicabo. Eligendi incidunt non excepturi, dolorem itaque, quas
+    provident exercitationem voluptas magni eos reprehenderit optio adipisci
+    eius alias aliquam nobis. Omnis alias minus autem eius nulla perferendis
+    consectetur accusamus possimus quam molestias beatae officia modi sunt
+    quas rem dicta, architecto aut ex quisquam nam? Maxime, tempore at
+    reiciendis obcaecati non dignissimos eligendi repudiandae corporis,
+    maiores labore ipsa numquam inventore. Cum mollitia assumenda ullam
+    voluptatum ducimus magni veritatis cumque eius corporis est debitis
+    repudiandae possimus illum inventore libero a officiis minus earum ipsum,
+    officia, voluptatibus magnam velit? Architecto hic, voluptate, sed
+    adipisci cumque quibusdam magni in repudiandae aliquid eligendi eaque?
+    Unde eligendi hic eaque voluptate vitae assumenda laboriosam, suscipit
+    commodi odit qui ad possimus culpa, nemo maiores rerum sequi explicabo
+    quisquam! Ipsum nisi id est accusantium laboriosam placeat nam. Soluta
+    commodi, saepe magni at suscipit quasi laborum sapiente ducimus eligendi
+    incidunt mollitia totam corporis laboriosam sit odio! Quod perspiciatis
+    voluptatibus reprehenderit, earum sapiente vel et rerum! Lorem ipsum dolor
+    sit amet consectetur adipisicing elit. Animi consequatur incidunt
+    veritatis tenetur eaque provident! A nemo quibusdam, blanditiis saepe
+    officiis libero placeat aliquid earum quam officia. Dicta quam, nulla nam
+    expedita iste dolorem eligendi distinctio soluta quia! Ullam reprehenderit
+    illo saepe repudiandae, vitae facilis fugiat consequatur perferendis nihil
+    eligendi magni doloribus, pariatur quasi veritatis, asperiores odio
+    consequuntur. Magnam optio officia sed qui quae, nihil ipsam in ea.
+    Quaerat, nisi ab! Quod provident eaque suscipit quisquam harum beatae eum
+    ut, culpa nemo explicabo iusto velit similique, libero cupiditate dolorem
+    non eligendi sequi autem pariatur aspernatur. Totam nesciunt, unde qui
+    pariatur voluptatibus provident officia magnam ab iste dolores. Expedita,
+    nihil rerum. Nam necessitatibus ex dolor nulla laboriosam consequuntur
+    itaque odio aliquid inventore minima. Dicta laudantium aliquam asperiores
+    accusamus omnis, magnam enim tempore obcaecati labore, iste repellendus
+    architecto! Sed illum earum animi inventore corrupti minus eveniet magnam
+    iusto quas, nihil odio nostrum quo, ipsum similique. Quos exercitationem
+    modi suscipit optio, neque eos, praesentium, magnam voluptatum quam fuga
+    libero quibusdam excepturi maiores! Quia doloremque maxime nobis harum
+    neque tempore dolor nesciunt perferendis, reprehenderit qui non. Ipsum
+    optio maxime debitis provident voluptate expedita necessitatibus
+    aspernatur dolorem odio ab itaque, impedit, blanditiis fugit aliquam! Aut
+    voluptas, eius architecto eaque id modi velit optio? Quibusdam doloribus
+    aspernatur aut libero cum officiis sed est asperiores. Qui aut consequatur
+    quasi, repudiandae animi tenetur laudantium? Nam labore iusto minus enim
+    mollitia porro provident quod fugit. Ratione voluptates fugit nihil earum
+    doloribus totam vitae inventore exercitationem animi ipsum voluptate id
+    assumenda, rerum quos dicta tenetur. Architecto officia, cumque itaque, ex
+    ipsum quo sunt, possimus natus voluptatem nesciunt fugiat dolores.
+    Incidunt quae voluptates numquam explicabo tempora, eveniet aut unde alias
+    laudantium aspernatur, assumenda nihil tenetur exercitationem molestiae
+    similique deleniti. Dignissimos ab aliquam atque a ipsum suscipit ratione
+    nesciunt, quibusdam ipsa tempora repudiandae incidunt iure minus nobis
+    praesentium doloremque quos. Error, cupiditate ut repellendus animi vitae
+    sunt neque impedit a ipsa atque natus dolor sapiente laboriosam assumenda
+    qui quidem obcaecati odio enim aliquam eum nostrum? Error perferendis sed
+    exercitationem quasi? Consequuntur qui quasi possimus ducimus numquam
+    alias explicabo. Eligendi incidunt non excepturi, dolorem itaque, quas
+    provident exercitationem voluptas magni eos reprehenderit optio adipisci
+    eius alias aliquam nobis. Omnis alias minus autem eius nulla perferendis
+    consectetur accusamus possimus quam molestias beatae officia modi sunt
+    quas rem dicta, architecto aut ex quisquam nam? Maxime, tempore at
+    reiciendis obcaecati non dignissimos eligendi repudiandae corporis,
+    maiores labore ipsa numquam inventore. Cum mollitia assumenda ullam
+    voluptatum ducimus magni veritatis cumque eius corporis est debitis
+    repudiandae possimus illum inventore libero a officiis minus earum ipsum,
+    officia, voluptatibus magnam velit? Architecto hic, voluptate, sed
+    adipisci cumque quibusdam magni in repudiandae aliquid eligendi eaque?
+    Unde eligendi hic eaque voluptate vitae assumenda laboriosam, suscipit
+    commodi odit qui ad possimus culpa, nemo maiores rerum sequi explicabo
+    quisquam! Ipsum nisi id est accusantium laboriosam placeat nam. Soluta
+    commodi, saepe magni at suscipit quasi laborum sapiente ducimus eligendi
+    incidunt mollitia totam corporis laboriosam sit odio! Quod perspiciatis
+    voluptatibus reprehenderit, earum sapiente vel et rerum! Lorem ipsum dolor
+    sit amet consectetur adipisicing elit. Animi consequatur incidunt
+    veritatis tenetur eaque provident! A nemo quibusdam, blanditiis saepe
+    officiis libero placeat aliquid earum quam officia. Dicta quam, nulla nam
+    expedita iste dolorem eligendi distinctio soluta quia! Ullam reprehenderit
+    illo saepe repudiandae, vitae facilis fugiat consequatur perferendis nihil
+    eligendi magni doloribus, pariatur quasi veritatis, asperiores odio
+    consequuntur. Magnam optio officia sed qui quae, nihil ipsam in ea.
+    Quaerat, nisi ab! Quod provident eaque suscipit quisquam harum beatae eum
+    ut, culpa nemo explicabo iusto velit similique, libero cupiditate dolorem
+    non eligendi sequi autem pariatur aspernatur. Totam nesciunt, unde qui
+    pariatur voluptatibus provident officia magnam ab iste dolores. Expedita,
+    nihil rerum. Nam necessitatibus ex dolor nulla laboriosam consequuntur
+    itaque odio aliquid inventore minima. Dicta laudantium aliquam asperiores
+    accusamus omnis, magnam enim tempore obcaecati labore, iste repellendus
+    architecto! Sed illum earum animi inventore corrupti minus eveniet magnam
+    iusto quas, nihil odio nostrum quo, ipsum similique. Quos exercitationem
+    modi suscipit optio, neque eos, praesentium, magnam voluptatum quam fuga
+    libero quibusdam excepturi maiores! Quia doloremque maxime nobis harum
+    neque tempore dolor nesciunt perferendis, reprehenderit qui non. Ipsum
+    optio maxime debitis provident voluptate expedita necessitatibus
+    aspernatur dolorem odio ab itaque, impedit, blanditiis fugit aliquam! Aut
+    voluptas, eius architecto eaque id modi velit optio? Quibusdam doloribus
+    aspernatur aut libero cum officiis sed est asperiores. Qui aut consequatur
+    quasi, repudiandae animi tenetur laudantium? Nam labore iusto minus enim
+    mollitia porro provident quod fugit. Ratione voluptates fugit nihil earum
+    doloribus totam vitae inventore exercitationem animi ipsum voluptate id
+    assumenda, rerum quos dicta tenetur. Architecto officia, cumque itaque, ex
+    ipsum quo sunt, possimus natus voluptatem nesciunt fugiat dolores.
+    Incidunt quae voluptates numquam explicabo tempora, eveniet aut unde alias
+    laudantium aspernatur, assumenda nihil tenetur exercitationem molestiae
+    similique deleniti. Dignissimos ab aliquam atque a ipsum suscipit ratione
+    nesciunt, quibusdam ipsa tempora repudiandae incidunt iure minus nobis
+    praesentium doloremque quos. Error, cupiditate ut repellendus animi vitae
+    sunt neque impedit a ipsa atque natus dolor sapiente laboriosam assumenda
+    qui quidem obcaecati odio enim aliquam eum nostrum? Error perferendis sed
+    exercitationem quasi? Consequuntur qui quasi possimus ducimus numquam
+    alias explicabo. Eligendi incidunt non excepturi, dolorem itaque, quas
+    provident exercitationem voluptas magni eos reprehenderit optio adipisci
+    eius alias aliquam nobis. Omnis alias minus autem eius nulla perferendis
+    consectetur accusamus possimus quam molestias beatae officia modi sunt
+    quas rem dicta, architecto aut ex quisquam nam? Maxime, tempore at
+    reiciendis obcaecati non dignissimos eligendi repudiandae corporis,
+    maiores labore ipsa numquam inventore. Cum mollitia assumenda ullam
+    voluptatum ducimus magni veritatis cumque eius corporis est debitis
+    repudiandae possimus illum inventore libero a officiis minus earum ipsum,
+    officia, voluptatibus magnam velit? Architecto hic, voluptate, sed
+    adipisci cumque quibusdam magni in repudiandae aliquid eligendi eaque?
+    Unde eligendi hic eaque voluptate vitae assumenda laboriosam, suscipit
+    commodi odit qui ad possimus culpa, nemo maiores rerum sequi explicabo
+    quisquam! Ipsum nisi id est accusantium laboriosam placeat nam. Soluta
+    commodi, saepe magni at suscipit quasi laborum sapiente ducimus eligendi
+    incidunt mollitia totam corporis laboriosam sit odio! Quod perspiciatis
+    voluptatibus reprehenderit, earum sapiente vel et rerum! Lorem ipsum dolor
+    sit amet consectetur adipisicing elit. Animi consequatur incidunt
+    veritatis tenetur eaque provident! A nemo quibusdam, blanditiis saepe
+    officiis libero placeat aliquid earum quam officia. Dicta quam, nulla nam
+    expedita iste dolorem eligendi distinctio soluta quia! Ullam reprehenderit
+    illo saepe repudiandae, vitae facilis fugiat consequatur perferendis nihil
+    eligendi magni doloribus, pariatur quasi veritatis, asperiores odio
+    consequuntur. Magnam optio officia sed qui quae, nihil ipsam in ea.
+    Quaerat, nisi ab! Quod provident eaque suscipit quisquam harum beatae eum
+    ut, culpa nemo explicabo iusto velit similique, libero cupiditate dolorem
+    non eligendi sequi autem pariatur aspernatur. Totam nesciunt, unde qui
+    pariatur voluptatibus provident officia magnam ab iste dolores. Expedita,
+    nihil rerum. Nam necessitatibus ex dolor nulla laboriosam consequuntur
+    itaque odio aliquid inventore minima. Dicta laudantium aliquam asperiores
+    accusamus omnis, magnam enim tempore obcaecati labore, iste repellendus
+    architecto! Sed illum earum animi inventore corrupti minus eveniet magnam
+    iusto quas, nihil odio nostrum quo, ipsum similique. Quos exercitationem
+    modi suscipit optio, neque eos, praesentium, magnam voluptatum quam fuga
+    libero quibusdam excepturi maiores! Quia doloremque maxime nobis harum
+    neque tempore dolor nesciunt perferendis, reprehenderit qui non. Ipsum
+    optio maxime debitis provident voluptate expedita necessitatibus
+    aspernatur dolorem odio ab itaque, impedit, blanditiis fugit aliquam! Aut
+    voluptas, eius architecto eaque id modi velit optio? Quibusdam doloribus
+    aspernatur aut libero cum officiis sed est asperiores. Qui aut consequatur
+    quasi, repudiandae animi tenetur laudantium? Nam labore iusto minus enim
+    mollitia porro provident quod fugit. Ratione voluptates fugit nihil earum
+    doloribus totam vitae inventore exercitationem animi ipsum voluptate id
+    assumenda, rerum quos dicta tenetur. Architecto officia, cumque itaque, ex
+    ipsum quo sunt, possimus natus voluptatem nesciunt fugiat dolores.
+    Incidunt quae voluptates numquam explicabo tempora, eveniet aut unde alias
+    laudantium aspernatur, assumenda nihil tenetur exercitationem molestiae
+    similique deleniti. Dignissimos ab aliquam atque a ipsum suscipit ratione
+    nesciunt, quibusdam ipsa tempora repudiandae incidunt iure minus nobis
+    praesentium doloremque quos. Error, cupiditate ut repellendus animi vitae
+    sunt neque impedit a ipsa atque natus dolor sapiente laboriosam assumenda
+    qui quidem obcaecati odio enim aliquam eum nostrum? Error perferendis sed
+    exercitationem quasi? Consequuntur qui quasi possimus ducimus numquam
+    alias explicabo. Eligendi incidunt non excepturi, dolorem itaque, quas
+    provident exercitationem voluptas magni eos reprehenderit optio adipisci
+    eius alias aliquam nobis. Omnis alias minus autem eius nulla perferendis
+    consectetur accusamus possimus quam molestias beatae officia modi sunt
+    quas rem dicta, architecto aut ex quisquam nam? Maxime, tempore at
+    reiciendis obcaecati non dignissimos eligendi repudiandae corporis,
+    maiores labore ipsa numquam inventore. Cum mollitia assumenda ullam
+    voluptatum ducimus magni veritatis cumque eius corporis est debitis
+    repudiandae possimus illum inventore libero a officiis minus earum ipsum,
+    officia, voluptatibus magnam velit? Architecto hic, voluptate, sed
+    adipisci cumque quibusdam magni in repudiandae aliquid eligendi eaque?
+    Unde eligendi hic eaque voluptate vitae assumenda laboriosam, suscipit
+    commodi odit qui ad possimus culpa, nemo maiores rerum sequi explicabo
+    quisquam! Ipsum nisi id est accusantium laboriosam placeat nam. Soluta
+    commodi, saepe magni at suscipit quasi laborum sapiente ducimus eligendi
+    incidunt mollitia totam corporis laboriosam sit odio! Quod perspiciatis
+    voluptatibus reprehenderit, earum sapiente vel et rerum!
+  </main>
 
-   <!-- Main Dropdown -->
+  <!-- Main Dropdown -->
   <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Main Menu
     </button>
     <ul class="dropdown-menu">
-
       <!-- Normal item -->
       <li><a class="dropdown-item" href="#">Profile</a></li>
 
