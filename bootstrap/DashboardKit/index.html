@@ -48,10 +48,84 @@
     </div>
   </nav>
 
-  <div class="offcanvas offcanvas-top fixed-top d-lg-block" style="height: 65px; z-index: 1055"
-    data-bs-scroll="true" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTop">
-    <div class="offcanvas-body bg-white d-flex justify-content-end align-items-center gap-1 border-bottom"
-      style="overflow-y: hidden; height: 65px">
+  <div class="offcanvas offcanvas-top fixed-top d-lg-block" style="height: 65px; z-index: 1055" data-bs-scroll="true" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTop">
+    <div class="offcanvas-body bg-white d-flex justify-content-end justify-content-lg-between align-items-center gap-1 border-bottom" style="overflow-y: hidden; height: 65px">
+      <div class="d-none d-lg-block" style="margin-left: 280px;">
+        <div class="dropdown-center dropdown-menu-btn">
+        <button class="btn w-100 d-flex justify-content-start active-btn" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Level
+        </button>
+        <ul class="dropdown-menu w-100 border-0">
+          <!-- My Account -->
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-person-circle"></i>
+              <span>My Account</span>
+            </button>
+          </li>
+
+          <!-- Nested Dropdown Start -->
+          <li class="dropdown-submenu show">
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2 dropdown-toggle">
+              <i class="bi bi-list-ul"></i>
+              <span>Level 2.1</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+              <li>
+                <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+                  <i class="bi bi-balloon-fill"></i>
+                  <span>Support</span>
+                </button>
+              </li>
+            </ul>
+          </li>
+          <!-- Nested Dropdown End -->
+
+          <!-- Other Items -->
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-gear-fill"></i>
+              <span>Settings</span>
+            </button>
+          </li>
+
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-balloon-fill"></i>
+              <span>Support</span>
+            </button>
+          </li>
+
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-lock-fill"></i>
+              <span>Lock Screen</span>
+            </button>
+          </li>
+
+          <li>
+            <button class="btn w-100 d-flex justify-content-start align-items-center gap-2">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Logout</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center gap-3">
       <div class="dropdown-menu-btn">
         <button type="button" class="btn text-gray d-flex justify-content-center align-items-center"
           style="width: 45px; height: 45px" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,6 +135,7 @@
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
           </svg>
         </button>
+
         <ul class="dropdown-menu dropdown-menu-end">
           <div class="p-1 px-3 d-flex justify-content-center align-items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
@@ -72,6 +147,7 @@
           </div>
         </ul>
       </div>
+
       <div class="dropdown-menu-btn">
         <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="./assets/images/avatar-2.webp" alt="user" class="rounded-circle"
@@ -96,23 +172,10 @@
           </li>
         </ul>
       </div>
+      </div>
     </div>
   </div>
 
-  <!-- <div class="offcanvas offcanvas-start border-danger" style="z-index: 1056;" data-bs-scroll="true" tabindex="-1"
-    id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-    <div class="offcanvas-header border" style="height: 56px;">
-      <img src="./assets/images/logo.svg" alt="logo" class="p-1" />
-
-    </div>
-    <div class="offcanvas-body text-white">
-      <p>Submenu ochilishi kerak </p>
-    </div>
-
-  </div> -->
-
-  <!-- OFFCANVAS: mobilda yopiq, larda ochiq -->
   <div class="offcanvas offcanvas-start text-white d-lg-block position-lg-fixed h-100" tabindex="-1"
     id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel" style="width: 280px; z-index: 1056"
     data-bs-scroll="true">
@@ -121,7 +184,7 @@
     </div>
 
     <div class="offcanvas-body h-100">
-      <!-- <p>Submenu ochilishi kerak</p> -->
+      <p>Submenu ochilishi kerak</p>
     </div>
   </div>
 
