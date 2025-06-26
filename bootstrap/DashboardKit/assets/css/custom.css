@@ -73,7 +73,7 @@
   position: relative;
 }
 
-.dropdown-submenu>.dropdown-menu {
+.dropdown-submenu > .dropdown-menu {
   display: block !important;
   position: relative;
   margin-left: 1rem;
@@ -81,7 +81,7 @@
   box-shadow: none;
 }
 
-.dropdown-submenu>.dropdown-toggle::after {
+.dropdown-submenu > .dropdown-toggle::after {
   display: none;
 }
 
@@ -126,12 +126,11 @@
   align-items: center;
 }
 
-.sidebar-menu-body .section-menu>button {
+.sidebar-menu-body .section-menu > button {
   justify-content: space-between;
-
 }
 
-.sidebar-menu-body .section-menu button>span {
+.sidebar-menu-body .section-menu button > span {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -167,11 +166,82 @@ button[aria-expanded="true"] .bi-chevron-right {
   transform: translateX(10px);
 }
 
-
 /* Sidebar Style END */
+.level-btn {
+  text-decoration: none;
+  color: #7267ef;
+  background: #e3e1fc;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  margin: 0 5px;
+  border-radius: 4px;
+  position: relative;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  line-height: 1.5;
+}
+
+.level-dropdown-item {
+  padding: 10px 25px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  clear: both;
+  font-weight: 500;
+  color: #293240;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+
+}
+.level-dropdown-item:hover {
+  color: #7267ef;
+  text-decoration: none;
+  background-color: #e3e1fc;
+}
+
+.level-dropdown-item span {
+  font-weight: 400;
+  text-align: inherit;
+  white-space: nowrap;
+}
+
+.level-dropdown-item svg {
+  vertical-align: bottom;
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+/* Custom CSS for hover effect on nested dropdowns */
+        .dropdown-menu .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-menu .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            display: none; /* Hide by default */
+            border-radius: 0;
+        }
+        .dropdown-menu .dropdown-submenu:hover > .dropdown-menu {
+            display: block; /* Show on hover */
+        }
+
+        /* Adjusting the main dropdown to open on hover (optional, Bootstrap's default is click) */
+        /* If you want the main "Level" dropdown to open on hover too */
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown > .dropdown-toggle:active {
+            /* Prevent click effect if you're relying on hover for the main dropdown */
+            pointer-events: none;
+        }
 
 @media (min-width: 992px) {
-
   #sidebarOffcanvas,
   #offcanvasTop {
     transform: none !important;
