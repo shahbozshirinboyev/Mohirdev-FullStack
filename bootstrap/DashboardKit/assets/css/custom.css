@@ -98,6 +98,92 @@
   /* Ortiqcha toggle belgisi olib tashlandi */
 }
 
+/* Sidebar Style START */
+.sidebar-menu-header {
+  padding: 10px 15px;
+}
+
+.sidebar-menu-header label {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #7267ef;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.sidebar-menu-header span {
+  letter-spacing: 0.07em;
+  line-height: 1.5;
+  display: block;
+  color: #67758a;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.sidebar-menu-body .section-menu > button {
+  display: block;
+  padding: 13px 20px;
+  color: #ced4dc;
+  font-size: 13px;
+  font-weight: 500;
+  box-sizing: border-box;
+  background-color: transparent;
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar-menu-body .section-menu button > span{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+.sidebar-menu-body .section-menu button:hover{
+      background: #161c25;
+      color: #fff;
+}
+
+/* Har doim transition bo'lishi uchun */
+.bi-chevron-right {
+  transition: transform 0.3s ease;
+}
+
+/* Collapse ochilganda button ichidagi .bi-chevron-left ga rotate berish */
+button[aria-expanded="true"] .bi-chevron-right {
+  transform: rotate(90deg);
+}
+
+.sidebar-menu-body .section-menu .collapse button{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.5s ease;
+
+}
+.sidebar-menu-body .section-menu .collapse button:hover{
+  background-color: transparent;
+}
+.sidebar-menu-body .section-menu .collapse button:hover svg{
+  margin-right: 0px;
+  margin-left: 10px;
+
+}
+.sidebar-menu-body .section-menu .collapse button svg{
+  margin-right: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  transition: margin 0.3s ease;
+}
+
+/* Sidebar Style END */
+
 @media (min-width: 992px) {
 
   #sidebarOffcanvas,
