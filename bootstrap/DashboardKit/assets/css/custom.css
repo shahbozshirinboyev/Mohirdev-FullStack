@@ -1,7 +1,6 @@
 .navbar {
   background-color: #161c25 !important;
   height: 65px;
-  /* Bootstrap default */
   min-height: 65px;
 }
 
@@ -30,15 +29,11 @@
 
 .custom-scroll {
   overflow-y: auto;
-  /* vertikal scroll bo'lishi uchun */
   max-height: 100vh;
-  /* maksimal balandlik */
 }
 
-/* Chrome, Edge, Safari uchun */
 .custom-scroll::-webkit-scrollbar {
   width: 8px;
-  /* scrollbar eni */
 }
 
 .custom-scroll::-webkit-scrollbar-track {
@@ -49,16 +44,13 @@
 
 .custom-scroll::-webkit-scrollbar-thumb {
   background: #888;
-  /* scrollbar rangi */
   border-radius: 10px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: #555;
-  /* hover holatidagi rangi */
 }
 
-/* Firefox uchun */
 .custom-scroll {
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
@@ -66,7 +58,6 @@
 
 #offcanvasTop {
   top: 65px !important;
-  /* navbar balandligiga qarab sozlang */
 }
 
 .badge-custom {
@@ -78,16 +69,13 @@
   cursor: pointer;
 }
 
-/* Ichki submenu joylashuvi */
 .dropdown-submenu {
   position: relative;
 }
 
 .dropdown-submenu>.dropdown-menu {
   display: block !important;
-  /* Doim ochiq bo'lishi uchun */
   position: relative;
-  /* Yon tomonda chiqmasligi uchun */
   margin-left: 1rem;
   padding-left: 0;
   box-shadow: none;
@@ -95,7 +83,6 @@
 
 .dropdown-submenu>.dropdown-toggle::after {
   display: none;
-  /* Ortiqcha toggle belgisi olib tashlandi */
 }
 
 /* Sidebar Style START */
@@ -122,7 +109,7 @@
   text-transform: capitalize;
 }
 
-.sidebar-menu-body .section-menu > button {
+.sidebar-menu-body .section-menu button {
   display: block;
   padding: 13px 20px;
   color: #ced4dc;
@@ -137,44 +124,45 @@
   justify-content: space-between;
   align-items: center;
 }
-.sidebar-menu-body .section-menu button > span{
+
+.sidebar-menu-body .section-menu button>span {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 15px;
 }
-.sidebar-menu-body .section-menu button:hover{
-      background: #161c25;
-      color: #fff;
+
+.sidebar-menu-body .section-menu button:hover {
+  background: #161c25;
+  color: #fff;
 }
 
-/* Har doim transition bo'lishi uchun */
 .bi-chevron-right {
   transition: transform 0.3s ease;
 }
 
-/* Collapse ochilganda button ichidagi .bi-chevron-left ga rotate berish */
 button[aria-expanded="true"] .bi-chevron-right {
   transform: rotate(90deg);
 }
 
-.sidebar-menu-body .section-menu .collapse button{
+.sidebar-menu-body .section-menu .collapse button {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 5px;
   transition: all 0.5s ease;
-
 }
-.sidebar-menu-body .section-menu .collapse button:hover{
+
+.sidebar-menu-body .section-menu .collapse button:hover {
   background-color: transparent;
 }
-.sidebar-menu-body .section-menu .collapse button:hover svg{
+
+.sidebar-menu-body .section-menu .collapse button:hover svg {
   margin-right: 0px;
   margin-left: 10px;
-
 }
-.sidebar-menu-body .section-menu .collapse button svg{
+
+.sidebar-menu-body .section-menu .collapse button svg {
   margin-right: 10px;
   display: flex;
   justify-content: start;
@@ -194,13 +182,11 @@ button[aria-expanded="true"] .bi-chevron-right {
 
   .main-content {
     margin-left: 280px;
-    /* Sidebar kengligiga teng */
     padding: 20px;
     margin-top: 65px;
   }
 
   #offcanvasTop {
     top: 0px !important;
-    /* navbar balandligiga qarab sozlang */
   }
 }
