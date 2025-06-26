@@ -119,10 +119,16 @@
   background-color: transparent;
   width: 100%;
   box-shadow: none;
+  gap: 15px;
   border: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
+}
+
+.sidebar-menu-body .section-menu>button {
+  justify-content: space-between;
+
 }
 
 .sidebar-menu-body .section-menu button>span {
@@ -146,10 +152,6 @@ button[aria-expanded="true"] .bi-chevron-right {
 }
 
 .sidebar-menu-body .section-menu .collapse button {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 5px;
   transition: all 0.5s ease;
 }
 
@@ -157,18 +159,14 @@ button[aria-expanded="true"] .bi-chevron-right {
   background-color: transparent;
 }
 
-.sidebar-menu-body .section-menu .collapse button:hover svg {
-  margin-right: 0px;
-  margin-left: 10px;
+.sidebar-menu-body .section-menu .collapse button svg {
+  transition: transform 0.3s ease;
 }
 
-.sidebar-menu-body .section-menu .collapse button svg {
-  margin-right: 10px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  transition: margin 0.3s ease;
+.sidebar-menu-body .section-menu .collapse button:hover svg {
+  transform: translateX(10px);
 }
+
 
 /* Sidebar Style END */
 
