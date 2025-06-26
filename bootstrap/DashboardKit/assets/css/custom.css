@@ -73,7 +73,7 @@
   position: relative;
 }
 
-.dropdown-submenu > .dropdown-menu {
+.dropdown-submenu>.dropdown-menu {
   display: block !important;
   position: relative;
   margin-left: 1rem;
@@ -81,7 +81,7 @@
   box-shadow: none;
 }
 
-.dropdown-submenu > .dropdown-toggle::after {
+.dropdown-submenu>.dropdown-toggle::after {
   display: none;
 }
 
@@ -126,11 +126,11 @@
   align-items: center;
 }
 
-.sidebar-menu-body .section-menu > button {
+.sidebar-menu-body .section-menu>button {
   justify-content: space-between;
 }
 
-.sidebar-menu-body .section-menu button > span {
+.sidebar-menu-body .section-menu button>span {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -197,6 +197,7 @@ button[aria-expanded="true"] .bi-chevron-right {
   background-color: transparent;
   border: 0;
 }
+
 .level-dropdown-item:hover {
   color: #7267ef;
   text-decoration: none;
@@ -219,35 +220,72 @@ button[aria-expanded="true"] .bi-chevron-right {
 .dropdown-menu .dropdown-submenu {
   position: relative;
 }
+
 .dropdown-menu .dropdown-submenu .dropdown-menu {
   top: 0;
   left: 100%;
   margin-top: -1px;
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
   border-radius: 0;
 }
-.dropdown-menu .dropdown-submenu:hover > .dropdown-menu {
-  display: block; /* Show on hover */
+
+.dropdown-menu .dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+  /* Show on hover */
 }
 
 /* Adjusting the main dropdown to open on hover (optional, Bootstrap's default is click) */
 /* If you want the main "Level" dropdown to open on hover too */
-.dropdown:hover > .dropdown-menu {
+.dropdown:hover>.dropdown-menu {
   display: block;
 }
-.dropdown > .dropdown-toggle:active {
+
+.dropdown>.dropdown-toggle:active {
   /* Prevent click effect if you're relying on hover for the main dropdown */
   pointer-events: none;
 }
 
-.for-dropdown-toggle-mobile::after{
+.for-dropdown-toggle-mobile::after {
   margin-left: 120px;
 }
-.for-dropdown-toggle-desktop::after{
+
+.for-dropdown-toggle-desktop::after {
   margin-left: 50px !important;
 }
 
+.btn-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-avatar>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-left: 10px;
+}
+
+.btn-avatar .user-name {
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: start;
+}
+
+.btn-avatar .user-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(82, 91, 105, 0.7);
+  display: block;
+  line-height: 1;
+  text-align: start;
+}
+
 @media (min-width: 992px) {
+
   #sidebarOffcanvas,
   #offcanvasTop {
     transform: none !important;
