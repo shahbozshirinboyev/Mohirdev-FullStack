@@ -125,6 +125,7 @@
   justify-content: start;
   align-items: center;
 }
+
 .sidebar-menu-body .section-menu a {
   display: block;
   padding: 13px 20px;
@@ -143,12 +144,11 @@
   text-decoration: none;
 }
 
-
-.sidebar-menu-body .section-menu > button {
+.sidebar-menu-body .section-menu>button {
   justify-content: space-between;
 }
 
-.sidebar-menu-body .section-menu button > span {
+.sidebar-menu-body .section-menu button>span {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -160,11 +160,11 @@
   color: #fff;
 }
 
-.sidebar-menu-body .section-menu > a {
+.sidebar-menu-body .section-menu>a {
   justify-content: space-between;
 }
 
-.sidebar-menu-body .section-menu a > span {
+.sidebar-menu-body .section-menu a>span {
   display: flex;
   justify-content: start;
   align-items: center;
