@@ -125,12 +125,30 @@
   justify-content: start;
   align-items: center;
 }
+.sidebar-menu-body .section-menu a {
+  display: block;
+  padding: 13px 20px;
+  color: #ced4dc;
+  font-size: 13px;
+  font-weight: 500;
+  box-sizing: border-box;
+  background-color: transparent;
+  width: 100%;
+  box-shadow: none;
+  gap: 15px;
+  border: none;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-decoration: none;
+}
 
-.sidebar-menu-body .section-menu>button {
+
+.sidebar-menu-body .section-menu > button {
   justify-content: space-between;
 }
 
-.sidebar-menu-body .section-menu button>span {
+.sidebar-menu-body .section-menu button > span {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -138,6 +156,22 @@
 }
 
 .sidebar-menu-body .section-menu button:hover {
+  background: #161c25;
+  color: #fff;
+}
+
+.sidebar-menu-body .section-menu > a {
+  justify-content: space-between;
+}
+
+.sidebar-menu-body .section-menu a > span {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+
+.sidebar-menu-body .section-menu a:hover {
   background: #161c25;
   color: #fff;
 }
@@ -150,19 +184,19 @@ button[aria-expanded="true"] .bi-chevron-right {
   transform: rotate(90deg);
 }
 
-.sidebar-menu-body .section-menu .collapse button {
+.sidebar-menu-body .section-menu .collapse a {
   transition: all 0.5s ease;
 }
 
-.sidebar-menu-body .section-menu .collapse button:hover {
+.sidebar-menu-body .section-menu .collapse a:hover {
   background-color: transparent;
 }
 
-.sidebar-menu-body .section-menu .collapse button svg {
+.sidebar-menu-body .section-menu .collapse a svg {
   transition: transform 0.3s ease;
 }
 
-.sidebar-menu-body .section-menu .collapse button:hover svg {
+.sidebar-menu-body .section-menu .collapse a:hover svg {
   transform: translateX(10px);
 }
 
@@ -284,6 +318,15 @@ button[aria-expanded="true"] .bi-chevron-right {
   text-align: start;
 }
 
+.main-content {
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.anchor-offset {
+  scroll-margin-top: 85px;
+}
+
 @media (min-width: 992px) {
 
   #sidebarOffcanvas,
@@ -294,8 +337,7 @@ button[aria-expanded="true"] .bi-chevron-right {
 
   .main-content {
     margin-left: 280px;
-    padding: 20px;
-    margin-top: 65px;
+    padding: 25px;
   }
 
   #offcanvasTop {

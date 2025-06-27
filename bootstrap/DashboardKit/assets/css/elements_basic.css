@@ -1,0 +1,79 @@
+.main-content {
+  background-color: #f0f2f8;
+}
+.mini-menu-header .fw-medium {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.mini-menu-header h4 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.mini-menu-header>p {
+  font-size: 16px;
+}
+
+.mini-menu-header .fw-medium a {
+  background: #e3e1fc;
+  color: #7267ef;
+  border-color: #e3e1fc;
+  display: inline-block;
+  padding: 0.35em 0.5em;
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.mini-card {
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s ease-in-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #293240;
+}
+
+.mini-card .mini-card-header {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 25px 25px;
+  margin-bottom: 0;
+  background-color: transparent;
+  display: block;
+  unicode-bidi: isolate;
+}
+
+.mini-card .mini-card-header h5 {
+  margin-bottom: 0;
+  color: #525f71;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mini-card .mini-card-body {
+  flex: 1 1 auto;
+  padding: 25px 25px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #293240;
+}
