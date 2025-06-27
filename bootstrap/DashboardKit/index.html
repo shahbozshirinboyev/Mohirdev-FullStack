@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./assets/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./assets/css/custom.css" />
+  <link rel="stylesheet" href="./assets/css/elements_basic.css" />
 </head>
 
 <body>
@@ -573,7 +574,168 @@
   </div>
   <!-- Navbar end -->
 
-  <main class="main-content">Dashboard</main>
+  <main class="main-content">
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4 gap-2">
+          <div class="mb-2">
+            <h5 class="text-capitalize">tables</h5>
+            <span class="text-muted">Documentation and examples for opt-in styling of tables (given
+              their prevalent use in JavaScript plugins) with Bootstrap.</span>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>John</td>
+                <td>Doe</td>
+                <td>@social</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4 gap-2">
+          <div class="mb-2">
+            <h5 class="text-capitalize">progress</h5>
+            <span class="text-muted">Documentation and examples for using Bootstrap custom progress
+              bars featuring support for stacked bars, animated backgrounds,
+              and text labels.</span>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Default striped example" aria-valuenow="10"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped" style="width: 16%"></div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-success" style="width: 32%"></div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Info striped example" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-info" style="width: 48%"></div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="75"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-warning" style="width: 64%"></div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-danger" style="width: 80%"></div>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Alerts</h4>
+            <p>
+              Provide contextual feedback messages for typical user actions
+              with the handful of available and flexible alert messages.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Buttons</h4>
+            <p>
+              Use Bootstrap’s custom button styles for actions in forms,
+              dialogs, and more with support for multiple sizes, states, and
+              more.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Badges</h4>
+            <p>
+              Documentation and examples for badges, our small count and
+              labeling component.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Form Basic</h4>
+            <p>
+              Examples and usage guidelines for form control styles, layout
+              options, and custom components for creating a wide variety of
+              forms.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Input groups</h4>
+            <p>
+              Easily extend form controls by adding text, buttons, or button
+              groups on either side of textual inputs, custom selects, and
+              custom file inputs.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <div class="mini-card p-4">
+          <div class="mini-menu-header anchor-offset" id="checkbox">
+            <h4>Checkbox</h4>
+            <p>
+              Combine button-like checkbox and radio toggle buttons into a
+              seamless looking button group.
+            </p>
+            <p class="fw-medium">Check out <a href="">Documentation</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {

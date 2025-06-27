@@ -40,7 +40,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   word-wrap: break-word;
   background-color: #ffffff;
   background-clip: border-box;
@@ -51,6 +50,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: #293240;
+  width: 100%;
 }
 
 .mini-card .mini-card-header {
