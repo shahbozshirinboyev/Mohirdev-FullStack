@@ -29,7 +29,7 @@ class News(models.Model):
   updated_time = models.DateTimeField(auto_now=True)
   status = models.CharField(max_length=2, choices=Status.choices, default=Status.Draft)
 
-  objects = models.Manager()
+  objects = models.Manager() #default django manager
   published = PublishedManager()
 
   class Meta:
