@@ -5,26 +5,6 @@
 
 {% block content %}
 <!-- ##### Contact Area Start ##### -->
-<div class="hero-contact-area bg-overlay clearfix">
-    <div class="container-fluid h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12 col-lg-7">
-                <!-- Post Content -->
-                <div class="post-content">
-                    <p class="tag"><span>Featured</span></p>
-                    <p class="post-title">China's economy shows signs of slowing.</p>
-                    <div class="d-flex align-items-center">
-                        <span class="post-date mr-30">June 20, 2018</span>
-                        <span class="post-date">By Michael Smith</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ##### Contact Area End ##### -->
-
-<!-- ##### Contact Area Start ##### -->
 <section class="contact-area section-padding-100">
     <div class="container">
         <div class="row justify-content-center">
@@ -77,21 +57,22 @@
                     <div class="contact-form-area mb-70">
                         <h4 class="mb-50">Get In Touch</h4>
 
-                        <form action="#" method="post">
+                        <form action="#" method="POST">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name" />
+                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail" />
+                                        <input type="email" class="form-control" id="email" placeholder="E-mail" name="email" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject" />
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject" name="subject" />
                                     </div>
                                 </div>
                                 <div class="col-12">

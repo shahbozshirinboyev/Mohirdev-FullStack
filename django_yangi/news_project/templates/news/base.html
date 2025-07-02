@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,20 +13,13 @@
     <title>{% block title %}Newsbox | Modern Magazine{% endblock title %}</title>
     <!-- Favicon -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
-    <!-- All Stylesheet -->
-    <!-- Bootstrap -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Classy Nav -->
     <link rel="stylesheet" href="{% static 'css/classy-nav.css' %}">
-    <!-- Owl Carousel -->
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <!-- Animate -->
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <!-- Magnific Popup -->
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -68,10 +62,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Local News</a></li>
-                                    <li><a href="#">Local News</a></li>
-                                    <li><a href="#">Local News</a></li>
-                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="{% url 'catagory' %}">Category</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
                                 </ul>
 
                             </div>
