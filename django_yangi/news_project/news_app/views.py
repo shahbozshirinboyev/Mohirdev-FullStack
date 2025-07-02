@@ -26,3 +26,6 @@ def homePageView(request):
     'categories': categories
   }
   return render(request, 'news/index.html', context)
+
+def contactPageView(request):
+  return(request, 'news/contact.html')
