@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'news/base.html' %}
 {% load static %}
 
 {% block content %}
 
     <!-- ##### Breaking News Area Start ##### -->
     <section class="breaking-news-area">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <!-- Breaking News Widget -->
@@ -36,7 +36,7 @@
 
             <!-- Single Slide -->
             <div class="single-slide">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <!-- Single Blog Post Area -->
                         <div class="col-12 col-md-6">
@@ -91,7 +91,7 @@
 
             <!-- Single Slide -->
             <div class="single-slide">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <!-- Single Blog Post Area -->
                         <div class="col-12 col-md-6">
@@ -1010,9 +1010,9 @@
 
     <!-- ##### Add Area Start ##### -->
     <div class="big-add-area mb-100">
-        <div class="container-fluid">
+        <div class="container">
             <a href="#"><img src="{% static 'img/bg-img/add2.png' %}" alt=""></a>
         </div>
     </div>
     <!-- ##### Add Area End ##### -->
-{% endblock %}
+{% endblock content %}

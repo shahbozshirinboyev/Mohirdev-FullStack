@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>Newsbox - Modern Magazine &amp; Newspaper HTML Template</title>
+    <title>{% block title %}Newsbox | Modern Magazine{% endblock title %}</title>
     <!-- Favicon -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
     <!-- All Stylesheet -->
@@ -41,17 +41,16 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
+    <header class=" header-area">
         <!-- Navbar Area -->
         <div class="newsbox-main-menu">
             <div class="classy-nav-container breakpoint-off">
-                <div class="container-fluid">
+                <div class="container">
                     <!-- Menu -->
                     <nav class="classy-navbar justify-content-between" id="newsboxNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="{% static 'img/core-img/logo.png' %}"
-                                alt=""></a>
+                        <a href="{% url 'home_page' %}" class="nav-brand"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -72,15 +71,9 @@
                                     <li><a href="#">Local News</a></li>
                                     <li><a href="#">Local News</a></li>
                                     <li><a href="#">Local News</a></li>
-                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
                                 </ul>
 
-                                <!-- Header Add Area -->
-                                <div class="header-add-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/bg-img/add.png' %}" alt="">
-                                    </a>
-                                </div>
                             </div>
                             <!-- Nav End -->
 
@@ -93,7 +86,7 @@
     <!-- ##### Header Area End ##### -->
 
     {% block content %}
-    {% endblock %}
+    {% endblock content %}
 
 
     <!-- ##### Footer Area Start ##### -->
