@@ -24,6 +24,7 @@ def news_detail(request, id):
 def homePageView(request):
   news_list = News.published.all().order_by('-publish_time')
   categories = Category.objects.all()
+  local_news = News.published.all().filter(category__name='Mahalliy')
   context = {
     'news_list': news_list,
     'categories': categories
