@@ -68,9 +68,14 @@
                                     <li>
                                         <a href="{% url 'catagory' %}">Bo'limlar</a>
                                         <ul class="dropdown">
-                                            {% for category in categories %}
+                                            <li><a href="{% url 'sport' %}">Sport</a></li>
+                                            <li><a href="{% url 'siyosat' %}">Siyosat</a></li>
+                                            <li><a href="{% url 'texnologiya' %}">Texnologiya</a></li>
+                                            <li><a href="{% url 'jamiyat' %}">Jamiyat</a></li>
+                                            <li><a href="{% url 'iqtisodiyot' %}">Iqtisodiyot</a></li>
+                                            <!-- {% for category in categories %}
                                             <li><a href="#">{{ category.name }}</a></li>
-                                            {% endfor %}
+                                            {% endfor %} -->
                                         </ul>
                                     </li>
                                     <li><a href="{% url 'about' %}">Tashkilot</a></li>
