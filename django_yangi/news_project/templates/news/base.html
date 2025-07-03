@@ -5,12 +5,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>{% block title %}Newsbox | Modern Magazine{% endblock title %}</title>
+    <title>{% block title %}NewsBOX | Tezkor xabarlar{% endblock title %}</title>
     <!-- Favicon -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
     <!-- Stylesheet -->
@@ -44,7 +44,8 @@
                     <nav class="classy-navbar justify-content-between" id="newsboxNav">
 
                         <!-- Nav brand -->
-                        <a href="{% url 'home_page' %}" class="nav-brand"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                        <a href="{% url 'home_page' %}" class="nav-brand"><img
+                                src="{% static 'img/core-img/logo.png' %}" alt></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -62,19 +63,20 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="{% url 'catagory' %}">Category</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><a href="{% url 'home_page' %}">Bosh
+                                            sahifa</a></li>
+                                    <li>
+                                        <a href="{% url 'catagory' %}">Bo'limlar</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="catagory.html">Catagory</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
+                                            {% for category_name in category %}
+                                            <li><a href="#">{{
+                                                    category_name.name
+                                                    }}</a></li>
+                                            {% endfor %}
                                         </ul>
                                     </li>
-                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                    <li><a href="{% url 'about' %}">Tashkilot</a></li>
+                                    <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
                                 </ul>
 
                             </div>
@@ -91,12 +93,11 @@
     {% block content %}
     {% endblock content %}
 
-
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <!-- Footer Logo -->
         <div class="footer-logo mb-100">
-            <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+            <a href="{% url 'home_page' %}"><img src="{% static 'img/core-img/logo.png' %}" alt></a>
         </div>
         <!-- Footer Content -->
         <div class="container">
@@ -106,9 +107,9 @@
                         <!-- Footer Nav -->
                         <div class="footer-nav">
                             <ul>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Closed Captioning</a></li>
-                                <li><a href="#">Site Map</a></li>
+                                <li><a href="{% url 'catagory' %}">Bo'limlar</a></li>
+                                <li><a href="{% url 'about' %}">Tashkilot</a></li>
+                                <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
                             </ul>
                         </div>
                         <!-- Social Info -->
@@ -127,18 +128,26 @@
                                     class="fa fa-linkedin" aria-hidden="true"></i></a>
                         </div>
 
-                        <p class="mb-15">Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum.
-                            Etiam pretium turpis eget nibh laoreet iaculis. Proin ac urna at lectus volutpat lobortis.
-                            Vestibulum venenatis iaculis diam vitae lobortis. Donec tincidunt viverra elit, sed
-                            consectetur est pr etium ac. Mauris nec mauris tellus. </p>
+                        <p class="mb-15">
+                            NewsBOX.uz» axborot-tahliliy portali
+                            2025-yilning 12-iyun elektron OAV sifatida
+                            davlat
+                            ro‘yxatidan o‘tkazilgan. Guvohnoma raqami:
+                            156697. Muassis: «NewsBOX» gazetasi tahririyati.
+                            Tahririyat manzili: 100000, Toshkent shahri,
+                            Amir Temur 1-tor ko‘chasi, 2-uy (mo‘ljal: Oloy
+                            bozori). Mas’ul muharrir Abdug‘ani Abdurahmonov.
+                            Elektron manzil: info@newsbox.uz
+                        </p>
 
                         <!-- Copywrite Text -->
                         <p class="copywrite-text"><a href="#">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                                template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                Barcha huquqlar himoyalangan &copy;
+                                <script>document.write(new Date().getFullYear());</script>
+                                | Sayt <a href="https://t.me/Sh_Shirinboyev" target="_blank">Shahboz Shirinboyev</a>
+                                tomonidan
+                                yaratilgan.
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

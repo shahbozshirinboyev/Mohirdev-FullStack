@@ -12,8 +12,8 @@ body {
   font-size: 14px;
 }
 
-.post-title-ellipsis-2{
-   display: -webkit-box;
+.post-title-ellipsis-2 {
+  display: -webkit-box;
   display: block;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -22,6 +22,52 @@ body {
   line-height: 1.4em;
   max-height: 2.8em;
   word-break: break-word;
+}
+/* Yangi yaratilgan klass uchun CSS qoidalari */
+.news-thumbnail-img {
+    width: 120px; /* Rasmlarning aniq kengligi */
+    height: 90px; /* Rasmlarning aniq balandligi */
+    object-fit: cover; /* Rasmni buzmasdan konteynerni to'ldirish uchun kesadi */
+    display: block; /* Rasmlar orasidagi bo'sh joylarni olib tashlash uchun */
+}
+.right-post {
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-post .blog-thumbnail {
+  flex: 1;
+  overflow: hidden;
+}
+
+.right-post .blog-thumbnail img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.big-post .blog-thumbnail img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.left-big-post {
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left-big-post .blog-thumbnail {
+  flex: 1;
+  overflow: hidden;
+}
+
+.left-big-post .blog-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 h1,
@@ -461,6 +507,16 @@ img {
   .header-area .newsbox-main-menu {
     height: 90px;
   }
+
+  .right-post,
+  .left-big-post {
+    height: 250px;
+  }
+
+  .right-post .blog-thumbnail img,
+  .left-big-post .blog-thumbnail img {
+    height: 250px;
+  }
 }
 
 .header-area .newsbox-main-menu .classy-navbar {
@@ -727,7 +783,7 @@ img {
 .footer-area .footer-logo::after {
   position: absolute;
   width: 100%;
-  content: '';
+  content: "";
   background-color: #d6dfe2;
   height: 2px;
   top: 50%;
@@ -1722,7 +1778,7 @@ img {
   position: absolute;
   top: 0;
   right: -16px;
-  content: '|';
+  content: "|";
   z-index: 1;
 }
 
@@ -1828,7 +1884,7 @@ img {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  content: '';
+  content: "";
   z-index: -1;
 }
 
