@@ -24,10 +24,13 @@ def news_detail(request, id):
 def homePageView(request):
   news_list = News.published.all().order_by('-publish_time')
   categories = Category.objects.all()
-  local_news = News.published.all().filter(category__name='Mahalliy')
+  sport_news_one = News.published.all().filter(category__name='Sport').order_by('-publish_time')[0]
+  sport_news_two = News.published.filter(category__name='Sport').order_by('-publish_time')[1:3]
   context = {
     'news_list': news_list,
-    'categories': categories
+    'categories': categories,
+    'sport_news_one': sport_news_one,
+    'sport_news_two': sport_news_two,
   }
   return render(request, 'news/index.html', context)
 

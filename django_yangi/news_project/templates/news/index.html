@@ -27,37 +27,8 @@
 </section>
 <!-- ##### Breaking News Area End ##### -->
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="text-uppercase text-secondary">The latest news</h2>
-        </div>
-    </div>
-    <div class="row">
-        {% for news in news_list|slice:"6" %}
-        <div class="col-12 col-sm-6">
-            <div class="single-blog-post d-flex style-4 mb-30">
-                <!-- Blog Thumbnail -->
-                <div class="blog-thumbnail">
-                    <a href="{% url 'news_detail_page' news.pk %}"><img src="{{ news.image.url }}" alt="{{ news.title }}"></a>
-                </div>
-
-                <!-- Blog Content -->
-                <div class="blog-content">
-                    <span class="post-date">{{ news.publish_time }}</span>
-                    <a href="{% url 'news_detail_page' news.pk %}" class="post-title post-title-ellipsis-2">
-                        {{ news.title }}
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
 <!-- ##### Hero Area Start ##### -->
-<div class="hero-area">
+<div class="hero-area border border-danger">
     <!-- Hero Post Slides -->
     <div class="hero-post-slides owl-carousel">
 
@@ -120,52 +91,41 @@
         <div class="single-slide">
             <div class="container">
                 <div class="row">
+
                     <!-- Single Blog Post Area -->
                     <div class="col-12 col-md-6">
                         <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="100ms"
                             data-duration="1000ms">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail bg-overlay">
-                                <a href="#"><img src="{% static 'img/bg-img/1.jpg' %}" alt=""></a>
+                                <a href="#"><img src="{{ sport_news_one.image.url }}" alt="{{ sport_news_one.title }}"></a>
                             </div>
 
                             <!-- Blog Content -->
                             <div class="blog-content">
-                                <span class="post-date">June 20, 2018</span>
-                                <a href="#" class="post-title">Traffic Problems in Time Square</a>
+                                <span class="post-date">{{ sport_news_one.publish_time }}</span>
+                                <a href="#" class="post-title">{{ sport_news_one.title }}</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
+                     {% for sp_news_two in sport_news_two %}
                         <!-- Single Blog Post Area -->
                         <div class="single-blog-post style-1 mb-30" data-animation="fadeInUpBig" data-delay="300ms"
                             data-duration="1000ms">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail bg-overlay">
-                                <a href="#"><img src="{% static 'img/bg-img/2.jpg' %}" alt=""></a>
+                                <a href="#"><img src="{{ sp_news_two.image.url }}" alt=""></a>
                             </div>
 
                             <!-- Blog Content -->
                             <div class="blog-content">
-                                <span class="post-date">June 20, 2018</span>
-                                <a href="#" class="post-title">The best way to spend your holliday</a>
+                                <span class="post-date">{{ sp_news_two.publish_time }}</span>
+                                <a href="#" class="post-title">{{ sp_news_two.title }}</a>
                             </div>
                         </div>
-                        <!-- Single Blog Post Area -->
-                        <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="500ms"
-                            data-duration="1000ms">
-                            <!-- Blog Thumbnail -->
-                            <div class="blog-thumbnail bg-overlay">
-                                <a href="#"><img src="{% static 'img/bg-img/3.jpg' %}" alt=""></a>
-                            </div>
-
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <span class="post-date">June 20, 2018</span>
-                                <a href="#" class="post-title">Sport results for the weekend games</a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -174,6 +134,37 @@
     </div>
 </div>
 <!-- ##### Hero Area End ##### -->
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-uppercase text-secondary">The latest news</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% for news in news_list|slice:"6" %}
+        <div class="col-12 col-sm-6">
+            <div class="single-blog-post d-flex style-4 mb-30">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="{% url 'news_detail_page' news.pk %}"><img src="{{ news.image.url }}" alt="{{ news.title }}"></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content">
+                    <span class="post-date">{{ news.publish_time }}</span>
+                    <a href="{% url 'news_detail_page' news.pk %}" class="post-title post-title-ellipsis-2">
+                        {{ news.title }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
 
 <!-- ##### Intro News Area Start ##### -->
 <section class="intro-news-area section-padding-100-0 mb-70">
