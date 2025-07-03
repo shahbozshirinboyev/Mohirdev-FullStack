@@ -68,10 +68,8 @@
                                     <li>
                                         <a href="{% url 'catagory' %}">Bo'limlar</a>
                                         <ul class="dropdown">
-                                            {% for category_name in category %}
-                                            <li><a href="#">{{
-                                                    category_name.name
-                                                    }}</a></li>
+                                            {% for category in categories %}
+                                            <li><a href="#">{{ category.name }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </li>
@@ -96,7 +94,7 @@
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <!-- Footer Logo -->
-        <div class="footer-logo mb-100">
+        <div class="footer-logo mb-50">
             <a href="{% url 'home_page' %}"><img src="{% static 'img/core-img/logo.png' %}" alt></a>
         </div>
         <!-- Footer Content -->
@@ -107,6 +105,7 @@
                         <!-- Footer Nav -->
                         <div class="footer-nav">
                             <ul>
+                                <li><a href="{% url 'home_page' %}">Bosh sahifa</a></li>
                                 <li><a href="{% url 'catagory' %}">Bo'limlar</a></li>
                                 <li><a href="{% url 'about' %}">Tashkilot</a></li>
                                 <li><a href="{% url 'contact' %}">Bog'lanish</a></li>

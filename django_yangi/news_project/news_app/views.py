@@ -43,8 +43,11 @@ class HomePageView(ListView):
       context = super().get_context_data(**kwargs)
       context['categories'] = Category.objects.all()
       context['news_list'] = News.published.all().order_by('-publish_time')
-      context['sport_news_one'] = News.published.all().filter(category__name='Sport').order_by('-publish_time')[0]
-      context['sport_news_two'] = News.published.filter(category__name='Sport').order_by('-publish_time')[1:3]
+      context['sport'] = News.published.all().filter(category__name='Sport').order_by('-publish_time')
+      context['jamiyat'] = News.published.all().filter(category__name='sport').order_by('-publish_time')
+      context['texnologiya'] = News.published.all().filter(category__name='Texnologiya').order_by('-publish_time')
+      context['iqtisodiyot'] = News.published.all().filter(category__name='Iqtisodiyot').order_by('-publish_time')
+      context['siyosat'] = News.published.all().filter(category__name='Siyosat').order_by('-publish_time')
       return context
 
 def categoryPageView(request):
