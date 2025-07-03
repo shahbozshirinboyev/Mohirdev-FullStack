@@ -14,7 +14,7 @@
                         <ul>
                             {% for news in news_list %}
                             <li>
-                                <a href="{% url 'news_detail_page' news.pk %}">{{ news.title }}</a>
+                                <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -42,14 +42,14 @@
                             data-delay="100ms" data-duration="1000ms">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail bg-overlay">
-                                <a href="{% url 'news_detail_page' news.pk %}"><img src="{{ news.image.url }}"
+                                <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}"
                                         alt="{{ news.title }}" /></a>
                             </div>
 
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <span class="post-date">{{ news.publish_time }}</span>
-                                <a href="{% url 'news_detail_page' news.pk %}"
+                                <a href="{{ news.get_absolute_url }}"
                                     class="post-title post-title-ellipsis-2">{{ news.title }}</a>
                             </div>
                         </div>
@@ -65,14 +65,14 @@
                             data-duration="1000ms">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail bg-overlay">
-                                <a href="{% url 'news_detail_page' news.pk %}"><img src="{{ news.image.url }}"
+                                <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}"
                                         alt="{{ news.title }}" /></a>
                             </div>
 
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <span class="post-date">{{ news.publish_time }}</span>
-                                <a href="{% url 'news_detail_page' news.pk %}"
+                                <a href="{{ news.get_absolute_url }}"
                                     class="post-title post-title-ellipsis-2">{{ news.title }}</a>
                             </div>
                     </div>
@@ -101,7 +101,7 @@
             <div class="single-blog-post d-flex style-4 mb-30">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="{% url 'news_detail_page' news.pk %}">
+                    <a href="{{ news.get_absolute_url }}">
                         <img class="news-thumbnail-img" src="{{ news.image.url }}" alt="{{ news.title }}" />
                     </a>
                 </div>
@@ -109,7 +109,7 @@
                 <!-- Blog Content -->
                 <div class="blog-content">
                     <span class="post-date">{{ news.publish_time }}</span>
-                    <a href="{% url 'news_detail_page' news.pk %}" class="post-title post-title-ellipsis-2">
+                    <a href="{{ news.get_absolute_url }}" class="post-title post-title-ellipsis-2">
                         {{ news.title }}
                     </a>
                 </div>
@@ -153,13 +153,13 @@
                                     <div class="single-blog-post style-2 mb-5">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
                                         </div>
 
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                     <div class="single-blog-post d-flex style-4 mb-30">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}">
+                                            <a href="{{ jm.get_absolute_url }}">
                                                 <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
                                             </a>
                                         </div>
@@ -182,7 +182,7 @@
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -202,13 +202,13 @@
                                     <div class="single-blog-post style-2 mb-5">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
                                         </div>
 
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -223,7 +223,7 @@
                                     <div class="single-blog-post d-flex style-4 mb-30">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}">
+                                            <a href="{{ jm.get_absolute_url }}">
                                                 <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
                                             </a>
                                         </div>
@@ -231,7 +231,7 @@
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -251,13 +251,13 @@
                                     <div class="single-blog-post style-2 mb-5">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
                                         </div>
 
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -272,7 +272,7 @@
                                     <div class="single-blog-post d-flex style-4 mb-30">
                                         <!-- Blog Thumbnail -->
                                         <div class="blog-thumbnail">
-                                            <a href="{% url 'news_detail_page' jm.pk %}">
+                                            <a href="{{ jm.get_absolute_url }}">
                                                 <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
                                             </a>
                                         </div>
@@ -280,7 +280,7 @@
                                         <!-- Blog Content -->
                                         <div class="blog-content">
                                             <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{% url 'news_detail_page' jm.pk %}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
                                             <p>{{ jm.body|truncatewords:4 }}</p>
                                         </div>
                                     </div>
@@ -312,7 +312,7 @@
                         <div class="single-blog-post style-3">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail">
-                                <a href="{% url 'news_detail_page' news.pk %}">
+                                <a href="{{ news.get_absolute_url }}">
                                     <img src="{{ news.image.url }}" alt="{{news.title}}" class="object-fit-cover w-100" style="height: 200px;"/>
                                 </a>
                             </div>
@@ -320,7 +320,7 @@
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <span class="post-date">{{news.publish_time}}</span>
-                                <a href="{% url 'news_detail_page' news.pk %}">
+                                <a href="{{ news.get_absolute_url }}">
                                     <p class="post-title post-title-ellipsis-2">
                                     {{news.title}}
                                 </p>

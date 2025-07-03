@@ -7,5 +7,5 @@ urlpatterns = [
   path('about/', AboutPageView, name='about'),
   path('contact/', ContactPageView.as_view(), name='contact'),
   path('news/', news_list, name='all_news_list'),
-  path('news/<int:id>/', news_detail, name='news_detail_page')
+  path('news/<slug:news>/', news_detail, name='news_detail_page')
 ]
