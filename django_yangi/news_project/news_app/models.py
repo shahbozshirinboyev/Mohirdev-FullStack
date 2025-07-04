@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.utils.text import slugify
 
 # Create your models here.
 class PublishedManager(models.Manager):
@@ -42,6 +43,17 @@ class News(models.Model):
 
   def get_absolute_url(self):
     return reverse('news_detail_page', args=[self.slug])
+
+  def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            num = 1
+            while News.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{num}"
+                num += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
 class Contact(models.Model):
   name = models.CharField(max_length=150)

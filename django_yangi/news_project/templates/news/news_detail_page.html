@@ -44,4 +44,16 @@
     </div>
 </section>
 <!-- ##### Post Details Area End ##### -->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'news_edit' news.slug %}" class="btn btn-info">Tahrirlash</a> |
+            <a href="{% url 'news_delete' news.slug %}" class="btn btn-danger">O'chirish</a> |
+            <a href="{% url 'news_create' %}" class="btn btn-success">Yangi qo'shish</a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock content %}
