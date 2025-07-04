@@ -1530,7 +1530,6 @@ img {
   height: 500px;
   padding: 35px 4%;
   background-color: #f0f4f8;
-  margin: 0 20px 20px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1579,7 +1578,7 @@ img {
 .post-details-title-area .post-content .post-title {
   display: block;
   color: #ffffff;
-  font-size: 72px;
+  font-size: 42px;
   line-height: 1.1;
   margin-bottom: 15px;
   font-weight: 700;
@@ -1587,19 +1586,19 @@ img {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .post-details-title-area .post-content .post-title {
-    font-size: 48px;
+    font-size: 38px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .post-details-title-area .post-content .post-title {
-    font-size: 42px;
+    font-size: 32px;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .post-details-title-area .post-content .post-title {
-    font-size: 24px;
+    font-size: 18px;
   }
 }
 
@@ -1952,6 +1951,16 @@ img {
 .contact-content {
   position: relative;
   z-index: 2;
+}
+.elements-area a:hover{
+  background-color: #f0f4f8;
+  transition: all ease-in-out .2s;
+
+}
+
+.elements-area a:hover h5{
+  color: #ef1b48;
+  transition: all ease-in-out .2s;
 }
 
 .contact-content .contact-social-info a {

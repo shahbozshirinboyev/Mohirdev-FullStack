@@ -1,15 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News Detail | 2025</title>
-  </head>
-  <body>
-    <h2>{{ news.title }}</h2>
-    <span>Published date: {{ news.publish_time }}</span>
+{% extends 'news/base.html' %}
+{% load static %}
 
-    <br />
-    <p>{{ news.body }}</p>
-  </body>
-</html>
+{% block title %}
+    {{ news.title }}
+{% endblock title %}
+
+{% block content %}
+<!-- ##### Post Details Title Area Start ##### -->
+<div class="container">
+    <div class="post-details-title-area bg-overlay clearfix" style="background-image: url('{{ news.image.url }}')">
+        <div class="row h-100">
+            <div class="col-12 col-lg-8">
+                <!-- Post Content -->
+                <div class="post-content h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <p class="tag"><span>{{news.category}}</span></p>
+                    </div>
+                    <div>
+                        <p class="post-title">{{ news.title }}</p>
+                        <div class="d-flex align-items-center">
+                            <span class="post-date mr-30">{{ news.publish_time }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Post Details Title Area End ##### -->
+
+<!-- ##### Post Details Area Start ##### -->
+<section class="post-news-area section-padding-100-0 mb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Post Details Content Area -->
+            <div class="col-12">
+                <h5 class="mb-30">{{ news.title }}</h5>
+                <p>{{ news.body }}</p>
+                <span>{{ news.publish_time }}</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- ##### Post Details Area End ##### -->
+{% endblock content %}

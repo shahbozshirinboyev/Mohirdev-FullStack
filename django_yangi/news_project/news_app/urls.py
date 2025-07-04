@@ -4,7 +4,7 @@ from .views import news_list, news_detail, HomePageView, ContactPageView, catego
 
 urlpatterns = [
   path('', HomePageView.as_view(), name='home_page'),
-  path('catagory/', categoryPageView, name='catagory'),
+  path('categories/', categoryPageView, name='categories'),
   path('about/', AboutPageView, name='about'),
   path('contact/', ContactPageView.as_view(), name='contact'),
   path('news/', news_list, name='all_news_list'),

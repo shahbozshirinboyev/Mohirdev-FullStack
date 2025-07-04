@@ -51,7 +51,13 @@ class HomePageView(ListView):
       return context
 
 def categoryPageView(request):
-    return render(request, 'news/catagory.html')
+   news_list = News.published.all().order_by('-publish_time')
+   categories = Category.objects.all()
+   context = {
+    'news_list': news_list,
+    'categories': categories,
+  }
+   return render(request, 'news/categories.html', context)
 
 def AboutPageView(request):
     return render(request, 'news/about.html')
