@@ -82,10 +82,9 @@
                                     <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
                                     <li>
                                         {% if user.is_authenticated %}
-                                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger">Chiqish</button>
-                                        </form>
+                                        <p>
+                                            <a href="{% url 'profile' %}">Profil</a>
+                                        </p>
                                         {% else %}
                                         <a href="{% url 'login' %}" class="btn btn-success">Kirish</a>
                                         {% endif %}
