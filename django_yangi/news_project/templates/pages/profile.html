@@ -16,6 +16,8 @@ Foydalanuvchi profile
       <label for="">Email: <input type="text" value="{{ user.email }}" readonly placeholder="kiritilmagan"> </label>
       <label for="">Ismingiz: <input type="text" value="{{ user.first_name }}" readonly placeholder="kiritilmagan"></label>
       <label for="">Familiyangiz: <input type="text" value="{{ user.last_name }}" readonly placeholder="kiritilmagan"></label>
+      <label for="">Photo: </label> <img src="{{profile.photo.url}}" alt="{{ user.username }}" class="img-thumbnail rounded-circle" style="width: 150px;">
+      <label for="">Tug'ulgan sana: <span>{{ profile.date_of_birth }}</span></label>
 
       <div>
         <form method="post" action="{% url 'logout' %}" style="display:inline;">
@@ -23,6 +25,7 @@ Foydalanuvchi profile
         <button type="submit" class="btn btn-danger">Chiqish</button>
       </form>
       <a href="{% url 'password_change' %}" class="btn btn-success" >Parolni almashtirish</a>
+      <a href="{% url 'edit_user_info' %}" class="btn btn-success" >Ma'lumotlarni tahrirlash</a>
       </div>
 
     </div>
