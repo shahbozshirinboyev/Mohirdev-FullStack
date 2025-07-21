@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, News
 from .forms import ContactForm
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
@@ -155,7 +156,7 @@ class NewsDeleteView(DeleteView):
   template_name = 'crud/news_delete.html'
   success_url = reverse_lazy('home_page')
 
-class NewsCreateView(CreateView):
+class NewsCreateView(LoginRequiredMixin ,CreateView):
   model = News
   template_name = 'crud/news_create.html'
   fields = ('title', 'body', 'image', 'category', 'status')
