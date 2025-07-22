@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, News
-from .forms import ContactForm
+from .forms import ContactForm, CommentForm
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -24,8 +24,24 @@ def news_list(request):
 # @login_required
 def news_detail(request, news):
   news = get_object_or_404(News, slug=news, status=News.Status.Published)
+  comments = news.comments.filter(active=True)
+  new_comment = None
+  if request.method == 'POST':
+   comment_form = CommentForm(data=request.POST)
+   if comment_form.is_valid():
+     # yangi comment obyekt
+     new_comment = comment_form.save(commit=False)
+     new_comment.news = news
+     new_comment.user = request.user
+     # ma'lumotlar ba'zasiga saqlash
+     new_comment.save()
+  else:
+    comment_form = CommentForm()
   context = {
     'news': news,
+    'comments': comments,
+    'new_comment': new_comment,
+    'comment_form': comment_form
   }
   return render(request, 'news/news_detail_page.html', context)
 
