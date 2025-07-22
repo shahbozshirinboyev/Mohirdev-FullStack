@@ -4,9 +4,10 @@ from .forms import ContactForm
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 # Login yoki login bo'lmaganligini tekshiradi. Ikklasi ham bir xil ish bajaradi ammo foydalanish har xil
 from django.contrib.auth.mixins import LoginRequiredMixin # class view uchun
-from django.contrib.auth.decorators import login_required # funksiya view uchun
+from django.contrib.auth.decorators import login_required, user_passes_test # funksiya view uchun
 # faqat superuserlar yangiliklarni tahrirlashi mumkin.
 from news_project.custom_permissions import OnlyLoggedSuperUser
 
@@ -166,3 +167,13 @@ class NewsCreateView(OnlyLoggedSuperUser, CreateView):
   model = News
   template_name = 'crud/news_create.html'
   fields = ('title', 'body', 'image', 'category', 'status')
+
+@login_required
+@user_passes_test(lambda u:u.is_superuser)
+def admin_page_view(request):
+  admin_users = User.objects.filter(is_superuser = True)
+  context = {
+    'admin_users': admin_users
+  }
+  print(context)
+  return render(request, 'pages/admin_page.html', context)

@@ -45,6 +45,7 @@
 </section>
 <!-- ##### Post Details Area End ##### -->
 
+{% if request.user.is_authenticated and request.user.is_superuser  %}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -54,6 +55,6 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 
 {% endblock content %}
