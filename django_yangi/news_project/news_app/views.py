@@ -2,9 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, News
 from .forms import ContactForm
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+# Login yoki login bo'lmaganligini tekshiradi. Ikklasi ham bir xil ish bajaradi ammo foydalanish har xil
+from django.contrib.auth.mixins import LoginRequiredMixin # class view uchun
+from django.contrib.auth.decorators import login_required # funksiya view uchun
+# faqat superuserlar yangiliklarni tahrirlashi mumkin.
+from news_project.custom_permissions import OnlyLoggedSuperUser
 
 # Create your views here.
 def news_list(request):
@@ -16,6 +20,7 @@ def news_list(request):
   }
   return render(request, 'news/news_list.html', context)
 
+# @login_required
 def news_detail(request, news):
   news = get_object_or_404(News, slug=news, status=News.Status.Published)
   context = {
@@ -52,6 +57,7 @@ class HomePageView(ListView):
       context['siyosat'] = News.published.all().filter(category__name='Siyosat').order_by('-publish_time')
       return context
 
+# @login_required
 def categoryPageView(request):
    news_list = News.published.all().order_by('-publish_time')
    categories = Category.objects.all()
@@ -146,17 +152,17 @@ class SiyosatNewsView(ListView):
     news = self.model.published.all().filter(category__name = 'Siyosat')
     return news
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(OnlyLoggedSuperUser, UpdateView):
   model = News
   fields = ('title', 'body', 'image', 'category', 'status')
   template_name = 'crud/news_edit.html'
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
   model = News
   template_name = 'crud/news_delete.html'
   success_url = reverse_lazy('home_page')
 
-class NewsCreateView(LoginRequiredMixin ,CreateView):
+class NewsCreateView(OnlyLoggedSuperUser, CreateView):
   model = News
   template_name = 'crud/news_create.html'
   fields = ('title', 'body', 'image', 'category', 'status')
