@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    {{ news.title }}
+{{ news.title }}
 {% endblock title %}
 
 {% block content %}
@@ -45,13 +45,56 @@
 </section>
 <!-- ##### Post Details Area End ##### -->
 
-{% if request.user.is_authenticated and request.user.is_superuser  %}
+{% if request.user.is_authenticated and request.user.is_superuser %}
 <div class="container">
     <div class="row">
         <div class="col">
             <a href="{% url 'news_edit' news.slug %}" class="btn btn-info">Tahrirlash</a> |
             <a href="{% url 'news_delete' news.slug %}" class="btn btn-danger">O'chirish</a> |
             <a href="{% url 'news_create' %}" class="btn btn-success">Yangi qo'shish</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<hr>
+
+<div class="container mb-4">
+    {% for comment in comments %}
+    <div class="row mt-3">
+        <div class="col">
+            <p class="mb-0">{{ comment.created_time }}</p>
+            <span style="font-weight: 600;">
+                {{ comment.user|capfirst }}
+            </span>:
+            <span class="text-muted">
+                {{ comment.body }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4>Izoh qoldirish</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-primary">Yuborish</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p class="fs-3">
+                Izoh qoldirish uchun tizimga kiring! - <a href="{% url 'login' %}" class="btn btn-link">Kirish</a>
+            </p>
         </div>
     </div>
 </div>

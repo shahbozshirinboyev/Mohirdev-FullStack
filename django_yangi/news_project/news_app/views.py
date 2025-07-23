@@ -35,6 +35,7 @@ def news_detail(request, news):
      new_comment.user = request.user
      # ma'lumotlar ba'zasiga saqlash
      new_comment.save()
+     comment_form = CommentForm()
   else:
     comment_form = CommentForm()
   context = {
