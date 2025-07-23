@@ -10,6 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin # class view uchun
 from django.contrib.auth.decorators import login_required, user_passes_test # funksiya view uchun
 # faqat superuserlar yangiliklarni tahrirlashi mumkin.
 from news_project.custom_permissions import OnlyLoggedSuperUser
+# Qidiruv tizimi uchun kerak bo'ladigan
+from django.db.models import Q
 
 # Create your views here.
 def news_list(request):
@@ -193,5 +195,15 @@ def admin_page_view(request):
   context = {
     'admin_users': admin_users
   }
-  print(context)
   return render(request, 'pages/admin_page.html', context)
+
+class SearchResultsListView(ListView):
+  model = News
+  template_name = 'news/search_result.html'
+  context_object_name = 'barcha_yangiliklar'
+
+  def get_queryset(self):
+    query = self.request.GET.get('q')
+    return News.objects.filter(
+       Q(title__icontains=query) | Q(body__icontains=query)
+    )
