@@ -76,28 +76,39 @@
 </div>
 
 {% if user.is_authenticated %}
-<div class="container">
+<div class="container my-4">
     <div class="row">
         <div class="col">
-            <h4>Izoh qoldirish</h4>
-            <form method="post">
+            <form method="post" style="background-color: #E9ECEF; border-radius: 10px;" class="p-3">
                 {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit" class="btn btn-primary">Yuborish</button>
+                <textarea name="body" id="id_body" placeholder="Izoh qoldirish..." class="w-100 form-control"
+                    style="border:none; background: transparent;"></textarea>
+                <div class="d-flex justify-content-between align-items-end mt-2 px-2">
+                    <h6 id="box" class="mb-0 text-muted"></h6>
+                    <button type="submit" class="btn btn-primary">Yuborish</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 {% else %}
-<div class="container">
+<div class="container my-4">
     <div class="row">
         <div class="col">
-            <p class="fs-3">
-                Izoh qoldirish uchun tizimga kiring! - <a href="{% url 'login' %}" class="btn btn-link">Kirish</a>
-            </p>
+            <div style="background-color: #E9ECEF; border-radius: 10px;" class="p-3">
+                <span class="fs-3">
+                    Izoh qoldirish uchun tizimga kirishingiz kerak! &nbsp;&nbsp;&nbsp;- <a href="{% url 'login' %}" class="btn btn-link">Kirish</a>
+                </span>
+            </div>
         </div>
     </div>
 </div>
 {% endif %}
+
+
+<script>
+    const now = new Date();
+    document.getElementById('box').innerHTML = `${now.toLocaleDateString()}`;
+</script>
 
 {% endblock content %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, News
 from .forms import ContactForm, CommentForm
 from django.http import HttpResponse
@@ -36,6 +36,7 @@ def news_detail(request, news):
      # ma'lumotlar ba'zasiga saqlash
      new_comment.save()
      comment_form = CommentForm()
+     return redirect('news_detail_page', news=news.slug)
   else:
     comment_form = CommentForm()
   context = {
