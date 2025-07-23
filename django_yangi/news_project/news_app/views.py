@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test # fu
 from news_project.custom_permissions import OnlyLoggedSuperUser
 # Qidiruv tizimi uchun kerak bo'ladigan
 from django.db.models import Q
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin
 
 # Create your views here.
 def news_list(request):
@@ -23,10 +25,27 @@ def news_list(request):
   }
   return render(request, 'news/news_list.html', context)
 
+# from hitcount.views import HitCountDetailView
+
+# class PostCountHitDetailView(HitCountDetailView):
+#     model = News        # your model goes here
+#     count_hit = True    # set to True if you want it to try and count the hit
+
 # @login_required
 def news_detail(request, news):
   news = get_object_or_404(News, slug=news, status=News.Status.Published)
+  context = {}
+  hit_count = get_hitcount_model().objects.get_for_object(news)
+  hits = hit_count.hits
+  hitcontext = context['hitcount'] = {'pk':hit_count.pk}
+  hit_count_response = HitCountMixin.hit_count(request, hit_count)
+  if hit_count_response.hit_counted:
+    hits = hits + 1
+    hitcontext['hit_counted'] = hit_count_response.hit_counted
+    hitcontext['hit_message'] = hit_count_response.hit_message
+    hitcontext['total_hits'] = hits
   comments = news.comments.filter(active=True)
+  comments_count = comments.count()
   new_comment = None
   if request.method == 'POST':
    comment_form = CommentForm(data=request.POST)
@@ -45,7 +64,8 @@ def news_detail(request, news):
     'news': news,
     'comments': comments,
     'new_comment': new_comment,
-    'comment_form': comment_form
+    'comment_form': comment_form,
+    'comments_count': comments_count,
   }
   return render(request, 'news/news_detail_page.html', context)
 
