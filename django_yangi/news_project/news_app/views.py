@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin # class view uchun
 from django.contrib.auth.decorators import login_required, user_passes_test # funksiya view uchun
 # faqat superuserlar yangiliklarni tahrirlashi mumkin.
-from news_project.custom_permissions import OnlyLoggedSuperUser
+from config.custom_permissions import OnlyLoggedSuperUser
 # Qidiruv tizimi uchun kerak bo'ladigan
 from django.db.models import Q
 from hitcount.utils import get_hitcount_model
