@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["django-shirinboyev.uz", "www.django-shirinboyev.uz", "127.0.0.1"]
+ALLOWED_HOSTS = ["django.shirinboyev.uz", "www.django.shirinboyev.uz", "127.0.0.1"]
 # ALLOWED_HOSTS = ['*']
 
 
@@ -133,8 +133,8 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/djangomo/django-shirinboyev.uz/django/staticfiles'
-STATICFILES_DIRS = ('/home/djangomo/django-shirinboyev.uz/django/static', )
+STATIC_ROOT = '/home/djangomo/django.shirinboyev.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/djangomo/django.shirinboyev.uz/django/static', )
 
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -145,7 +145,7 @@ STATICFILES_FINDERS = [
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/djangomo/django-shirinboyev.uz/django/media'
+MEDIA_ROOT = '/home/djangomo/django.shirinboyev.uz/django/media'
 
 # MEDIA_ROOT = BASE_DIR / 'media/'
 
