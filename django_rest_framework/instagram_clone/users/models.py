@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from shared.models import BaseModel
-from datatime import datatime, timedelta
+from datetime import datetime, timedelta
 from django.core.validators import FileExtensionValidator
 import random
 
@@ -31,8 +31,11 @@ class User(AbstractUser, BaseModel):
   AUTH_STATUS = models.CharField(max_length=31, choices=AUTH_STATUS, default=NEW)
   email = models.EmailField(null=True, blank=True, unique=True)
   phone_number = models.CharField(max_length=13, null=True, blank=True, unique=True)
-  photo = models.ImageField(upload_to='user_photos', null=True, blank=True,
-                            validators=FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'heic', 'heif' ]))
+  photo = models.ImageField(
+    upload_to='user_photos',
+    null=True, blank=True,
+    validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'heic', 'heif' ])]
+    )
 
   def __str__(self):
     return self.username
@@ -72,7 +75,7 @@ class UserConfirmation(BaseModel):
   def save(self, *args, **kwargs):
     if not self.pk:
       if self.verify_type == VIA_EMAIL:
-        self.expiration_time == datatime.now() + timedelta(minutes=EMAIL_EXPIRE)
+        self.expiration_time == datetime.now() + timedelta(minutes=EMAIL_EXPIRE)
       else:
-        self.expiration_time == datatime.now() + timedelta(minutes=PHONE_EXPIRE)
+        self.expiration_time == datetime.now() + timedelta(minutes=PHONE_EXPIRE)
     super(UserConfirmation, self).save(*args, **kwargs)
