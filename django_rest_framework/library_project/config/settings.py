@@ -73,6 +73,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+ACCOUNT_ADAPTER = "books.adapters.MyAccountAdapter"
 
 TEMPLATES = [
     {
