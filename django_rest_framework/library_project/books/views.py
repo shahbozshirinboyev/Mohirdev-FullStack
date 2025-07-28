@@ -112,6 +112,12 @@ class BookListUpdateDeleteApiView(generics.RetrieveUpdateDestroyAPIView):
   queryset = Book.objects.all()
   serializer_class = BookSerializer
 
+from rest_framework.viewsets import ModelViewSet
+
+class BookViewSet(ModelViewSet):
+  queryset = Book.objects.all()
+  serializer_class = BookSerializer
+
 # Function based viewin DRF
 @api_view(['GET'])
 def book_list_view(request, *args, **kwargs):
