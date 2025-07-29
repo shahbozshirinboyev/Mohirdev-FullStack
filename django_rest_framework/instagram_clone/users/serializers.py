@@ -38,6 +38,7 @@ class SignUpSerializer(serializers.ModelSerializer):
       code = user.create_verify_code(VIA_PHONE)
       # send_phone_code(user.phone_number, code)
     user.save()
+    return user
     # user -> phone -> raqamga kod yuborish kerak
 
 
@@ -72,3 +73,8 @@ class SignUpSerializer(serializers.ModelSerializer):
     value = value.lower()
     #  to_do
     return value
+
+  def to_representation(self, instance):
+    data = super(SignUpSerializer, self).to_representation(instance)
+    data.update(instance.token())
+    return data

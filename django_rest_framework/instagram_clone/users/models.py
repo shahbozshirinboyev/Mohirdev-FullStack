@@ -47,8 +47,8 @@ class User(AbstractUser, BaseModel):
     return f"{self.first_name} {self.last_name}"
 
   def create_verify_code(self, verify_type):
-    code = "".join([str(random.randint((0, 100) % 10)) for _ in range(4)])
-    # code = "".join([str(random.randint(0, 9)) for _ in range(4)])
+    # code = "".join([str(random.randint((0, 100) % 10)) for _ in range(4)])
+    code = "".join([str(random.randint(0, 9)) for _ in range(4)])
     UserConfirmation.objects.create(
       user_id=self.id,
       verify_type=verify_type,
@@ -91,8 +91,7 @@ class User(AbstractUser, BaseModel):
     self.hashing_password()
 
   def save(self, *args, **kwargs):
-    if not self.pk:
-      self.clean()
+    self.clean()
     super(User, self).save(*args, **kwargs)
 
 

@@ -1,8 +1,7 @@
-import re
-
+import re, threading
+from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from rest_framework.exceptions import ValidationError
-import threading
 
 
 email_regex = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b")
