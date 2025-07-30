@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import User, DONE, CODE_VERIFIED, NEW
+from .models import User, DONE, CODE_VERIFIED, NEW, VIA_EMAIL, VIA_PHONE
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from rest_framework.decorators import permission_classes
@@ -9,7 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
 from rest_framework.exceptions import ValidationError
-
+from shared.utility import send_email
+from django.utils import timezone
 
 # Create your views here.
 class CreateUserView(CreateAPIView):
@@ -36,7 +37,11 @@ class VerifyAPIView(APIView):
 
     @staticmethod
     def check_verify(user, code):
-        verifies = user.verify_codes.filter(expiration_time__gte=datetime.now(), code=code, is_confirmed=False)
+        verifies = user.verify_codes.filter(
+            expiration_time__gte=timezone.now(),
+            code=code,
+            is_confirmed=False
+        )
         if not verifies.exists():
             data = {
                 'message': 'The verification code is incorrect or outdated.'
@@ -48,3 +53,36 @@ class VerifyAPIView(APIView):
             user.auth_status = CODE_VERIFIED
             user.save()
         return True
+
+class GetNewVerification(APIView):
+
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        self.check_verification(user)
+        if user.auth_type == VIA_EMAIL:
+            code = user.create_verify_code(VIA_EMAIL)
+            send_email(user.email, code)
+        elif user.auth_type == VIA_PHONE:
+            code = user.create_verify_code(VIA_PHONE)
+            send_email(user.email, code)
+        else:
+            data = {
+                "message": "Invalid email or phone number."
+            }
+            raise ValidationError(data)
+        return Response(
+            {
+                'success': True,
+                'message': 'Verification code resent.',
+            }
+        )
+
+
+    @staticmethod
+    def check_verification(user):
+        verifies = user.verify_codes.filter(expiration_time__gte=timezone.now(), is_confirmed=False)
+        if verifies.exists():
+            data = {
+                "message": "You have to wait to get a new code."
+            }
+            raise ValidationError(data)
