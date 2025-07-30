@@ -4,7 +4,7 @@ from .models import User, UserConfirmation, VIA_EMAIL, VIA_PHONE, NEW, CODE_VERI
 from rest_framework import exceptions, serializers
 from django.db.models import Q
 from rest_framework.exceptions import ValidationError
-from shared.utility import check_email_or_phone, send_email
+from shared.utility import check_email_or_phone, send_email, send_phone_code
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -28,18 +28,17 @@ class SignUpSerializer(serializers.ModelSerializer):
 
   def create(self, validated_data):
     user = super(SignUpSerializer, self).create(validated_data)
-    print(user)
     # user -> email -> emailga confirmation yuborish kerak
     if user.auth_type == VIA_EMAIL:
       code = user.create_verify_code(VIA_EMAIL)
-      print(code)
       send_email(user.email, code)
+    # user -> phone -> raqamga kod yuborish kerak
     elif user.auth_type == VIA_PHONE:
       code = user.create_verify_code(VIA_PHONE)
+      send_email(user.phone_number, code)
       # send_phone_code(user.phone_number, code)
     user.save()
     return user
-    # user -> phone -> raqamga kod yuborish kerak
 
 
   def validate(self, data):
