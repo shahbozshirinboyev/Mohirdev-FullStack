@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 ORDINART_USER, MANAGER, ADMIN = ('ordinary_user', 'manager', 'admin')
 VIA_EMAIL, VIA_PHONE = ('via_email', 'via_phone')
-NEW, CODE_VERIFIED, DONE, PHOTO_STEP= ('new', 'code_verified', 'done', 'photo_step')
+NEW, CODE_VERIFIED, DONE, PHOTO_DONE= ('new', 'code_verified', 'done', 'photo_done')
 
 # Create your models here.
 class User(AbstractUser, BaseModel):
@@ -26,7 +26,7 @@ class User(AbstractUser, BaseModel):
     (NEW, NEW),
     (CODE_VERIFIED, CODE_VERIFIED),
     (DONE, DONE),
-    (PHOTO_STEP, PHOTO_STEP),
+    (PHOTO_DONE, PHOTO_DONE),
   )
   user_roles = models.CharField(max_length=31, choices=USER_ROLES, default=ORDINART_USER)
   auth_type = models.CharField(max_length=31, choices=AUTH_TYPE_CHOICES)
@@ -126,4 +126,3 @@ class UserConfirmation(BaseModel):
         else:
             self.expiration_time = datetime.now() + timedelta(minutes=PHONE_EXPIRE)
     super(UserConfirmation, self).save(*args, **kwargs)
-

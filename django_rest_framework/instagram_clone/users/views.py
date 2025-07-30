@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
-from .serializers import SignUpSerializer, ChangeUserInformation
+from .serializers import SignUpSerializer, ChangeUserInformation, ChangeUserPhotoSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
@@ -149,3 +149,19 @@ class ChangeUserInformationView(UpdateAPIView):
             'auth_status': self.request.user.auth_status,
         }
         return Response(data, status=200)
+
+class ChangeUserPhotoView(APIView):
+    permission_classes = [IsAuthenticated, ]
+    def put(self, request, *args, **kwargs):
+        serializer = ChangeUserPhotoSerializer(data=request.data)
+        if serializer.is_valid():
+            user = request.user
+            serializer.update(user, serializer.validated_data)
+            return Response(
+                {
+                    "message": "The image has been successfully changed."
+                }, status=200
+            )
+        return Response(
+            serializer.errors, status=400
+        )
