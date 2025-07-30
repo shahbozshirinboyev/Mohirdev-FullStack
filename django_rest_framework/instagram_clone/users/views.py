@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from .models import User, DONE, CODE_VERIFIED, NEW, VIA_EMAIL, VIA_PHONE
 from rest_framework import permissions
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
-from .serializers import SignUpSerializer
+from .serializers import SignUpSerializer, ChangeUserInformation
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
@@ -55,6 +55,7 @@ class VerifyAPIView(APIView):
         return True
 
 class GetNewVerification(APIView):
+    permission_classes = [IsAuthenticated, ]
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
@@ -86,3 +87,65 @@ class GetNewVerification(APIView):
                 "message": "You have to wait to get a new code."
             }
             raise ValidationError(data)
+
+# class ChangeUserInformationView(UpdateAPIView):
+#     permission_classes = [IsAuthenticated, ]
+#     serializer_class = ChangeUserInformation
+#     http_method_names = ['patch', 'put']
+
+#     def get_object(self):
+#         return self.request.user
+
+#     def update(self, request, *args, **kwargs):
+#         super(ChangeUserInformation, self).update(request, *args, **kwargs)
+#         data = {
+#             'success': True,
+#             'message': 'User update successfully.',
+#             'auth_status': self.request.user.auth_status,
+#         }
+#         return Response(data, status=200)
+
+#     def partial_update(self, request, *args, **kwargs):
+#         super(ChangeUserInformation, self).update(request, *args, **kwargs)
+#         data = {
+#             'success': True,
+#             'message': 'User update successfully.',
+#             'auth_status': self.request.user.auth_status,
+#         }
+#         return Response(data, status=200)
+
+class ChangeUserInformationView(UpdateAPIView):
+    permission_classes = [IsAuthenticated, ]
+    serializer_class = ChangeUserInformation  # Bu to'g'ri, serializer emas model serializer
+    http_method_names = ['patch', 'put']
+
+    def get_object(self):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        # ❌ noto'g'ri
+        # super(ChangeUserInformation, self).update(request, *args, **kwargs)
+
+        # ✅ to'g'ri
+        response = super().update(request, *args, **kwargs)
+
+        data = {
+            'success': True,
+            'message': 'User updated successfully.',
+            'auth_status': self.request.user.auth_status,
+        }
+        return Response(data, status=200)
+
+    def partial_update(self, request, *args, **kwargs):
+        # ❌ noto'g'ri
+        # super(ChangeUserInformation, self).update(request, *args, **kwargs)
+
+        # ✅ to'g'ri
+        response = super().partial_update(request, *args, **kwargs)
+
+        data = {
+            'success': True,
+            'message': 'User updated successfully.',
+            'auth_status': self.request.user.auth_status,
+        }
+        return Response(data, status=200)
