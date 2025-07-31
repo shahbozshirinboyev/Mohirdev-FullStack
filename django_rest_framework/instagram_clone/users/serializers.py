@@ -4,7 +4,7 @@ from .models import User, UserConfirmation, VIA_EMAIL, VIA_PHONE, NEW, CODE_VERI
 from rest_framework import exceptions, serializers
 from django.db.models import Q
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, PermissionDenied
 from shared.utility import check_email_or_phone, send_email, send_phone_code, check_user_type
 from django.contrib.auth import authenticate
 
@@ -199,10 +199,10 @@ class LoginSerializer(TokenObtainPairSerializer):
       username = user_input
     elif check_user_type(user_input) == 'email':
       user = self.get_user(email__iexact=user_input)
-      user = user.username
+      username = user.username
     elif check_user_type(user_input) == 'phone':
       user = self.get_user(phone_number=user_input)
-      user = user.username
+      username = user.username
     else:
       data = {
         "success": True,
@@ -216,14 +216,32 @@ class LoginSerializer(TokenObtainPairSerializer):
     }
     # check user status
     current_user = User.objects.filter(username__iexact=username).first()
-    if current_user.auth_status in [NEW, CODE_VERIFIED]:
+    if current_user is not None and current_user.auth_status in [NEW, CODE_VERIFIED]:
       raise ValidationError(
         {
           'success': False,
           'message': 'You are not fully registered.'
         }
       )
-    user = authenticate()
+    user = authenticate(**authentication_kwargs)
+    if user is not None:
+      self.user = user
+    else:
+      raise ValidationError(
+        {
+          'success': False,
+          'message': 'Sorry, login and password you intered is incorrect. Please check and try again.'
+        }
+      )
+
+  def validate(self, data):
+    self.auth_validate(data)
+    if self.user.auth_status not in [DONE, PHOTO_DONE]:
+      raise PermissionDenied('You don\'t have permisssion to login.')
+    data = self.user.token()
+    data['auth_status'] = self.user.auth_status
+    data['full_name'] = self.user.full_name
+    return data
 
   def get_user(self, **kwargs):
     users = User.objects.filter(**kwargs)

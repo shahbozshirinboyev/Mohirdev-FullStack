@@ -26,7 +26,7 @@ def check_email_or_phone(email_or_phone):
 def check_user_type(user_input):
     if re.fullmatch(email_regex, user_input):
         user_input = 'email'
-    elif phonenumbers.is_valid_number(user_input):
+    elif re.fullmatch(phone_regex, user_input):
         user_input = 'phone'
     elif re.fullmatch(username_regex, user_input):
         user_input = 'username'
