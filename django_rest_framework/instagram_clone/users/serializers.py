@@ -4,7 +4,7 @@ from .models import User, UserConfirmation, VIA_EMAIL, VIA_PHONE, NEW, CODE_VERI
 from rest_framework import exceptions, serializers
 from django.db.models import Q
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
-from rest_framework.exceptions import ValidationError, PermissionDenied
+from rest_framework.exceptions import ValidationError, PermissionDenied, NotFound
 from shared.utility import check_email_or_phone, send_email, send_phone_code, check_user_type
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
@@ -268,3 +268,51 @@ class TokenRefreshSerializer(TokenRefreshSerializer):
 
 class LogoutSerializer(serializers.Serializer):
   refresh = serializers.CharField()
+
+class ForgotPasswordSerializer(serializers.Serializer):
+  email_or_phone = serializers.CharField(write_only=True, required=True)
+
+  def validate(self, attrs):
+    email_or_phone = attrs.get('email_or_phone', None)
+    if email_or_phone is None:
+      raise ValidationError(
+        {
+          'success': False,
+          'message': 'Email/Phone is required.'
+        }
+      )
+    user = User.objects.filter(Q(phone_number=email_or_phone) | Q(email=email_or_phone))
+    if not user.exists():
+      raise NotFound(detail="User not found.")
+    attrs['user'] = user.first()
+    return attrs
+
+class ResetPasswordSerializer(serializers.ModelSerializer):
+  id = serializers.UUIDField(read_only=True)
+  password = serializers.CharField(min_length=8, required=True, write_only=True)
+  confirm_password = serializers.CharField(min_length=8, required=True, write_only=True)
+
+  class Meta:
+    model = User
+    fields = (
+      'id', 'password', 'confirm_password'
+    )
+
+  def validate(self, data):
+    password = data.get('password', None)
+    confirm_password = data.get('confirm_password', None)
+    if password != confirm_password:
+      raise ValidationError(
+        {
+          'success': False,
+          'message': 'Passwords doesn\'t match.'
+        }
+      )
+    if password:
+      validate_password(password)
+    return data
+
+  def update(self, instance, validated_data):
+    password = validated_data.pop('password')
+    instance.set_password(password)
+    return super(ResetPasswordSerializer, self).update(instance, validated_data)
