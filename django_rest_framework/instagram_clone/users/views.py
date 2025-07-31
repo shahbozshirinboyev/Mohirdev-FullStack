@@ -5,7 +5,7 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from .serializers import SignUpSerializer, ChangeUserInformation, ChangeUserPhotoSerializer, \
-     LoginSerializer, TokenRefreshSerializer
+     LoginSerializer, TokenRefreshSerializer, LogoutSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
@@ -13,6 +13,8 @@ from rest_framework.exceptions import ValidationError
 from shared.utility import send_email
 from django.utils import timezone
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import TokenError
 
 # Create your views here.
 class CreateUserView(CreateAPIView):
@@ -173,3 +175,22 @@ class LoginView(TokenObtainPairView):
 
 class TokenRefreshView(TokenRefreshView):
     serializer_class = TokenRefreshSerializer
+
+class LogoutView(APIView):
+    serializer_class = LogoutSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            refresh_token = self.request.data['refresh']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            data = {
+                'success': True,
+                'message': 'You are logged out.'
+            }
+            return Response(data, status=200)
+        except TokenError:
+            return Response(status=400)
