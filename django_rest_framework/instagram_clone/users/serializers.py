@@ -3,10 +3,13 @@ from django.contrib.auth.password_validation import validate_password
 from .models import User, UserConfirmation, VIA_EMAIL, VIA_PHONE, NEW, CODE_VERIFIED, DONE, PHOTO_DONE
 from rest_framework import exceptions, serializers
 from django.db.models import Q
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
 from rest_framework.exceptions import ValidationError, PermissionDenied
 from shared.utility import check_email_or_phone, send_email, send_phone_code, check_user_type
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import update_last_login
+from rest_framework_simplejwt.tokens import AccessToken
+from rest_framework.generics import get_object_or_404
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -252,3 +255,13 @@ class LoginSerializer(TokenObtainPairSerializer):
         }
       )
     return users.first()
+
+class TokenRefreshSerializer(TokenRefreshSerializer):
+
+  def validate(self, attrs):
+    data = super().validate(attrs)
+    access_token_instance = AccessToken(data['access'])
+    user_id = access_token_instance['user_id']
+    user = get_object_or_404(User, id=user_id)
+    update_last_login(None, user)
+    return data

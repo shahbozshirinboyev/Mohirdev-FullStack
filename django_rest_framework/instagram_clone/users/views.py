@@ -5,14 +5,14 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from .serializers import SignUpSerializer, ChangeUserInformation, ChangeUserPhotoSerializer, \
-     LoginSerializer
+     LoginSerializer, TokenRefreshSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
 from rest_framework.exceptions import ValidationError
 from shared.utility import send_email
 from django.utils import timezone
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 # Create your views here.
 class CreateUserView(CreateAPIView):
@@ -170,3 +170,6 @@ class ChangeUserPhotoView(APIView):
 
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
+
+class TokenRefreshView(TokenRefreshView):
+    serializer_class = TokenRefreshSerializer
