@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 python-decouple = "*"
 psycopg2 = "*"
 pillow = "*"
@@ -12,6 +11,7 @@ djangorestframework-simplejwt = "*"
 djangorestframework = "*"
 phonenumbers = "*"
 twilio = "*"
+django = "*"
 
 [dev-packages]
 
