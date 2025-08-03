@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
 from rest_framework import generics, status
 from rest_framework.response import Response
 from shared.custom_pagination import CustomPagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
 from .models import Post, PostComment, PostLike, CommentLike
-from .serializers import PostSerializer, PostLikeSerializer, CommentSerializer, CommentLikeSerializer
+from .serializers import PostSerializer, PostLikeSerializer, CommentSerializer, \
+                        CommentLikeSerializer, LikeSerializer
 
 # Create your views here.
 class PostListApiView(generics.ListAPIView):
@@ -100,3 +102,78 @@ class CommentLikeListView(generics.ListAPIView):
   def get_queryset(self):
     comment_id = self.kwargs['pk']
     return CommentLike.objects.filter(comment_id=comment_id)
+
+class LikesListView(generics.ListAPIView):
+  serializer_class = LikeSerializer
+  permission_classes = [IsAuthenticated, ]
+  pagination_class = CustomPagination
+
+  def get_queryset(self):
+      user = self.request.user
+      post_likes = PostLike.objects.filter(author=user)
+      comment_likes = CommentLike.objects.filter(author=user)
+
+      for like in post_likes:
+          like.type = 'post'
+      for like in comment_likes:
+          like.type = 'comment'
+
+      all_likes = list(post_likes) + list(comment_likes)
+      all_likes = sorted(all_likes, key=lambda x: x.created_time, reverse=True)
+      return all_likes
+
+class LikeCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        post_id = request.data.get("post_id")
+        comment_id = request.data.get("comment_id")
+
+        if post_id:
+            try:
+                post = Post.objects.get(id=post_id)
+                like, created = PostLike.objects.get_or_create(post=post, author=user)
+                if created:
+                    return Response({"message": "Postga like qo‘shildi"}, status=status.HTTP_201_CREATED)
+                else:
+                    return Response({"message": "Postga allaqachon like bosilgan"}, status=status.HTTP_200_OK)
+            except Post.DoesNotExist:
+                return Response({"error": "Post topilmadi"}, status=status.HTTP_404_NOT_FOUND)
+
+        elif comment_id:
+            try:
+                comment = PostComment.objects.get(id=comment_id)
+                like, created = CommentLike.objects.get_or_create(comment=comment, author=user)
+                if created:
+                    return Response({"message": "Kommentga like qo‘shildi"}, status=status.HTTP_201_CREATED)
+                else:
+                    return Response({"message": "Kommentga allaqachon like bosilgan"}, status=status.HTTP_200_OK)
+            except PostComment.DoesNotExist:
+                return Response({"error": "Komment topilmadi"}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({"error": "post_id yoki comment_id yuboring"}, status=status.HTTP_400_BAD_REQUEST)
+
+class LikeDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        post_id = request.data.get("post_id")
+        comment_id = request.data.get("comment_id")
+
+        if post_id:
+            deleted, _ = PostLike.objects.filter(post_id=post_id, author=user).delete()
+            if deleted:
+                return Response({"message": "Post layki olib tashlandi"}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({"error": "Postga bosilgan layk topilmadi"}, status=status.HTTP_404_NOT_FOUND)
+
+        elif comment_id:
+            deleted, _ = CommentLike.objects.filter(comment_id=comment_id, author=user).delete()
+            if deleted:
+                return Response({"message": "Komment layki olib tashlandi"}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({"error": "Kommentga bosilgan layk topilmadi"}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({"error": "post_id yoki comment_id yuboring"}, status=status.HTTP_400_BAD_REQUEST)

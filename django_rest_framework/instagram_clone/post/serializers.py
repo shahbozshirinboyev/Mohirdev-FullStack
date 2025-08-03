@@ -91,3 +91,16 @@ class PostLikeSerializer(serializers.ModelSerializer):
   class Meta:
     model = PostLike
     fields = ('id', 'author',)
+
+class LikeSerializer(serializers.Serializer):
+  id = serializers.UUIDField()
+  type = serializers.CharField()
+  target = serializers.SerializerMethodField()
+  liked_at = serializers.DateTimeField(source='created_time', read_only=True)
+
+  def get_target(self, obj):
+      if isinstance(obj, PostLike):
+          return PostSerializer(obj.post, context=self.context).data
+      elif isinstance(obj, CommentLike):
+          return CommentSerializer(obj.comment, context=self.context).data
+      return None
