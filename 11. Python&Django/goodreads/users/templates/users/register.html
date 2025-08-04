@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register page</title>
-</head>
-<body>
-<h1>Register</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register page</title>
+  </head>
+  <body>
+    <h1>Register</h1>
+
+    <form method="POST" action="{% url 'users:register' %}">
+      {% csrf_token %}
+      <div>
+        <label for="username">Username:</label>
+        <input id="username" type="text" name="username" />
+      </div>
+      <br />
+      <div>
+        <label for="first_name">First Name:</label>
+        <input id="first_name" type="text" name="first_name" />
+      </div>
+      <br />
+      <div>
+        <label for="last_name">Last Name:</label>
+        <input id="last_name" type="text" name="last_name" />
+      </div>
+      <br />
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" />
+      </div>
+      <div>
+        <br />
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" />
+      </div>
+      <br />
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
 </html>
