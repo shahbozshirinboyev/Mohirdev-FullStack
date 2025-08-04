@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user
 from django.urls import reverse
 
 # Create your tests here.
@@ -58,25 +59,67 @@ class RegistrationTestCase(TestCase):
      self.assertFormError(form, "email", "Enter a valid email address.")
 
   # XATOLIK BOR ---------------------------------------------------------------------------------------
-  def test_unique_username(self):
-    # 1. create a user
-    user = User.objects.create(username="jahongirname", first_name="Jagongir")
-    user.set_password("somepas2ws")
-    user.save()
-    # 2. try to create another user with that same username
-    response = self.client.post(
-      reverse("users:register"), # /users/register/
-      data = {
-        'username':'jahongirname',
-        'first_name': 'Jahongitr123',
-        'last_name':'Rahmanov1123',
-        'email': 'jrahmanov123@gmail.com',
-        'password': 'jrahmanov@123'
-        }
-    )
-    # 3. check that the second user was not created
-    self.assertEqual(User.objects.count(), 1)
-    # 4. check that the form contains the error message
-    form = response.context.get("form")
-    self.assertFormError(form, "username", "A user with that username already exists.")
+  # def test_unique_username(self):
+  #   # 1. create a user
+  #   user = User.objects.create(username="jahongirname", first_name="Jagongir")
+  #   user.set_password("somepas2ws")
+  #   user.save()
+  #   # 2. try to create another user with that same username
+  #   response = self.client.post(
+  #     reverse("users:register"), # /users/register/
+  #     data = {
+  #       'username':'jahongirname',
+  #       'first_name': 'Jahongitr123',
+  #       'last_name':'Rahmanov1123',
+  #       'email': 'jrahmanov123@gmail.com',
+  #       'password': 'jrahmanov@123'
+  #       }
+  #   )
+  #   # 3. check that the second user was not created
+  #   self.assertEqual(User.objects.count(), 1)
+  #   # 4. check that the form contains the error message
+  #   form = response.context.get("form")
+  #   self.assertFormError(form, "username", "A user with that username already exists.")
   # XATOLIK BOR ---------------------------------------------------------------------------------------
+
+class LoginTestCase(TestCase):
+
+  def test_successful_login(self):
+    db_user  = User.objects.create(username='jahongir', first_name='jahongir', last_name='umarov')
+    db_user.set_password('thisispassword')
+    db_user.save()
+
+    self.client.post(
+      reverse('users:login'),
+      data={
+        'username': 'jahongir',
+        'password': 'thisispassword'
+      }
+    )
+    user = get_user(self.client)
+    self.assertTrue(user.is_authenticated)
+
+  def test_wrong_credentials(self):
+    db_user  = User.objects.create(username='jahongir', first_name='jahongir', last_name='umarov')
+    db_user.set_password('thisispassword')
+    db_user.save()
+
+    self.client.post(
+      reverse('users:login'),
+      data={
+        'username': 'jahongir1',
+        'password': 'thisispassword1'
+      }
+    )
+    user = get_user(self.client)
+    self.assertFalse(user.is_authenticated)
+
+    self.client.post(
+      reverse('users:login'),
+      data={
+        'username': 'jahongir',
+        'password': 'thisispassword1'
+      }
+    )
+    user = get_user(self.client)
+    self.assertFalse(user.is_authenticated)

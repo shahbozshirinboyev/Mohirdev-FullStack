@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
-from users.forms import UserCreateForm, UserLoginForm
+from users.forms import UserCreateForm
 
 class RegisterView(View):
   def get(self, request):
