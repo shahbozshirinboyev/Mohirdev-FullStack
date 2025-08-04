@@ -7,5 +7,10 @@
 </head>
 <body>
   <h1>Login</h1>
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {{ login_form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
