@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import AuthenticationForm
 from users.forms import UserCreateForm
 
@@ -37,3 +38,8 @@ class LoginView(View):
       return redirect('index')
     else:
       return render(request, 'users/login.html', {"login_form": login_form})
+
+class ProfileView(LoginRequiredMixin, View):
+  def get(self, request):
+    context = { 'user': request.user }
+    return render(request, 'users/profile.html', context)
