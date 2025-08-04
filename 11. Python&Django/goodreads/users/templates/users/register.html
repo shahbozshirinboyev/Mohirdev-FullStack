@@ -10,7 +10,7 @@
 
     <form method="POST" action="{% url 'users:register' %}">
       {% csrf_token %}
-      <div>
+      <!-- <div>
         <label for="username">Username:</label>
         <input id="username" type="text" name="username" />
       </div>
@@ -34,7 +34,8 @@
         <label for="password">Password:</label>
         <input id="password" type="password" name="password" />
       </div>
-      <br />
+      <br /> -->
+      {{ form.as_p }}
 
       <button type="submit">Submit</button>
     </form>
