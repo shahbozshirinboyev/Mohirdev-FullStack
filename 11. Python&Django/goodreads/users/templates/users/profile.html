@@ -4,6 +4,7 @@
 
 {% block content %}
   <h1>Profile page</h1>
+  <img src="{{ user.avatar.url }}" alt="user_avatar" style="width: 100px; height: 100px;" class="rounded-circle">
   <p>Username: {{ user.username }} </p>
   <p>First name: {{ user.first_name }} </p>
   <p>Last name: {{ user.last_name }} </p>

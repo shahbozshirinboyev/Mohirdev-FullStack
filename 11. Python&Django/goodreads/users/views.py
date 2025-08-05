@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import AuthenticationForm
@@ -59,7 +58,11 @@ class ProfileUpdateView(LoginRequiredMixin, View):
     return render(request, 'users/profile_edit.html', context)
 
   def post(self, request):
-    user_update_form = UserUpdateForm(instance=request.user, data=request.POST)
+    user_update_form = UserUpdateForm(
+      instance=request.user,
+      data=request.POST,
+      files=request.FILES
+      )
     if user_update_form.is_valid():
       user_update_form.save()
       messages.success(request, 'You have seccessfully update your profile.')

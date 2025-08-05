@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from users.models import CustomUser
 from django.contrib.auth import get_user
 from django.urls import reverse
 
@@ -17,7 +17,7 @@ class RegistrationTestCase(TestCase):
         'password': 'jrahmanov@'
         }
     )
-    user = User.objects.get(username="jahongir")
+    user = CustomUser.objects.get(username="jahongir")
     self.assertEqual(user.first_name, "Jahongitr")
     self.assertEqual(user.last_name, "Rahmanov")
     self.assertEqual(user.email, "jrahmanov@gmail.com")
@@ -35,7 +35,7 @@ class RegistrationTestCase(TestCase):
 
     form = response.context.get("form")
     self.assertIsNotNone(form, "Form kontekstda mavjud emas!")
-    user_count = User.objects.count()
+    user_count = CustomUser.objects.count()
     self.assertEqual(user_count, 0)
 
     self.assertFormError(form, "username", "This field is required.")
@@ -53,7 +53,7 @@ class RegistrationTestCase(TestCase):
         'password': 'jrahmanov@'
         }
     )
-     user_count = User.objects.count()
+     user_count = CustomUser.objects.count()
      self.assertEqual(user_count, 0)
      form = response.context.get("form")
      self.assertFormError(form, "email", "Enter a valid email address.")
@@ -85,7 +85,7 @@ class RegistrationTestCase(TestCase):
 class LoginTestCase(TestCase):
 
   def setUp(self):
-    self.db_user  = User.objects.create(username='jahongir', first_name='jahongir', last_name='umarov')
+    self.db_user  = CustomUser.objects.create(username='jahongir', first_name='jahongir', last_name='umarov')
     self.db_user.set_password('thisispassword')
     self.db_user.save()
 
@@ -128,7 +128,7 @@ class ProfileTestCase(TestCase):
     self.assertEqual(response.url, reverse('users:login') + "?next=/users/profile/")
 
   def test_profile_details(self):
-    user = User.objects.create(
+    user = CustomUser.objects.create(
       username = 'shahboz',
       first_name = 'shahboz',
       last_name = 'shirinboyev',
@@ -150,7 +150,7 @@ class ProfileTestCase(TestCase):
 class LogoutTestCase(TestCase):
 
   def test_logout(self):
-    user = User.objects.create(
+    user = CustomUser.objects.create(
       username = 'shahboz',
       first_name = 'shahboz',
       last_name = 'shirinboyev',
@@ -167,7 +167,7 @@ class LogoutTestCase(TestCase):
 
 class ProfileUpdateTestCase(TestCase):
   def test_update_profile(self):
-    user = User.objects.create(
+    user = CustomUser.objects.create(
       username = 'shahboz',
       first_name = 'shahboz',
       last_name = 'shirinboyev',
