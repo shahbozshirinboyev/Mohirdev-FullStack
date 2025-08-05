@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+
+}
+
+.book-cover {
+  width: 200px;
+}

@@ -1,20 +1,41 @@
 {% extends 'base.html' %}
-
 {% block title %} Books {% endblock %}
 
 {% block content %}
-    {% if books %}
-    <h1>Books page</h1>
 
-    <ul>
-      {% for book in books %}
-      <li>
-        <a href="{% url 'books:detail' book.id %}"> {{ book.title }} </a>
-      </li>
-      <br>
-      {% endfor %}
-    </ul>
-  {% else %}
-    No books found.
-  {% endif %}
+{% if books %}
+
+<h2 class="mb-3">Books</h2>
+<div class="row">
+  {% for book in books %}
+  <div class="col-12 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <span class="text-muted">ISBN: {{book.isbn}}</span>
+      </div>
+      <div class="card-body d-flex gap-3">
+        <div>
+          <img src="{{book.cover.url}}" alt="{{book.title}}" style="width: 200px;">
+        </div>
+        <figure>
+          <blockquote class="blockquote">
+            <a href="{% url 'books:detail' book.id %}" class="link-offset-2 link-underline link-underline-opacity-0"
+              title="{{ book.title }}">{{ book.title }}</a>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            {{book.description}}
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+
+No books found.
+
+{% endif %}
+
 {% endblock %}

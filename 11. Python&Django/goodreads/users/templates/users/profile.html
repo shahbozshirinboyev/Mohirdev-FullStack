@@ -3,14 +3,26 @@
 {% block title %} Profile {% endblock %}
 
 {% block content %}
-  <h1>Profile page</h1>
-  <img src="{{ user.avatar.url }}" alt="user_avatar" style="width: 100px; height: 100px;" class="rounded-circle">
-  <p>Username: {{ user.username }} </p>
-  <p>First name: {{ user.first_name }} </p>
-  <p>Last name: {{ user.last_name }} </p>
-  <p>Email: {{ user.email }} </p>
-
-  <p>
-    <a class="btn btn-sm btn-primary" href="{% url 'users:profile-edit' %}">Edit Profile</a>
-  </p>
+<div class="card shadow-sm" style="max-width: 540px; margin: 0 auto;">
+  <div class="row g-0">
+    <div class="col-md-4 p-3 text-center">
+      <img src="{{ user.avatar.url }}" class="rounded-circle img-thumbnail" alt="user_avatar">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+          <b>{{ user.first_name }} {{ user.last_name }}</b>
+          <a href="{% url 'users:profile-edit' %}" class="btn btn-sm btn-outline-primary">Edit</a>
+        </h5>
+        <div class="mt-4">
+          <span class=" text-muted"> <b>Username:</b> {{ user.username }} </span>
+          <br>
+          <span class=" text-muted"> <b>Email:</b> {{ user.email }} </span>
+          <br>
+          <span class=" text-muted"> <b>Joined:</b> {{ user.date_joined | date:"F j, Y" }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
