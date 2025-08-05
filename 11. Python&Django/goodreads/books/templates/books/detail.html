@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Detail</title>
-</head>
-<body>
-<h1>Book Detail page</h1>
-<h3>{{ book.title }}</h3>
-<p>
-  {{ book.description }}
-</p>
+{% extends 'base.html' %}
 
-<a href="{% url 'books:list' %}">
-  <button>
-    Books list
-  </button>
-</a>
-</body>
-</html>
+{% block title %} Book Detail {% endblock %}
+
+{% block content %}
+  <h1>Book Detail page</h1>
+  <h3>{{ book.title }}</h3>
+  <p>
+    {{ book.description }}
+  </p>
+{% endblock %}
