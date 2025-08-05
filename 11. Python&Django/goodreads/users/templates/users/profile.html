@@ -8,4 +8,8 @@
   <p>First name: {{ user.first_name }} </p>
   <p>Last name: {{ user.last_name }} </p>
   <p>Email: {{ user.email }} </p>
+
+  <p>
+    <a class="btn btn-sm btn-primary" href="{% url 'users:profile-edit' %}">Edit Profile</a>
+  </p>
 {% endblock %}

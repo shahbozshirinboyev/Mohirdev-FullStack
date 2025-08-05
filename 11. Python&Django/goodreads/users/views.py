@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import AuthenticationForm
-from users.forms import UserCreateForm
+from users.forms import UserCreateForm, UserUpdateForm
 from django.contrib import messages
 
 class RegisterView(View):
@@ -49,3 +49,20 @@ class LogoutView(LoginRequiredMixin, View):
     logout(request)
     messages.info(request, 'You have successfully logged out.')
     return redirect('index')
+
+class ProfileUpdateView(LoginRequiredMixin, View):
+  def get(self, request):
+    user_update_form = UserUpdateForm(instance=request.user)
+    context = {
+      'form': user_update_form
+    }
+    return render(request, 'users/profile_edit.html', context)
+
+  def post(self, request):
+    user_update_form = UserUpdateForm(instance=request.user, data=request.POST)
+    if user_update_form.is_valid():
+      user_update_form.save()
+      messages.success(request, 'You have seccessfully update your profile.')
+      return redirect('users:profile')
+
+    return(request, 'users/update_edit.html', {'form': user_update_form})

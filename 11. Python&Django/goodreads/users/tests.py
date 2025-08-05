@@ -164,3 +164,30 @@ class LogoutTestCase(TestCase):
 
     user = get_user(self.client)
     self.assertFalse(user.is_authenticated)
+
+class ProfileUpdateTestCase(TestCase):
+  def test_update_profile(self):
+    user = User.objects.create(
+      username = 'shahboz',
+      first_name = 'shahboz',
+      last_name = 'shirinboyev',
+      email = 'shahboz.sh.b@gmail.com'
+    )
+    user.set_password('thisispassword')
+    user.save()
+
+    self.client.login(username='shahboz', password='thisispassword')
+    response = self.client.post(
+      reverse('users:profile-edit'),
+      data = {
+      'username': 'shahboz',
+      'first_name': 'shahboz',
+      'last_name': 'shirinboyev1',
+      'email': 'shahboz.sh.b2@gmail.com'
+      }
+    )
+    # user = User.objects.get(pk=user.pk)
+    user.refresh_from_db()
+    self.assertEqual(user.last_name, 'shirinboyev1')
+    self.assertEqual(user.email, 'shahboz.sh.b2@gmail.com')
+    self.assertEqual(response.url, reverse('users:profile'))
