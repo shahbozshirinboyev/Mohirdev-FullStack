@@ -3,11 +3,14 @@
 {% block title %} Book Detail {% endblock %}
 
 {% block content %}
-
-  <h1>Book Detail page</h1>
-
-  <h3>{{ book.title }}</h3>
-  <img class="book-cover" src="{{book.cover.url}}" alt="{{book.title}}">
-  <p>{{ book.description }}</p>
-
+<div class="d-flex gap-4">
+  <div>
+    <img class="book-cover" src="{{book.cover.url}}" alt="{{book.title}}">
+  </div>
+  <div>
+    <h3>{{ book.title }}</h3>
+    <span class="text-muted">ISBN: {{ book.isbn }}</span>
+    <p class="mt-3 text-justify-custom">{{ book.description }}</p>
+  </div>
+</div>
 {% endblock %}

@@ -6,9 +6,12 @@
 .user-avatar {
   width: 100px;
   height: 100px;
-
 }
 
 .book-cover {
   width: 200px;
+}
+
+.text-justify-custom {
+  text-align: justify;
 }
