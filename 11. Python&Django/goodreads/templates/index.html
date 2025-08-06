@@ -1,13 +1,14 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block content %}
 <div class="card text-center">
-  <div class="card-header">Featured</div>
+  <div class="card-header">{% now "Y-m-d" %}</div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <p class="fs-2 mb-1"><b>Goodreads</b>Clone</p>
+    <p class="fs-4 mt-1"> Meet your next favorite book. </p>
+    <a href="{% url 'books:list' %}" class="btn btn-primary">Go books</a>
   </div>
-  <div class="card-footer text-body-secondary">2 days ago</div>
+  <div class="card-footer text-body-secondary">{% now "H:i" %}</div>
 </div>
 {% endblock %}
