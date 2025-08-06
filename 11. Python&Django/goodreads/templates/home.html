@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page {% endblock %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-between align-items-center">
+
+  <h2 class="mb-3">All Reviews</h2>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {# Previous tugmasi faqat birinchi sahifada emasligida ko‘rinadi #}
+      {% if page_object.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_object.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+      {% endif %}
+
+      {# Sahifa raqamlari #}
+      {% for num in page_object.paginator.page_range %}
+        {% if num == 1 or num == page_object.paginator.num_pages %}
+          {% if num == page_object.number %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% else %}
+           <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+          {% elif num >= page_object.number|add:"-2" and num <= page_object.number|add:"2" %}
+          {% if num == page_object.number %}
+          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% elif num == page_object.number|add:"-3" or num == page_object.number|add:"3" %}
+          <li class="page-item disabled"><span class="page-link">...</span></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_object.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_object.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Next</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+</div>
+
+  <div class="posts-content">
+    <div class="row">
+      {% for review in page_object %}
+        <div class="col-lg-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="media mb-3">
+                  <img src="{{ review.user.avatar.url }}" class="d-block ui-w-40 rounded-circle" alt="{{ review.user.username }}">
+                  <div class="media-body ml-3">
+                    <span><b>{{ review.user.username | capfirst }}</b> rated this book {{ review.stars_given }} stars</span>
+                    <div class="text-muted small">{{ review.created_at | timesince }}</div>
+                  </div>
+                </div>
+
+                <p>
+                  {{ review.comment|truncatechars:300 }}
+                </p>
+                <img class="home-book-cover" src="{{ review.book.cover.url }}" alt="{{ review.book.title }}">
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

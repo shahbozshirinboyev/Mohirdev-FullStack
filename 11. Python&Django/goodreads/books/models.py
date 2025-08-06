@@ -18,6 +18,9 @@ class Author(models.Model):
   email = models.EmailField()
   bio = models.TextField()
 
+  def full_name(self):
+    return f"{self.first_name} {self.last_name}"
+
   def __str__(self):
     full_name = f"{self.first_name} {self.last_name}"
     return full_name
