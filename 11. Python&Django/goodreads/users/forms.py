@@ -7,7 +7,7 @@ class UserCreateForm(forms.Form):
   first_name = forms.CharField(max_length=150)
   last_name = forms.CharField(max_length=150)
   password = forms.CharField(max_length=128)
-  avatar = forms.ImageField()
+  # avatar = forms.ImageField()
 
   def save(self):
     username = self.cleaned_data['username']
