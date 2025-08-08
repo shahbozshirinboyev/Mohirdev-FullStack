@@ -6,6 +6,7 @@
 .user-avatar {
   width: 100px;
   height: 100px;
+  object-fit: cover;
 }
 
 .book-cover {
@@ -59,6 +60,6 @@
   display: block;
 }
 
-.active{
+.active {
   font-weight: 500;
 }

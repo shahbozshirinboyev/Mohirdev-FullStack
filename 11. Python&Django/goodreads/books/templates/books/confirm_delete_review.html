@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Confirm Delete Review {% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Confirm Delete Review</h2>
+
+<div class="row my-5">
+  <div class="col-12">
+      <p>Are you sure you want to <b>delete</b> this review?</p>
+      <p>
+        <span><i>Book:</i> {{ book.title }} </span> <br>
+        <span><i>Comment:</i> {{ review.comment }} </span> <br>
+      </p>
+      <div class="d-flex justify-content-start">
+        <a href="{% url 'books:delete-review' book.id review.id %}" class="btn btn-success">Yes</a>
+        &nbsp;
+        <a href="{% url 'books:detail' book.id %}" class="btn btn-danger">No</a>
+      </div>
+  </div>
+</div>
+{% endblock %}
