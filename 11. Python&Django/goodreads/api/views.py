@@ -3,6 +3,7 @@ from api.serializers import BookReviewSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 class BookReviewDetailAPIView(APIView):
@@ -18,5 +19,9 @@ class BookReviewListAPIView(APIView):
 
   def get(self, request):
     book_reviews = BookReview.objects.all().order_by('-created_at')
-    serializer = BookReviewSerializer(book_reviews, many=True)
-    return Response(data=serializer.data)
+
+    paginator = PageNumberPagination()
+    page_object = paginator.paginate_queryset(book_reviews, request)
+
+    serializer = BookReviewSerializer(page_object, many=True)
+    return paginator.get_paginated_response(serializer.data)

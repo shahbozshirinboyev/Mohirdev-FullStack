@@ -12,6 +12,8 @@ class BookReviewDetailAPITestCase(APITestCase):
     self.user.set_password('thisispassword')
     self.user.save()
 
+    self.client.login(username='jahongir', password='thisispassword')
+
   def test_book_review_detail(self):
     book = Book.objects.create(title='book1', description='description1', isbn='123456789')
     br = BookReview.objects.create(book=book, user=self.user, stars_given='1', comment='comment1')
@@ -42,10 +44,14 @@ class BookReviewDetailAPITestCase(APITestCase):
     response = self.client.get(reverse('api:book-reviews-list'))
 
     self.assertEqual(response.status_code, 200)
-    self.assertEqual(len(response.data), 2)
-    self.assertEqual(response.data[0]['id'], br_two.id)
-    self.assertEqual(response.data[0]['stars_given'], br_two.stars_given)
-    self.assertEqual(response.data[0]['comment'], br_two.comment)
-    self.assertEqual(response.data[1]['id'], br.id)
-    self.assertEqual(response.data[1]['stars_given'], br.stars_given)
-    self.assertEqual(response.data[1]['comment'], br.comment)
+    self.assertEqual(len(response.data['results']), 2)
+    self.assertEqual(response.data['count'], 2)
+    self.assertIn('next', response.data)
+    self.assertIn('previous', response.data)
+
+    self.assertEqual(response.data['results'][0]['id'], br_two.id)
+    self.assertEqual(response.data['results'][0]['stars_given'], br_two.stars_given)
+    self.assertEqual(response.data['results'][0]['comment'], br_two.comment)
+    self.assertEqual(response.data['results'][1]['id'], br.id)
+    self.assertEqual(response.data['results'][1]['stars_given'], br.stars_given)
+    self.assertEqual(response.data['results'][1]['comment'], br.comment)

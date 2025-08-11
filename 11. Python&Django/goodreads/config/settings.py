@@ -153,3 +153,8 @@ EMAIL_HOST_USER = 'shahboz.sh.b@gmail.com'
 EMAIL_HOST_PASSWORD = 'fdxg hqsi nmhp dwmm'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2
+}
