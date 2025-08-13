@@ -9,16 +9,32 @@ class SignUpModel(BaseModel):
   is_staff : Optional[bool]
   is_active : Optional[bool]
 
-  class Config:
-    orm_mode: True
-    json_schema_extra={
-      'example':{
-        'username':'mohirdev',
-        'email':'mohirdev.praktikum@gmail.com',
-        'password':'password12345',
-        'is_staff': False,
-        'is_active': True
-      }
+  # Eskirgan usul
+
+  # class Config:
+  #   orm_mode = True
+  #   json_schema_extra={
+  #     'example':{
+  #       'username':'mohirdev',
+  #       'email':'mohirdev.praktikum@gmail.com',
+  #       'password':'password12345',
+  #       'is_staff': False,
+  #       'is_active': True
+  #     }
+  #   }
+
+  # Yangi usul
+  model_config = {
+    "from_attributes": True,
+    "json_schema_extra": {
+            "example": {
+              'username':'mohirdev',
+              'email':'mohirdev.praktikum@gmail.com',
+              'password':'password12345',
+              'is_staff': False,
+              'is_active': True
+            }
+        }
     }
 
 class Settings(BaseModel):
@@ -29,10 +45,36 @@ class LoginModel(BaseModel):
   password : str
 
   class Config:
-    orm_mode: True
+    orm_mode = True
     json_schema_extra={
       'example':{
         'username':'mohirdev',
         'password':'mohirdev@123',
+      }
+    }
+
+class OrderModel(BaseModel):
+  id : Optional[int]
+  quantity : int
+  order_statuses : Optional[str] = "PENDING"
+  user_id: Optional[int]
+  product_id: Optional[int]
+
+  class Config:
+    orm_mode = True
+    json_schema_extra={
+      'example':{
+        'quantity':2,
+      }
+    }
+
+class OrderStatusModel(BaseModel):
+  order_statuses : Optional[str] = "PENDING"
+
+  class Config:
+    orm_mode = True
+    json_schema_extra={
+      'example':{
+        'order_statuses' : "PENDING",
       }
     }
