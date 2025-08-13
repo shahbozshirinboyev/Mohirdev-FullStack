@@ -41,9 +41,48 @@ async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
   session.add(new_order)
   session.commit()
 
-  response = {
-    "id": new_order.id,
-    "quantity": new_order.quantity,
-    "order_statuses": new_order.order_statuses
+  data = {
+    'success': True,
+    'code': 201,
+    'message': 'Order is created successfully',
+    'data': {
+      "id": new_order.id,
+      "quantity": new_order.quantity,
+      "order_statuses": new_order.order_statuses
+    }
   }
-  return jsonable_encoder(response)
+
+  return jsonable_encoder(data)
+
+@order_router.get('/list')
+async def list_order(Authorize: AuthJWT=Depends()):
+  # This will return a list of all orders.
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  current_user = Authorize.get_jwt_subject()
+  user = session.query(Users).filter(Users.username == current_user).first()
+
+  if user.is_staff:
+    orders = session.query(Orders).all()
+    custom_data = [
+      {
+        'id': order.id,
+        'user': {
+          "id": order.user.id,
+          "username": order.user.username,
+          "email": order.user.email,
+          "is_active": order.user.is_active,
+          "is_staff": order.user.is_staff
+          },
+        'product_id': order.product_id,
+        'quantity': order.quantity,
+        'order_statuses': order.order_statuses.value
+      }
+      for order in orders
+    ]
+    return jsonable_encoder(custom_data)
+  else:
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser can see all orders.")

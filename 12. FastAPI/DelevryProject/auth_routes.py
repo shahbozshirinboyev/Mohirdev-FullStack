@@ -67,7 +67,7 @@ async def login(user:LoginModel, Authorize:AuthJWT=Depends()):
   # Faqat username orqali login qilish
   # db_user = session.query(Users).filter(Users.username == user.username).first()
 
-  access_lifetime = datetime.timedelta(minutes=1)
+  access_lifetime = datetime.timedelta(minutes=60)
   refresh_lifetime = datetime.timedelta(days=3)
 
   # username or email orqali login qilish
@@ -90,6 +90,12 @@ async def login(user:LoginModel, Authorize:AuthJWT=Depends()):
     response = {
       'success': True,
       'code': 200,
+      'user': {
+        "username": db_user.username,
+        "email": db_user.email,
+        "is_staff": db_user.is_staff,
+        "is_active": db_user.is_active
+      },
       'message': 'User successfully login.',
       "data": token
     }
