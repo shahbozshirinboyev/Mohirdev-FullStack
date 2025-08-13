@@ -7,6 +7,8 @@ from database import session, engine
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter, Depends, status
 
+session = session(bind=engine)
+
 order_router = APIRouter(
   prefix='/order'
 )
@@ -21,6 +23,27 @@ async def welcome_page(Authorize: AuthJWT=Depends()):
 
   return {'message': 'Bu order route buyurtmalar sahifasi sahifasi.'}
 
-# @order_router.get('/')
-# async def order():
-#   pass
+@order_router.post('/make', status_code=status.HTTP_201_CREATED)
+async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  current_user = Authorize.get_jwt_subject()
+  user = session.query(Users).filter(Users.username==current_user).first()
+
+  new_order = Orders(
+    quantity = order.quantity,
+    # product = order.product_id
+  )
+  new_order.user = user
+  session.add(new_order)
+  session.commit()
+
+  response = {
+    "id": new_order.id,
+    "quantity": new_order.quantity,
+    "order_statuses": new_order.order_statuses
+  }
+  return jsonable_encoder(response)

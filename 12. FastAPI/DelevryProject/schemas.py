@@ -44,13 +44,25 @@ class LoginModel(BaseModel):
   username_or_email : str
   password : str
 
-  class Config:
-    orm_mode = True
-    json_schema_extra={
-      'example':{
-        'username':'mohirdev',
-        'password':'mohirdev@123',
-      }
+  # old
+  # class Config:
+  #   orm_mode = True
+  #   json_schema_extra={
+  #     'example':{
+  #       'username':'mohirdev',
+  #       'password':'mohirdev@123',
+  #     }
+  #   }
+
+  # Yangi usul
+  model_config = {
+    "from_attributes": True,
+    "json_schema_extra": {
+            "example": {
+              'username':'mohirdev',
+              'password':'mohirdev@123',
+            }
+        }
     }
 
 class OrderModel(BaseModel):
@@ -59,22 +71,42 @@ class OrderModel(BaseModel):
   order_statuses : Optional[str] = "PENDING"
   user_id: Optional[int]
   product_id: Optional[int]
+  # old
+  # class Config:
+  #   orm_mode = True
+  #   json_schema_extra={
+  #     'example':{
+  #       'quantity':2,
+  #     }
+  #   }
 
-  class Config:
-    orm_mode = True
-    json_schema_extra={
-      'example':{
-        'quantity':2,
+  model_config = {
+  "from_attributes": True,
+  "json_schema_extra": {
+          "example": {
+            'quantity':2,
+          }
       }
-    }
+  }
 
 class OrderStatusModel(BaseModel):
   order_statuses : Optional[str] = "PENDING"
 
-  class Config:
-    orm_mode = True
-    json_schema_extra={
-      'example':{
-        'order_statuses' : "PENDING",
+# old
+  # class Config:
+  #   orm_mode = True
+  #   json_schema_extra={
+  #     'example':{
+  #       'order_statuses' : "PENDING",
+  #     }
+  #   }
+
+  # new
+  model_config = {
+  "from_attributes": True,
+  "json_schema_extra": {
+          "example": {
+            'order_statuses' : "PENDING",
+          }
       }
-    }
+  }
