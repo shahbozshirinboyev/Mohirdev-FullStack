@@ -92,3 +92,27 @@ async def login(user:LoginModel, Authorize:AuthJWT=Depends()):
 
     return jsonable_encoder(response)
   raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid username or password.")
+
+@auth_router.post('/login/refresh', status_code=status.HTTP_200_OK)
+async def refresh_token(Authorize: AuthJWT=Depends()):
+  try:
+    Authorize.jwt_required()
+    current_user = Authorize.get_jwt_subject()
+    db_user = session.query(Users).filter(Users.username==current_user).first()
+    if db_user is None:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User not found.')
+    new_access_token = Authorize.create_access_token(subject=db_user.username)
+
+    token = {
+      "access": new_access_token
+    }
+
+    response = {
+      'success': True,
+      'code': 200,
+      'message': 'New access token is successfully created.',
+      "data": token
+    }
+    return response
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid access token.")
