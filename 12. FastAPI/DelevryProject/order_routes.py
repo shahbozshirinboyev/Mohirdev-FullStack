@@ -86,3 +86,33 @@ async def list_order(Authorize: AuthJWT=Depends()):
     return jsonable_encoder(custom_data)
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser can see all orders.")
+
+@order_router.get('/{id}')
+async def get_order_by_id(id:int, Authorize: AuthJWT=Depends()):
+
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  user = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username==user).first()
+
+  if current_user.is_staff:
+    order = session.query(Orders).filter(Orders.id==id).first()
+    custom_order = {
+        'id': order.id,
+        'user': {
+          "id": order.user.id,
+          "username": order.user.username,
+          "email": order.user.email,
+          "is_active": order.user.is_active,
+          "is_staff": order.user.is_staff
+          },
+        'product_id': order.product_id,
+        'quantity': order.quantity,
+        'order_statuses': order.order_statuses.value
+      }
+    return jsonable_encoder(custom_order)
+  else:
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to this request.")
