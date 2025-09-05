@@ -41,3 +41,53 @@ async def create_product(product: ProductModel, Authorize: AuthJWT=Depends()):
     return jsonable_encoder(data)
   else:
     return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only admin can add new product.")
+
+@product_router.get('/list', status_code=status.HTTP_200_OK)
+async def list_all_products(Authorize: AuthJWT=Depends()):
+  # This route return all product list
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  user = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username == user).first()
+
+  if current_user.is_staff:
+    products = session.query(Product).all()
+    custom_data = [
+      {
+        "id": product.id,
+        "name": product.name,
+        "price": product.price
+      }
+      for product in products
+    ]
+    return jsonable_encoder(custom_data)
+  else:
+    return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only admin can see all products.")
+
+@product_router.get('/{id}')
+async def get_product_by_id(id:int, Authorize: AuthJWT=Depends()):
+
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  user = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username==user).first()
+
+  if current_user.is_staff:
+    product = session.query(Product).filter(Product.id==id).first()
+    if product:
+      custom_product = {
+          'id': product.id,
+          'name': product.name,
+          'price': product.price,
+        }
+      return jsonable_encoder(custom_product)
+    else:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with ID={id} is not found.")
+  else:
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to this request.")

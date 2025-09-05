@@ -100,19 +100,22 @@ async def get_order_by_id(id:int, Authorize: AuthJWT=Depends()):
 
   if current_user.is_staff:
     order = session.query(Orders).filter(Orders.id==id).first()
-    custom_order = {
-        'id': order.id,
-        'user': {
-          "id": order.user.id,
-          "username": order.user.username,
-          "email": order.user.email,
-          "is_active": order.user.is_active,
-          "is_staff": order.user.is_staff
-          },
-        'product_id': order.product_id,
-        'quantity': order.quantity,
-        'order_statuses': order.order_statuses.value
-      }
-    return jsonable_encoder(custom_order)
+    if order:
+      custom_order = {
+          'id': order.id,
+          'user': {
+            "id": order.user.id,
+            "username": order.user.username,
+            "email": order.user.email,
+            "is_active": order.user.is_active,
+            "is_staff": order.user.is_staff
+            },
+          'product_id': order.product_id,
+          'quantity': order.quantity,
+          'order_statuses': order.order_statuses.value
+        }
+      return jsonable_encoder(custom_order)
+    else:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Order with ID={id} is not found.")
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to this request.")
