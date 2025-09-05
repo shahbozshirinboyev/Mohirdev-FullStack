@@ -110,3 +110,19 @@ class OrderStatusModel(BaseModel):
           }
       }
   }
+
+class ProductModel(BaseModel):
+  id : Optional[int]
+  name : str
+  price : str
+
+
+  model_config = {
+  "from_attributes": True,
+  "json_schema_extra": {
+          "example": {
+            'name' : 'O\'zbekcha osh',
+            'price' : 35000,
+          }
+      }
+  }

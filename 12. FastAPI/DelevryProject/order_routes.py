@@ -21,7 +21,7 @@ async def welcome_page(Authorize: AuthJWT=Depends()):
   except Exception as e:
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
 
-  return {'message': 'Bu order route buyurtmalar sahifasi sahifasi.'}
+  return {'message': 'Bu order route buyurtmalar sahifasi.'}
 
 @order_router.post('/make', status_code=status.HTTP_201_CREATED)
 async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
