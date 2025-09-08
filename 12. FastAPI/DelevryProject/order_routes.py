@@ -34,10 +34,11 @@ async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
   user = session.query(Users).filter(Users.username==current_user).first()
 
   new_order = Orders(
-    quantity = order.quantity,
-    # product = order.product_id
-  )
-  new_order.user = user
+    quantity=order.quantity,
+    product_id=order.product_id,
+    user_id=user.id
+)
+
   session.add(new_order)
   session.commit()
 
@@ -45,10 +46,16 @@ async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
     'success': True,
     'code': 201,
     'message': 'Order is created successfully',
+    "product": {
+      "id": new_order.product.id,
+      "name": new_order.product.name,
+      "price": new_order.product.price
+    },
     'data': {
       "id": new_order.id,
       "quantity": new_order.quantity,
-      "order_statuses": new_order.order_statuses
+      "order_statuses": new_order.order_statuses,
+      "total_price": new_order.quantity * new_order.product.price
     }
   }
 
@@ -68,21 +75,27 @@ async def list_order(Authorize: AuthJWT=Depends()):
   if user.is_staff:
     orders = session.query(Orders).all()
     custom_data = [
-      {
+    {
         'id': order.id,
         'user': {
-          "id": order.user.id,
-          "username": order.user.username,
-          "email": order.user.email,
-          "is_active": order.user.is_active,
-          "is_staff": order.user.is_staff
-          },
-        'product_id': order.product_id,
+            "id": order.user.id if order.user else None,
+            "username": order.user.username if order.user else None,
+            "email": order.user.email if order.user else None,
+            "is_active": order.user.is_active if order.user else None,
+            "is_staff": order.user.is_staff if order.user else None
+        },
+        "product": {
+            "id": order.product.id if order.product else None,
+            "name": order.product.name if order.product else None,
+            "price": order.product.price if order.product else None
+        } if order.product else None,
         'quantity': order.quantity,
-        'order_statuses': order.order_statuses.value
-      }
-      for order in orders
-    ]
+        'order_statuses': order.order_statuses.value,
+        "total_price": order.quantity * (order.product.price if order.product else 0)
+    }
+    for order in orders
+]
+
     return jsonable_encoder(custom_data)
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser can see all orders.")
