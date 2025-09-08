@@ -67,7 +67,7 @@ async def list_all_products(Authorize: AuthJWT=Depends()):
   else:
     return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only admin can see all products.")
 
-@product_router.get('/{id}')
+@product_router.get('/{id}',  status_code=status.HTTP_200_OK)
 async def get_product_by_id(id:int, Authorize: AuthJWT=Depends()):
 
   try:
@@ -91,3 +91,67 @@ async def get_product_by_id(id:int, Authorize: AuthJWT=Depends()):
       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with ID={id} is not found.")
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to this request.")
+
+@product_router.delete('/{id}',  status_code=status.HTTP_204_NO_CONTENT)
+async def delete_product_by_id(id:int, Authorize:AuthJWT=Depends()):
+  # This endpoint delete product use ID.
+
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  user = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username==user).first()
+
+  if current_user.is_staff:
+    product = session.query(Product).filter(Product.id==id).first()
+    if product:
+      session.delete(product)
+      session.commit()
+      data = {
+        "success": True,
+        "code": 200,
+        "message": f"Product with ID={id} has been delete.",
+        "data": None
+
+      }
+      return jsonable_encoder(data)
+    else:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with ID={id} is not found.")
+  else:
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to delete product.")
+
+@product_router.put('/{id}', status_code=status.HTTP_200_OK)
+async def update_product_bt_id(id:int, update_data: ProductModel, Authorize:AuthJWT=Depends()):
+  # This endpoint update product use ID.
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  user = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username==user).first()
+  if current_user.is_staff:
+    product = session.query(Product).filter(Product.id==id).first()
+    if product:
+      # update product
+      for key, value in update_data.dict(exclude_unset=True).items():
+        setattr(product, key, value)
+      session.commit()
+      data = {
+        "success": True,
+        "code": 200,
+        "message": f"Product with ID={id} has been updated.",
+        "data":{
+          "id": product.id,
+          "name": product.name,
+          "price": product.price
+        }
+
+      }
+      return jsonable_encoder(data)
+    else:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with ID={id} is not found.")
+  else:
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to update product.")
