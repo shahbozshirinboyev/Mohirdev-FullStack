@@ -61,7 +61,7 @@ async def make_order(order: OrderModel, Authorize: AuthJWT=Depends()):
 
   return jsonable_encoder(data)
 
-@order_router.get('/list')
+@order_router.get('/list', status_code=status.HTTP_200_OK)
 async def list_order(Authorize: AuthJWT=Depends()):
   # This will return a list of all orders.
   try:
@@ -100,7 +100,7 @@ async def list_order(Authorize: AuthJWT=Depends()):
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser can see all orders.")
 
-@order_router.get('/{id}')
+@order_router.get('/{id}', status_code=status.HTTP_200_OK)
 async def get_order_by_id(id:int, Authorize: AuthJWT=Depends()):
 
   try:
@@ -132,3 +132,112 @@ async def get_order_by_id(id:int, Authorize: AuthJWT=Depends()):
       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Order with ID={id} is not found.")
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to this request.")
+
+@order_router.get('/user/orders', status_code=status.HTTP_200_OK)
+async def get_user_orders(Authorize:AuthJWT=Depends()):
+  # get a requested user's orders.
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  username = Authorize.get_jwt_subject()
+  user = session.query(Users).filter(Users.username == username).first()
+  custom_data = [
+    {
+        'id': order.id,
+        'user': {
+            "id": order.user.id if order.user else None,
+            "username": order.user.username if order.user else None,
+            "email": order.user.email if order.user else None,
+            "is_active": order.user.is_active if order.user else None,
+            "is_staff": order.user.is_staff if order.user else None
+        },
+        "product": {
+            "id": order.product.id if order.product else None,
+            "name": order.product.name if order.product else None,
+            "price": order.product.price if order.product else None
+        } if order.product else None,
+        'quantity': order.quantity,
+        'order_statuses': order.order_statuses.value,
+        "total_price": order.quantity * (order.product.price if order.product else 0)
+    }
+    for order in user.orders
+]
+  return jsonable_encoder(custom_data)
+
+@order_router.get('/user/{id}', status_code=status.HTTP_200_OK)
+async def get_user_order_by_id(id:int, Authorize:AuthJWT=Depends()):
+  # get user order by id
+  try:
+    Authorize.jwt_required()
+  except Exception as e:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  username = Authorize.get_jwt_subject()
+  current_user = session.query(Users).filter(Users.username == username).first()
+  order = session.query(Orders).filter(Orders.id == id, Orders.user == current_user).first()
+  # orders = current_user.orders
+  if order:
+    order_data = {
+      'id': order.id,
+      'user': {
+          "id": order.user.id if order.user else None,
+          "username": order.user.username if order.user else None,
+          "email": order.user.email if order.user else None,
+          "is_active": order.user.is_active if order.user else None,
+          "is_staff": order.user.is_staff if order.user else None
+      },
+      "product": {
+          "id": order.product.id if order.product else None,
+          "name": order.product.name if order.product else None,
+          "price": order.product.price if order.product else None
+      } if order.product else None,
+      'quantity': order.quantity,
+      'order_statuses': order.order_statuses.value,
+      "total_price": order.quantity * (order.product.price if order.product else 0)
+    }
+    return jsonable_encoder(order_data)
+  else:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"No order with this ID={id}")
+
+@order_router.put('/{id}/update', status_code=status.HTTP_200_OK)
+async def update_order(id: int, order: OrderModel, Authorize:AuthJWT=Depends()):
+    try:
+        Authorize.jwt_required()
+    except Exception:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+    order_to_update = session.query(Orders).filter(Orders.id == id).first()
+    if not order_to_update:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
+
+    username = Authorize.get_jwt_subject()
+    user = session.query(Users).filter(Users.username == username).first()
+
+    # foydalanuvchi tekshiruvi
+    if order_to_update.user_id != user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You cannot update another user's order.")
+
+    # maydonlarni yangilash
+    order_to_update.quantity = order.quantity
+    order_to_update.product_id = order.product_id
+    if order.order_statuses:
+        order_to_update.order_statuses = order.order_statuses
+
+    session.commit()
+    session.refresh(order_to_update)
+
+    custom_response = {
+        "success": True,
+        "code": 200,
+        "message": "Sizning buyurtmangiz muvaffaqiyatli o'zgartirildi.",
+        "data": {
+            "id": order_to_update.id,
+            "quantity": order_to_update.quantity,
+            "product": order_to_update.product_id,
+            "order_status": order_to_update.order_statuses
+        }
+    }
+
+    return jsonable_encoder(custom_response)

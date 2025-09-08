@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi.exceptions import HTTPException
 from fastapi_jwt_auth import AuthJWT
-from models import Users, Product
-from schemas import ProductModel
+from models import Users, Product, Orders
+from schemas import ProductModel, OrderModel
 from database import session, engine
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter, Depends, status
@@ -122,36 +122,42 @@ async def delete_product_by_id(id:int, Authorize:AuthJWT=Depends()):
   else:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to delete product.")
 
-@product_router.put('/{id}', status_code=status.HTTP_200_OK)
-async def update_product_bt_id(id:int, update_data: ProductModel, Authorize:AuthJWT=Depends()):
-  # This endpoint update product use ID.
-  try:
-    Authorize.jwt_required()
-  except Exception as e:
-    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+@product_router.put('/{id}/update', status_code=status.HTTP_200_OK)
+async def update_order(id: int, order: OrderModel, Authorize:AuthJWT=Depends()):
+    try:
+        Authorize.jwt_required()
+    except Exception:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
 
-  user = Authorize.get_jwt_subject()
-  current_user = session.query(Users).filter(Users.username==user).first()
-  if current_user.is_staff:
-    product = session.query(Product).filter(Product.id==id).first()
-    if product:
-      # update product
-      for key, value in update_data.dict(exclude_unset=True).items():
-        setattr(product, key, value)
-      session.commit()
-      data = {
-        "success": True,
-        "code": 200,
-        "message": f"Product with ID={id} has been updated.",
-        "data":{
-          "id": product.id,
-          "name": product.name,
-          "price": product.price
-        }
+    order_to_update = session.query(Orders).filter(Orders.id == id).first()
+    if not order_to_update:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
 
+    username = Authorize.get_jwt_subject()
+    user = session.query(Users).filter(Users.username == username).first()
+
+    if order_to_update.user != user:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You cannot update another user's order.")
+
+    # update fields
+    order_to_update.quantity = order.quantity
+    order_to_update.product_id = order.product_id
+    if order.order_statuses:  # agar kelgan bo‘lsa
+        order_to_update.order_statuses = order.order_statuses
+
+    session.commit()
+    session.refresh(order_to_update)
+
+    custom_response = {
+      "success": True,
+      "code": 200,
+      "message": "Sizning buyurtmangiz muvaffaqiyatli o'zgartirildi.",
+      "data": {
+        "id": order_to_update.id,
+        "quantity": order_to_update.quantity,
+        "product": order_to_update.product_id,
+        "order_status": order_to_update.order_statuses
       }
-      return jsonable_encoder(data)
-    else:
-      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with ID={id} is not found.")
-  else:
-    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only Superuser is allowed to update product.")
+    }
+
+    return jsonable_encoder(custom_response)
