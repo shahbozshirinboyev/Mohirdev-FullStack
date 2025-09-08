@@ -241,3 +241,33 @@ async def update_order(id: int, order: OrderModel, Authorize:AuthJWT=Depends()):
     }
 
     return jsonable_encoder(custom_response)
+
+@order_router.patch('/{id}/update-status', status_code=status.HTTP_200_OK)
+async def update_order_status( id: int, order: OrderStatusModel, Authorize: AuthJWT = Depends() ):
+  try:
+    Authorize.jwt_required()
+  except Exception:
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Enter valid access token.")
+
+  username = Authorize.get_jwt_subject()
+  user = session.query(Users).filter(Users.username == username).first()
+
+  if user.is_staff:
+    order_to_update = session.query(Orders).filter(Orders.id == id).first()
+
+    if not order_to_update:
+        raise HTTPException(status_code=404, detail="Order not found.")
+
+    order_to_update.order_statuses = order.order_statuses
+    session.commit()
+
+    custom_response = {
+        "success": True,
+        "code": 200,
+        "message": "User order status successfully updated.",
+        "data": {
+            "id": order_to_update.id,
+            "order_status": order_to_update.order_statuses
+        }
+    }
+    return jsonable_encoder(custom_response)
