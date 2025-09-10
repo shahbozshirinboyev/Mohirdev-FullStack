@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # install library
+    'rest_framework',
+    'drf_yasg',
 
     # python manage.py startapp ...
-    'products',
-    'materials',
-    'production',
+    'core',
     'wherehouse',
 ]
 

@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework import generics
+from core.models import Warehouse
+from .serializers import WarehouseSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from core.services import calculate_materials
 
-# Create your views here.
+class WarehouseListAPIView(generics.ListAPIView):
+  queryset = Warehouse.objects.all()
+  serializer_class = WarehouseSerializer
+
+class ProductionCalculateAPIView(APIView):
+  def post(self, request):
+      data = request.data  # [{product_code, quantity}, ...]
+      result = calculate_materials(data)
+      return Response(result)
