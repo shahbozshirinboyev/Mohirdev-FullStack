@@ -1,53 +1,59 @@
 from core.models import Product, Warehouse, ProductMaterial
 
 def calculate_materials(order_list):
-    """
-    order_list = [
-        {"product_code": "238923", "quantity": 30},
-        {"product_code": "498723", "quantity": 20},
-    ]
-    """
+    if not order_list:
+        return {"result": [], "message": "Hech qanday buyurtma yuborilmadi"}
+
+    if isinstance(order_list, dict):
+        order_list = [order_list]
 
     result = []
-    # Omborda mavjud partiyalarni global "ishchi nusxa" sifatida olish
     warehouse_data = list(Warehouse.objects.all().order_by("received_date", "id"))
 
     for order in order_list:
+        if "product_code" not in order or "quantity" not in order:
+            result.append({
+                "order": order,
+                "error": "product_code va quantity majburiy maydonlar"
+            })
+            continue
+
         try:
             product = Product.objects.get(product_code=order["product_code"])
         except Product.DoesNotExist:
+            result.append({
+                "product_code": order["product_code"],
+                "product_qty": order["quantity"],
+                "error": f"Mahsulot topilmadi (product_code={order['product_code']})"
+            })
             continue
 
         product_entry = {
             "product_name": product.product_name,
+            "product_code": product.product_code,
             "product_qty": order["quantity"],
             "product_materials": []
         }
 
-        # mahsulot uchun kerakli barcha xomashyo
         product_materials = ProductMaterial.objects.filter(product=product)
 
         for pm in product_materials:
-            required_qty = pm.quantity * order["quantity"]  # umumiy kerakli miqdor
+            required_qty = pm.quantity * order["quantity"]
             material_name = pm.material.material_name
 
-            # partiyalar bo‘yicha taqsimlash
             for w in warehouse_data:
                 if w.material_id == pm.material.id and required_qty > 0:
                     if w.remainder >= required_qty:
-                        # kerakli hammasini shu partiyadan olish mumkin
                         product_entry["product_materials"].append({
                             "warehouse_id": str(w.id),
                             "material_name": material_name,
                             "qty": required_qty,
                             "price": float(w.price)
                         })
-                        # vaqtincha "band" qilish
                         w.remainder -= required_qty
                         required_qty = 0
                         break
                     else:
-                        # partiyadagi hammasini olib qolganini keyingidan olish
                         product_entry["product_materials"].append({
                             "warehouse_id": str(w.id),
                             "material_name": material_name,
@@ -57,7 +63,6 @@ def calculate_materials(order_list):
                         required_qty -= w.remainder
                         w.remainder = 0
 
-            # Agar omborda qolmagan bo‘lsa
             if required_qty > 0:
                 product_entry["product_materials"].append({
                     "warehouse_id": None,
